@@ -8,7 +8,7 @@
     <div class="content-wrapper">
 
         <!-- Content Header (Page header) -->
-        @include('admin.partials.page-header', ['page' => __('custom.sidebar.Dashboard')])
+        @include('admin.partials.page-header', ['main_section' => __('backend.dashboard')])
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">

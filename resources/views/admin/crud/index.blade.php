@@ -1,12 +1,112 @@
-@extends('layout.admin.master')
+@extends('layouts.admin.master')
 @push('css')
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+    {{-- Image Style  --}}
+    <style>
+        #show-info div .row {
+            border-bottom: 1px solid lightgray;
+        }
+
+        /* img upload */
+        .avatar-picture {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            margin-bottom: 33px;
+        }
+
+        .avatar-picture .image-input {
+            position: relative;
+            display: inline-block;
+            /* border-radius: 50%; */
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* for web */
+        .avatar-picture .image-input .image-input-wrapper-web {
+            border: 3px solid #fff;
+            background-image: url("");
+            width: 150px;
+            height: 150px;
+            /* border-radius: 50%; */
+            background-repeat: no-repeat;
+            background-size: contain !important;
+        }
+
+        /* for mobile */
+        .avatar-picture .image-input .image-input-wrapper-mobile {
+            border: 3px solid #fff;
+            background-image: url("");
+            width: 80px;
+            height: 80px;
+            /* border-radius: 50%; */
+            background-repeat: no-repeat;
+            background-size: contain !important;
+        }
+
+        .avatar-picture .image-input .btn {
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            position: absolute;
+            left: 3px;
+            bottom: -7px;
+            background-color: #FFFFFF;
+            display: -webkit-inline-box;
+            display: -ms-inline-flexbox;
+            display: inline-flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            padding: 0;
+            -webkit-filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.16));
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.16));
+        }
+
+        .avatar-picture .image-input .btn img {
+            position: relative;
+            top: -2px;
+        }
+
+        .avatar-picture .image-input .btn:hover {
+            background-color: var(--main-color);
+        }
+
+        .avatar-picture .image-input .btn:hover img {
+            -webkit-filter: invert(1) brightness(10);
+            filter: invert(1) brightness(10);
+        }
+
+        .avatar-picture .image-input .btn input {
+            width: 0 !important;
+            height: 0 !important;
+            overflow: hidden;
+            opacity: 0;
+            display: none;
+        }
+    </style>
 @endpush
 @section('content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        @include('admin.partials.page-header', ['page' => $translated_model_name])
+        @include('admin.partials.page-header', [
+            'main_section' => __('backend.dashboard'),
+            'section' => __('backend.' . $translated_model_name),
+            'page' => __('backend.' . $translated_model_name),
+        ])
         <!-- Main content -->
         <section class="content">
             <div class="card">
@@ -18,9 +118,9 @@
                         <div class="col-sm-2"></div>
                         <div class="col-sm-2">
                             <a href="#" data-toggle="modal" data-target="#create-edit-modal" data-is-create="1"
-                                data-form-action="{{ route('admin.crud.', ['model' => $model]) }}">
+                                data-form-action="{{ route('admin.crud.store', ['model' => $model]) }}">
                                 <i class="fa fa-plus"> </i>&nbsp;
-                                {{ __('custom.new') }}
+                                {{ __('backend.new') }}
                             </a>
                         </div>
                     </div>
@@ -30,9 +130,11 @@
                     <table id="myTable" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>اسم</th>
-                                <th>تاريخ الإنشاء</th>
-                                <th>إجراءات</th>
+
+                                <th>{{ __('backend.name_ar') }}</th>
+                                <th>{{ __('backend.name_en') }}</th>
+                                <th>{{ __('backend.created_at') }}</th>
+                                <th>{{ __('backend.action') }}</th>
                             </tr>
                         </thead>
                     </table>
@@ -49,11 +151,12 @@
 
 @push('js')
     <!-- DataTables -->
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
     <script src="{{ asset('plugins/datatables/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.js') }}"></script>
 
     <script>
-        var table_data_url = "{{ route('admin.project-rleated-crud.table_data', ['model' => $model]) }}";
+        var table_data_url = "{{ route('admin.crud.table_data', ['model' => $model]) }}";
     </script>
     {{-- DatatTable --}}
     <script>
@@ -65,7 +168,7 @@
                 language: language,
                 processing: true,
                 order: [
-                    [1, 'desc']
+                    [2, 'desc']
                 ],
                 serverSide: true,
                 ajax: table_data_url,
@@ -75,8 +178,14 @@
 
         function getTableColumns() {
             return [{
-                    data: 'name',
-                    name: 'name',
+                    data: 'name_ar',
+                    name: 'name_ar',
+                    searchable: true,
+                    orderable: true,
+                },
+                {
+                    data: 'name_en',
+                    name: 'name_en',
                     searchable: true,
                     orderable: true,
                 },
@@ -109,6 +218,42 @@
                     $('#create-edit-modal input[name="name"]').val("");
                 } else {
                     $('#create-edit-modal input[name="name"]').val($(this).data('name'));
+                }
+            });
+
+            // change image and preveiw for web
+            $('#uploadButtonWeb').on('click', function() {
+                $('#changeImgWeb').click();
+            })
+
+            $('#changeImgWeb').change(function() {
+                var file = this.files[0];
+                var reader = new FileReader();
+                reader.onloadend = function() {
+                    $('.image-input-wrapper-web').css('background-image', 'url("' + reader.result +
+                        '")');
+                }
+                if (file) {
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // ---------------
+
+            // change image and preveiw for web
+            $('#uploadButtonMobile').on('click', function() {
+                $('#changeImgMobile').click();
+            })
+
+            $('#changeImgMobile').change(function() {
+                var file = this.files[0];
+                var reader = new FileReader();
+                reader.onloadend = function() {
+                    $('.image-input-wrapper-mobile').css('background-image', 'url("' + reader.result +
+                        '")');
+                }
+                if (file) {
+                    reader.readAsDataURL(file);
                 }
             });
         });

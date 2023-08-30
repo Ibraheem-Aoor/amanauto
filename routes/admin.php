@@ -28,6 +28,7 @@ Route::group(['middleware' => 'admin', 'as' => 'admin.'], function () {
 
     //common crud for services and clients.
     Route::resource('crud', CommonCrudController::class);
+    Route::get('crud-table-data' , [CommonCrudController::class , 'getTableData'])->name('crud.table_data');
 });
 
 

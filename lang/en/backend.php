@@ -21,10 +21,15 @@ return [
     'privacy' => 'Privacy Policy',
     'select_all' => 'Select all',
     'name' => 'name',
+    'name_ar' => 'name in arabic',
+    'name_en' => 'name in english',
     'password' => 'password',
     'select' => 'select',
     'services' => 'Services',
     'client' => 'Entities',
+    'new' => 'New',
+    'web_img' => 'Web Image',
+    'mobile_img' => 'Mobile Image',
 
 
 

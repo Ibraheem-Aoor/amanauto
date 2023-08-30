@@ -66,7 +66,7 @@ $(document).on('submit', '.custom-form', function (e) {
                 }, 1000); // wait for 1 second
             }
             if (response.reload_table) {
-                $('#myTable').DataTable().ajax.reload();
+                $(response.table).DataTable().ajax.reload();
             }
             if (response.redirect) {
                 setTimeout(function () {
@@ -102,12 +102,49 @@ $(document).on('submit', '.custom-form', function (e) {
 
 
 
+// English Inputs
+// Get all input elements with the specified class
+const inputs = document.querySelectorAll('.en-only');
+
+// Iterate over each input and attach event listeners
+inputs.forEach((input) => {
+    input.addEventListener('input', (event) => {
+        const inputValue = event.target.value;
+        const englishCharsRegex = /^[a-zA-Z0-9 -]*$/;
+
+        if (!englishCharsRegex.test(inputValue)) {
+            const englishCharsOnly = inputValue.replace(/[^a-zA-Z0-9 -]/g, '');
+            event.target.value = englishCharsOnly;
+        }
+    });
+});
+
+
+// Arabic Inputs
+// Get all input elements with the specified class
+const arabicInputs = document.querySelectorAll('.ar-only');
+
+// Iterate over each input and attach event listeners
+arabicInputs.forEach((input) => {
+    input.addEventListener('input', (event) => {
+        const arabicInputValue = event.target.value;
+        const arabicCharsRegex = /^[\u0600-\u06FF0-9 -]*$/;
+
+        if (!arabicCharsRegex.test(arabicInputValue)) {
+            const arabicCharsOnly = arabicInputValue.replace(/[^\u0600-\u06FF0-9 -]/g, '');
+            event.target.value = arabicCharsOnly;
+        }
+    });
+});
+
+
+
+
+
 
 /**
      * Master Checkbox trigger
      * */
-
-
 $(document).on('change', '#master-checkbox', function () {
     const checkboxes = document.querySelectorAll('input[type="checkbox"]:not(#master_checkbox)');
     const isChecked = this.checked;

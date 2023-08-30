@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->foreignId('added_by')->nullable()->constrained('admins')->references('id')->nullOnDelete();
             $table->string('web_img');
             $table->string('mobile_img');
             $table->timestamps();

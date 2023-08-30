@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>نظام التعدات</title>
+    <title>{{ config('app.name') }}|@yield('page')</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf" content="{{ csrf_token() }}">
@@ -32,10 +32,10 @@
 
 
     @if (app()->getLocale() == 'ar')
-    <!-- Bootstrap 4 RTL -->
-    <link rel="stylesheet" href="{{ asset('dist/css/bootstrap-rtl.css') }}">
-    <!-- Custom style for RTL -->
-    <link rel="stylesheet" href="{{ asset('dist/css/custom.css') }}">
+        <!-- Bootstrap 4 RTL -->
+        <link rel="stylesheet" href="{{ asset('dist/css/bootstrap-rtl.css') }}">
+        <!-- Custom style for RTL -->
+        <link rel="stylesheet" href="{{ asset('dist/css/custom.css') }}">
     @endif
 
     {{-- Toastr --}}
@@ -57,13 +57,13 @@
 
         .loader {
             border: 6px solid #f3f3f3;
-            border-top: 6px solid red;
+            border-top: 6px solid #1dc1d;
             border-radius: 50%;
             width: 40px;
             height: 40px;
-            animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite !important;
             position: absolute;
-            top: 50%;
+            top: 55%;
             left: 50%;
             transform: translate(-50%, -50%);
 
@@ -78,6 +78,17 @@
                 transform: rotate(360deg);
             }
         }
+
+        .loader-img {
+            position: absolute;
+            top: 40%;
+            left: 48%;
+            display: block !important;
+            width: 100px !important;
+            height: ;
+            : 100px !important;
+            z-index: 99 !important;
+        }
     </style>
     @stack('css')
 </head>
@@ -85,6 +96,8 @@
 <body class="hold-transition sidebar-mini layout-fixed">
     {{-- Loader --}}
     <div id="preloader" class="preloader">
+        <img src="https://uploads-ssl.webflow.com/646cf06dfcf771640a01dcb4/649980cd11ce28b0518fd9b3_aman%20auto-01.svg"
+            class="loader-img">
         <div class="loader"></div>
     </div>
     <div class="wrapper">

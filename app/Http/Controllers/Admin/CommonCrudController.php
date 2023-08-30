@@ -3,9 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\CrudRequest;
 use App\Models\Client;
 use App\Models\Service;
+use App\Transformers\Admin\CrudTransfromer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Throwable;
+use Yajra\DataTables\Facades\DataTables;
 
 class CommonCrudController extends Controller
 {
@@ -19,11 +24,11 @@ class CommonCrudController extends Controller
         $this->model_name = $request->model;
         if ($this->model_name != null) {
             if ($this->model_name == 'Service') {
-                $this->model = Service::class;
-                $this->translated_model_name = __('backend.services');
+                $this->model = new Service;
+                $this->translated_model_name = 'services';
             } elseif ($this->model_name == 'Client') {
-                $this->model = Client::class;
-                $this->translated_model_name =  __('backend.client');
+                $this->model = new Client;
+                $this->translated_model_name = 'client';
             }
         } else {
             return back();
@@ -38,19 +43,10 @@ class CommonCrudController extends Controller
     public function index()
     {
         $data['model'] = $this->model_name;
-        $data['translated_model_name' ] =   $this->translated_model_name;
-        return view('admin.crud.index' , $data);
+        $data['translated_model_name'] = $this->translated_model_name;
+        return view('admin.crud.index', $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -58,9 +54,33 @@ class CommonCrudController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CrudRequest $request)
     {
-        //
+        try {
+            $web_img = SaveImage(strtolower($this->model_name) . '/web', $request->file('web_img'));
+            $mobile_img = SaveImage(strtolower($this->model_name) . '/mobile', $request->file('mobile_img'));
+            DB::beginTransaction();
+            $this->model::create(
+                [
+                    'ar' => [
+                        'name' => $request->name_ar,
+                    ],
+                    'en' => [
+                        'name' => $request->name_ar,
+                    ],
+                    'web_img' => $web_img,
+                    'mobile_img' => $mobile_img,
+                ]
+            );
+            DB::commit();
+            $response = generateResponse(status: true, modal_to_hide: '#create-edit-modal', table_reload: true, table: '#myTable');
+        } catch (Throwable $e) {
+            dd($e);
+            deleteImage($web_img);
+            deleteImage($mobile_img);
+            $response = generateResponse(status: false);
+        }
+        return response()->json($response, $response['code']);
     }
 
     /**
@@ -107,4 +127,39 @@ class CommonCrudController extends Controller
     {
         //
     }
+
+
+
+    public function getTableData(Request $request)
+    {
+        $query = $this->model::query()
+            ->leftJoin('service_translations AS translations_ar', function ($join) {
+                $join->on('services.id', '=', 'translations_ar.service_id')
+                    ->where('translations_ar.locale', '=', 'ar');
+            })
+            ->leftJoin('service_translations AS translations_en', function ($join) {
+                $join->on('services.id', '=', 'translations_en.service_id')
+                    ->where('translations_en.locale', '=', 'en');
+            })
+            ->select('services.id', 'translations_ar.name AS name_ar', 'translations_en.name AS name_en', 'services.created_at');
+
+        if ($request->has('search') && $request->input('search.value')) {
+            $searchValue = $request->input('search.value');
+
+            $query->where(function ($q) use ($searchValue) {
+                $q->whereHas('translations', function ($q) use ($searchValue) {
+                    $q->where('translations_ar.name', 'like', '%' . $searchValue . '%')
+                        ->orWhere('translations_en.name', 'like', '%' . $searchValue . '%');
+                }, 'translations_ar')
+                    ->orWhereHas('translations', function ($q) use ($searchValue) {
+                        $q->where('translations_ar.name', 'like', '%' . $searchValue . '%')
+                            ->orWhere('translations_en.name', 'like', '%' . $searchValue . '%');
+                    }, 'translations_en');
+            });
+        }
+
+        return DataTables::of($query)->setTransformer(new CrudTransfromer($this->model_name))->make(true);
+    }
+
+
 }

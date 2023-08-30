@@ -3,12 +3,16 @@
        <div class="container-fluid">
            <div class="row mb-2">
                <div class="col-sm-6">
-                   <h1 class="m-0 text-dark">{{__('custom.sidebar.Dashboard')}}</h1>
+                   <h1 class="m-0 text-dark">{{ $main_section }}</h1>
                </div><!-- /.col -->
                <div class="col-sm-6">
                    <ol class="breadcrumb float-sm-right">
-                       <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('custom.sidebar.Dashboard')}}</a></li>
-                       <li class="breadcrumb-item active">{{$page}}</li>
+                       @isset($section)
+                           <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">{{ $section }}</a></li>
+                       @endisset
+                       @isset($page)
+                           <li class="breadcrumb-item active">{{ $page }}</li>
+                       @endisset
                    </ol>
                </div><!-- /.col -->
            </div><!-- /.row -->

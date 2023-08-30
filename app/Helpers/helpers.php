@@ -8,8 +8,8 @@ use Illuminate\Support\Str;
 function SaveImage($path, $file)
 {
     $filename = time() . $file->getClientOriginalName();
-    Storage::disk('public')->putFileAs($path, $file, $filename);
-    return $filename;
+    $full_stored_image_path  =Storage::disk('public')->putFileAs($path, $file, $filename);
+    return $full_stored_image_path;
 }
 
 function storeImage($path, $file)
@@ -60,7 +60,7 @@ if (!function_exists('generateResponse')) {
             'title' => $title,
             'code' => $status ? 200 : 500,
             'reload' => $reload,
-            'table_reload' => $table_reload,
+            'reload_table' => $table_reload,
             'table' => $table,
         ];
     }
