@@ -5,6 +5,8 @@
  */
 return [
     // general trans
+    'system_name' => 'AMAN AUTO',
+    'dashboard' => 'Dashboar',
     'save' => 'Save',
     'cancel' => 'Cancel',
     'please_wait' => 'Please wait...',
@@ -19,8 +21,10 @@ return [
     'privacy' => 'Privacy Policy',
     'select_all' => 'Select all',
     'name' => 'name',
-    'password' =>  'password',
-    'select'    =>  'select',
+    'password' => 'password',
+    'select' => 'select',
+    'services' => 'Services',
+    'client' => 'Entities',
 
 
 
@@ -45,13 +49,13 @@ return [
         'add_new_question' => 'Add Question',
     ],
 
-      // cities
-      'cities'=>[
-        'cities'=>'cities',
-        'city'=>'city',
-        'city_ar'=>'City in arabic',
-        'city_en'=>'City in English',
-        'add_new_city'=>'Add new City',
+    // cities
+    'cities' => [
+        'cities' => 'cities',
+        'city' => 'city',
+        'city_ar' => 'City in arabic',
+        'city_en' => 'City in English',
+        'add_new_city' => 'Add new City',
 
     ],
 
@@ -103,7 +107,7 @@ return [
         'users_assigned' => 'Users Assigned',
         'add_new_staff' => 'Add New Staff',
         'edit_staff' => 'Edit Staff',
-        'role'          =>  'role',
+        'role' => 'role',
 
     ],
 

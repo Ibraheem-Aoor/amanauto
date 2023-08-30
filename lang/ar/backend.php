@@ -7,6 +7,8 @@
 
 return [
     // general trans
+    'system_name' => 'أمان أوتو',
+    'dashboard' => 'لوحة التحكم',
     'save' => 'حفظ',
     'cancel' => 'إلغاء',
     'please_wait' => 'الرجاء الإنتظار...',
@@ -23,65 +25,9 @@ return [
     'name' => 'الإسم',
     'password' => 'كلمة المرور',
     'select' => 'إختر',
+    'services'    =>    'الخدمات',
+    'client'        =>  'الكيانات',
 
-
-    'culture' => [
-        'cultures' => 'الثقافات',
-        'add_new_culture' => 'إضافة ثقافة',
-        'edit_culture' => 'تعديل الثقافة',
-        'culture_ar' => 'الثقافة باللغة العربية',
-        'culture_en' => 'الثقافة باللغة الانجليزية',
-    ],
-
-    // common_questions
-    'cq' => [
-        'common_questions' => 'الاسئلة الشائعة',
-        'question_ar' => 'السؤال بالعربي',
-        'question_en' => 'السؤال بالانجليزية',
-        'add_new_question' => 'إضافة سؤال',
-    ],
-
-    // cities
-    'cities'=>[
-        'cities'=>'المدن',
-        'city'=>'المدينة',
-        'city_ar'=>'المدينة بالعربي',
-        'city_en'=>'المدينة بالإنجليزي',
-        'add_new_city'=>'إضافة مدينة جديدة',
-    ],
-
-    'home' => 'الرئيسية',
-    'Language' => 'اللغة',
-
-
-    'auth' => [
-        'pages_titles' => [
-            'lgoin' => 'تسجيل دخول',
-            'forget_password' => 'نسيت كلمة السر',
-            'reset_password' => 'إستعادة كلمة السر',
-        ],
-        'You Should Login First' => 'يجب عليك تسجيل الدخول أولا',
-    ],
-
-
-    'messages' => [
-        'swal' => [
-            // Swal Messages
-            'confirm_message_title' => 'هل أنت متأكد من عملية الحذف؟',
-            'confirm_message_text' => 'سوف يتم حذفها نهائيا',
-            'confirm_button_text' => 'نعم متأكد',
-            'cancel_button_text' => 'لا',
-            'success_message' => 'تم الحذف بنجاح',
-            'error_title' => 'خطأ',
-            'error_message' => 'حدث خطأ ما يرجى إعادة المحاولة',
-        ],
-
-        'welcome' => [
-            'Welcome to dashboard' => 'مرحبا إلى لوحة تحكم :website',
-            'Fast, Efficient and Productive' => 'مرحبا بكم. سريع وفعال ومنتج',
-        ],
-    ],
-    //end messages
 
     'staff' => 'طاقم العمل',
     'system_users' => 'مستخدمين النظام',

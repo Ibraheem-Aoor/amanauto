@@ -128,13 +128,13 @@ if (!function_exists('generateUniqueRandomNumber')) {
 
     function generateUniqueRandomNumber($model, $column, $length)
     {
-        $lastId = $model::max('id') ?? 0;
-
         // Generate a random number based on current year and random digits
         $current_year = date('Y');
         $remaining_length = $length - strlen($current_year);
+        mt_srand();
         $random_number = $current_year . generateRandomDigits($remaining_length);
-        while ($model::where($column, $random_number)->exists() || $model::query()->where($column, $random_number)->first() != null) {
+        if (columnValueExists($model, $column, $random_number)) {
+            mt_srand();
             return generateUniqueRandomNumber($model, $column, $length);
         }
         return $random_number;
@@ -149,6 +149,14 @@ if (!function_exists('generateRandomDigits')) {
         for ($i = 0; $i < $length; $i++) {
             $digits .= mt_rand(0, 9);
         }
-        return str_shuffle($digits);
+        return str_shuffle(str_shuffle($digits));
+    }
+}
+
+
+if (!function_exists('columnValueExists')) {
+    function columnValueExists($model, $column, $value)
+    {
+        return $model::where($column, $value)->exists();
     }
 }
