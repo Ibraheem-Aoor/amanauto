@@ -22,7 +22,7 @@ $(document).ready(function () {
             success: function (response) {
                 if (response.is_deleted) {
                     toastr.success(response.message);
-                    $('#row-' + response.row).parent().parent().parent().remove();
+                    $('#row-' + response.row_to_delete).parent().parent().parent().remove();
                     $('#delete-modal').modal('hide');
                 } else {
                     toastr.error(response.message);

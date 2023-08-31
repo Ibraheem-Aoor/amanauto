@@ -5,10 +5,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-function SaveImage($path, $file)
+function saveImage($path, $file)
 {
     $filename = time() . $file->getClientOriginalName();
-    $full_stored_image_path  =Storage::disk('public')->putFileAs($path, $file, $filename);
+    $full_stored_image_path = Storage::disk('public')->putFileAs($path, $file, $filename);
     return $full_stored_image_path;
 }
 
@@ -38,6 +38,16 @@ function deleteImage($oldImage)
 }
 
 
+function getImageUrl($image)
+{
+    $exists = Storage::disk('public')->exists($image);
+    if ($exists) {
+        return Storage::url($image);
+    } else {
+        return asset('dist/img/product-placeholder.webp');
+    }
+}
+
 /**
  * Generate Response
  * @param  bool $status
@@ -47,21 +57,31 @@ function deleteImage($oldImage)
  * @param  bool $reset_form
  */
 if (!function_exists('generateResponse')) {
-    function generateResponse($status, $redirect = null, $modal_to_hide = null, $row_to_delete = null, $reset_form = false, $reload = false, $table_reload = false, $table = null)
-    {
-        $message = $title = $status ? __('general.response_messages.success') : __('general.response_messages.error');
+    function generateResponse(
+        $status,
+        $redirect = null,
+        $modal_to_hide = null,
+        $row_to_delete = null,
+        $reset_form = false,
+        $reload = false,
+        $table_reload = false,
+        $table = null,
+        $is_deleted = false,
+        $message = ''
+    ) {
+        $response_message = !is_null($message) ? ($message) : ($status ? __('general.response_messages.success') : __('general.response_messages.error'));
         return [
             'status' => $status,
-            'message' => $message,
+            'message' => $response_message,
             'redirect' => $redirect ? route($redirect) : null,
             'modal_to_hide' => $modal_to_hide,
             'row_to_delete' => $row_to_delete,
             'reset_form' => $reset_form,
-            'title' => $title,
             'code' => $status ? 200 : 500,
             'reload' => $reload,
             'reload_table' => $table_reload,
             'table' => $table,
+            'is_deleted' => $is_deleted,
         ];
     }
 }

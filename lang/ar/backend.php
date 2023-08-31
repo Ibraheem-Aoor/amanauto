@@ -28,6 +28,8 @@ return [
     'password' => 'كلمة المرور',
     'select' => 'إختر',
     'services' => 'الخدمات',
+    'create_new_service'    => 'إضافة خدمة جديدة',
+    'edit_service' => 'تعديل خدمة',
     'client' => 'الكيانات',
     'new' => 'جديد',
     'web_img' => 'صورة الويب',

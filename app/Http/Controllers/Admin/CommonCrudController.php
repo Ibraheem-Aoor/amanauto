@@ -57,8 +57,8 @@ class CommonCrudController extends Controller
     public function store(CrudRequest $request)
     {
         try {
-            $web_img = SaveImage(strtolower($this->model_name) . '/web', $request->file('web_img'));
-            $mobile_img = SaveImage(strtolower($this->model_name) . '/mobile', $request->file('mobile_img'));
+            $web_img = saveImage(strtolower($this->model_name) . '/web', $request->file('web_img'));
+            $mobile_img = saveImage(strtolower($this->model_name) . '/mobile', $request->file('mobile_img'));
             DB::beginTransaction();
             $this->model::create(
                 [
@@ -66,14 +66,15 @@ class CommonCrudController extends Controller
                         'name' => $request->name_ar,
                     ],
                     'en' => [
-                        'name' => $request->name_ar,
+                        'name' => $request->name_en,
                     ],
                     'web_img' => $web_img,
                     'mobile_img' => $mobile_img,
+                    'added_by'  => getAuthUser('admin')->id,
                 ]
             );
             DB::commit();
-            $response = generateResponse(status: true, modal_to_hide: '#create-edit-modal', table_reload: true, table: '#myTable');
+            $response = generateResponse(status: true, modal_to_hide: '#create-edit-modal', table_reload: true, table: '#myTable', message: __('general.response_messages.create_success'));
         } catch (Throwable $e) {
             dd($e);
             deleteImage($web_img);
@@ -83,27 +84,7 @@ class CommonCrudController extends Controller
         return response()->json($response, $response['code']);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -112,9 +93,51 @@ class CommonCrudController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CrudRequest $request, $id)
     {
-        //
+        try {
+            $target = $this->model::query()->findOrFail($id);
+            $images = $this->updateImages($request, $target);
+            DB::beginTransaction();
+            $target->update(
+                [
+                    'ar' => [
+                        'name' => $request->name_ar,
+                    ],
+                    'en' => [
+                        'name' => $request->name_en,
+                    ],
+                    'web_img' => $images['web_img'],
+                    'mobile_img' => $images['mobile_img'],
+                ]
+            );
+            DB::commit();
+            $response = generateResponse(status: true, modal_to_hide: '#create-edit-modal', table_reload: true, table: '#myTable', message: __('general.response_messages.create_success'));
+        } catch (Throwable $e) {
+            dd($e);
+            $response = generateResponse(status: false);
+        }
+        return response()->json($response, $response['code']);
+    }
+
+    /**
+     * Update Images when update model
+     */
+    protected function updateImages($request, $target)
+    {
+        if ($request->hasFile('web_img')) {
+            $images['web_img'] = saveImage(strtolower($this->model_name) . '/web', $request->file('web_img'));
+            deleteImage($target->web_img);
+        } else {
+            $images['web_img'] = $target->web_img;
+        }
+        if ($request->hasFile('mobile_img')) {
+            $images['mobile_img'] = saveImage(strtolower($this->model_name) . '/mobile', $request->file('mobile_img'));
+            deleteImage($target->mobile_img);
+        } else {
+            $images['mobile_img'] = $target->mobile_img;
+        }
+        return $images;
     }
 
     /**
@@ -125,40 +148,46 @@ class CommonCrudController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $target = $this->model->findOrFail($id);
+            deleteImage($target->web_img);
+            deleteImage($target->mobile_img);
+            $target->delete();
+            $response = generateResponse(status: true, is_deleted: true, row_to_delete: $id, message: __('general.response_messages.deleted_successflly'));
+        } catch (Throwable $e) {
+            dd($e);
+            $response = generateResponse(status: false);
+        }
+        return response()->json($response, $response['code']);
     }
 
 
-
+    /**
+     *
+     */
     public function getTableData(Request $request)
     {
-        $query = $this->model::query()
-            ->leftJoin('service_translations AS translations_ar', function ($join) {
-                $join->on('services.id', '=', 'translations_ar.service_id')
-                    ->where('translations_ar.locale', '=', 'ar');
+        $query = $this->model::query();
+
+        return DataTables::eloquent($query)
+            ->setTransformer(new CrudTransfromer($this->model_name))
+            ->orderColumn('name_ar', function ($query, $order) {
+                $query->orderBy(DB::raw("(SELECT name FROM service_translations WHERE service_translations.service_id = services.id AND locale = 'ar')"), $order);
             })
-            ->leftJoin('service_translations AS translations_en', function ($join) {
-                $join->on('services.id', '=', 'translations_en.service_id')
-                    ->where('translations_en.locale', '=', 'en');
+            ->orderColumn('name_en', function ($query, $order) {
+                $query->orderBy(DB::raw("(SELECT name FROM service_translations WHERE service_translations.service_id = services.id AND locale = 'ar')"), $order);
             })
-            ->select('services.id', 'translations_ar.name AS name_ar', 'translations_en.name AS name_en', 'services.created_at');
-
-        if ($request->has('search') && $request->input('search.value')) {
-            $searchValue = $request->input('search.value');
-
-            $query->where(function ($q) use ($searchValue) {
-                $q->whereHas('translations', function ($q) use ($searchValue) {
-                    $q->where('translations_ar.name', 'like', '%' . $searchValue . '%')
-                        ->orWhere('translations_en.name', 'like', '%' . $searchValue . '%');
-                }, 'translations_ar')
-                    ->orWhereHas('translations', function ($q) use ($searchValue) {
-                        $q->where('translations_ar.name', 'like', '%' . $searchValue . '%')
-                            ->orWhere('translations_en.name', 'like', '%' . $searchValue . '%');
-                    }, 'translations_en');
-            });
-        }
-
-        return DataTables::of($query)->setTransformer(new CrudTransfromer($this->model_name))->make(true);
+            ->filterColumn('name_ar', function ($query, $keyword) {
+                $query->whereHas('translations', function ($query) use ($keyword) {
+                    $query->where('name', 'like', "%$keyword%")->where('locale', 'ar');
+                });
+            })
+            ->filterColumn('name_en', function ($query, $keyword) {
+                $query->whereHas('translations', function ($query) use ($keyword) {
+                    $query->where('name', 'like', "%$keyword%")->where('locale', 'en');
+                });
+            })
+            ->make(true);
     }
 
 

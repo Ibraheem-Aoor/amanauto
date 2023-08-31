@@ -14,11 +14,14 @@ class CrudRequest extends BaseAdminRequest
      */
     public function rules()
     {
+        $image_required = $this->crud != null ? 'nullable' : 'required';
+        $image_validation = $image_required.'|file|mimes:jpeg,jpg,png,webp';
+
         return [
             'name_ar' => 'required|string|max:255',
             'name_en' => 'required|string|max:255',
-            'web_img' => 'required|file|mimes:jpeg,jpg,png,webp',
-            'mobile_img' => 'required|file|mimes:jpeg,jpg,png,webp',
+            'web_img' => $image_validation,
+            'mobile_img' => $image_validation,
         ];
     }
 }

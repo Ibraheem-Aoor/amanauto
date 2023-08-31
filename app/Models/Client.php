@@ -17,5 +17,7 @@ class Client extends Model implements TranslatableContract
         'mobile_img',
     ];
 
+    public $translatedAttributes = ['name'];
+
 
 }

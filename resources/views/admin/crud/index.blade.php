@@ -173,6 +173,7 @@
                 serverSide: true,
                 ajax: table_data_url,
                 columns: getTableColumns(),
+
             });
         }
 
@@ -215,9 +216,23 @@
                 $('#create-edit-modal form').attr('action', form_action);
                 $('#create-edit-modal form input[name="_method"]').val(form_method);
                 if (is_create === 1) {
-                    $('#create-edit-modal input[name="name"]').val("");
+                    $('#create-edit-modal .modal-title').text("{{ __('backend.create_new_service') }}");
+                    $('#create-edit-modal input[name="name_ar"]').val(null);
+                    $('#create-edit-modal input[name="name_en"]').val(null);
+                    $('.image-input-wrapper-web').css('background-image',
+                        'url("{{ asset('dist/img/product-placeholder.webp') }}")');
+                    $('.image-input-wrapper-mobile').css('background-image',
+                        'url("{{ asset('dist/img/product-placeholder.webp') }}")');
                 } else {
-                    $('#create-edit-modal input[name="name"]').val($(this).data('name'));
+                    $('#create-edit-modal .modal-title').text("{{ __('backend.edit_service') }} : " + $(this).data('name-ar'));
+                    $('#create-edit-modal input[name="name_ar"]').val($(this).data('name-ar'));
+                    $('#create-edit-modal input[name="name_en"]').val($(this).data('name-en'));
+                    $('.image-input-wrapper-web').css('background-image', 'url("' + $(this).data(
+                            'web-img') +
+                        '")');
+                    $('.image-input-wrapper-mobile').css('background-image', 'url("' + $(this).data(
+                            'mobile-img') +
+                        '")');
                 }
             });
 

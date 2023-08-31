@@ -1,10 +1,17 @@
 <?php
 return [
-    // resposne messages for api/form calls
+    // Response messages for API/form calls
     'response_messages' => [
-        'error' => 'Someting Went Wrong',
+        'error' => 'Something Went Wrong',
         'success' => 'Success',
+        'create_success' => 'Created successfully ✅',
+        'update_success' => 'Updated successfully ✅ ',
+        'deleted_successflly' => 'Deleted successfully ✅ ',
         'otp_sent_success' => 'OTP code sent successfully',
-        'otp_not_match' =>  'OTP not correct',
+        'otp_not_match' => 'Invalid OTP code',
     ],
+    'delete' => 'Delete',
+    'confirm_delete' => 'Are you sure you want to delete',
+    'Caution' => "Caution 🔊",
+    
 ];

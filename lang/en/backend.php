@@ -26,6 +26,8 @@ return [
     'password' => 'password',
     'select' => 'select',
     'services' => 'Services',
+    'create_new_service' => 'Create New Service',
+    'edit_service' => 'Edit Service',
     'client' => 'Entities',
     'new' => 'New',
     'web_img' => 'Web Image',
