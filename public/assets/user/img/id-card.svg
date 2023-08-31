@@ -1,0 +1,12 @@
+<svg width="160" height="161" viewBox="0 0 160 161" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="id-card">
+<path id="Path 13414" d="M68.6724 131.091H43.2915C36.2828 131.091 30.601 125.41 30.601 118.401C30.601 104.384 41.9644 93.0205 55.9819 93.0205C69.9995 93.0205 81.3628 104.384 81.3628 118.401C81.3628 125.41 75.681 131.091 68.6724 131.091Z" stroke="#1DC1DD" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<ellipse id="Ellipse 2" cx="55.5884" cy="80.4072" rx="12.5455" ry="12.5454" stroke="#1DC1DD" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Path 13415" d="M42.0224 5.45752C63.0486 5.45752 80.0938 22.5025 80.0938 43.5283C80.0938 22.5025 97.1389 5.45752 118.165 5.45752" stroke="#707070" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<line id="Line 44" x1="108.555" y1="74.6692" x2="125.122" y2="74.6692" stroke="#1DC1DD" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<line id="Line 45" x1="108.555" y1="101.236" x2="125.122" y2="101.236" stroke="#1DC1DD" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<line id="Line 46" x1="108.555" y1="126.327" x2="125.122" y2="126.327" stroke="#1DC1DD" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Path 13416" d="M24.2558 129.822V68.9089C24.2558 54.8908 35.6194 43.5283 49.6367 43.5283H30.601C16.5838 43.5283 5.22009 54.8908 5.22009 68.9089V129.822C5.22009 143.839 16.5838 155.203 30.601 155.203H49.6367C35.6194 155.203 24.2558 143.839 24.2558 129.822Z" fill="#CEE1F2"/>
+<path id="Path 13417" d="M105.475 43.5283H129.587C143.604 43.5283 154.967 54.8915 154.967 68.9089V129.822C154.967 143.839 143.604 155.203 129.587 155.203H30.601C16.5835 155.203 5.22009 143.839 5.22009 129.822V68.9089C5.22009 54.8915 16.5835 43.5283 30.601 43.5283H54.7129" stroke="#1DC1DD" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>

@@ -13,5 +13,14 @@ return [
     'delete' => 'Delete',
     'confirm_delete' => 'Are you sure you want to delete',
     'Caution' => "Caution 🔊",
-    
+
+    'home_page' => [
+        'first_headline' => 'Drive your car Safe & Comfort',
+        'first_headline_text' => "Don't be stopped by road problems again, get roadside assistance wherever you are and at any time for less than one riyal only.",
+        'second_headline' => 'For less than one riyal a day Subscribe Now!',
+        'entities_headline' => 'Entities we happy to serve its employees',
+        'services_headline' => 'Various services secure your way',
+        
+    ],
+
 ];

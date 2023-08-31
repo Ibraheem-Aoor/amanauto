@@ -1,0 +1,381 @@
+@media(max-width:575px){
+    .content-auto{
+        width: 90%;
+    }
+    .headerPage .navbar-collapse{
+        margin: 20px 0px !important;
+      }
+      .headerPage .navbar-collapse ul li{
+        font-size: 17px !important;
+      }
+      .info-header-action-but{
+        display: block;
+      }
+      .actionBut{
+        margin: 20px 0px;
+      }
+      .actionBut .butBgAuto{
+        margin: 0px 0px !important;
+      }
+      .image-cover{
+        margin: 20px 0px;
+      }
+      .client h4{
+        font-size: 20px;
+      }
+      .client-card img{
+        width: 40% !important;
+        height: 40 !important;
+      }
+      .All-Card-Service{
+        width: 100%;
+        margin: 20px auto;
+    }
+    .All-Card-Service h4{
+        font-size: 20px;
+    }
+    .card-sub{
+        width: 100%;
+        margin: 20px auto;
+        text-align: center;
+    }
+    .card-sub img{
+        width: 80px;
+        height: 80px;
+    }
+    .All-Questions h4{
+        font-size: 20px !important;
+    }
+    .accordion-item button{
+        font-size: 17px !important;
+    }
+    .accordion-body{
+        font-size: 14px !important;
+    }
+    .culb-sec .customeRows{
+        width: 100% !important;
+        margin: 30px auto;
+    }
+    .bg-bule-card-price h3{
+        font-size: 20px;
+    }
+    .info-card-clubs h6{
+        font-size: 16px;
+    }
+    .bg-bule-card-price h2{
+        font-size: 20px;
+    }
+    .sec-profile{
+        width:100%;
+        margin: 30px auto;
+       
+    }
+    .box-upload{
+        width: 100% !important;
+    }
+    .content-view-order h4{
+        font-size: 17px;
+    }
+    .detalis-orders h4{
+        font-size: 17px;
+    }
+    .flex-info-detalis-order h6{
+      font-size: 17px;
+    }
+    .detalis-orders h5{
+        font-size: 17px;
+    }
+    .flex-item-payment{
+        display: block;
+        width: 100% !important;
+    }
+    .action-payment{
+        margin: 10px 0px;
+    }
+    .input-payments{
+        display: block;
+        width: 100% !important;
+    }   
+    .input-payments input{
+        width: 100%;
+        margin: 12px 0px;
+    }
+    .flex-image-payment{
+        display: flex;
+        align-items: center;
+    }
+    .flex-image-payment .imagep-payment{
+        margin: 0px 15px;
+    }
+    .flex-image-payment .imagep-payment img{
+        margin: 0px 15px;
+        width: 50px;
+        height: 30px;
+    }
+    .customeWith{
+        width: 100% !important;
+        margin: 20px auto;
+    }
+    .content-culbs{
+        width: 100% !important;
+        margin: 50px auto;
+    }
+    .card-donwload{
+        width: 100%;
+    }
+    .but-subscribe{
+        width: 100% !important;
+    }
+
+    .coverImage{
+        width: 100%;
+    }
+    .sec_Info_Card{
+        width: 100%;
+    }
+    .header-mobile{
+        display: block;
+    }
+    .headerPage
+    {
+        display: none;
+    }
+    #phone{
+        width: 400px !important;
+      }
+      .flex-chart{
+        display: block;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin: 20px auto;
+      }
+      .customeLineAfter::after{
+        display: none;
+      }
+}
+@media(min-width:576px) and (max-width:767.98px){
+    .content-auto{
+        width: 90%;
+    }
+    .headerPage .navbar-collapse{
+        margin: 20px 0px !important;
+      }
+      .headerPage .navbar-collapse ul li{
+        font-size: 17px !important;
+      }
+      .info-header-action-but{
+        display: block;
+      }
+      .actionBut{
+        margin: 20px 0px;
+      }
+      .actionBut .butBgAuto{
+        margin: 0px 0px !important;
+      }
+      .image-cover{
+        margin: 20px 0px;
+      }
+      .client h4{
+        font-size: 20px;
+      }
+      .client-card img{
+        width: 40% !important;
+        height: 40 !important;
+      }
+      .All-Card-Service{
+        width: 100%;
+        margin: 20px auto;
+    }
+    .All-Card-Service h4{
+        font-size: 20px;
+    }
+    .card-sub{
+        width: 100%;
+        margin: 20px auto;
+        text-align: center;
+    }
+    .card-sub img{
+        width: 80px;
+        height: 80px;
+    }
+    .All-Questions h4{
+        font-size: 20px !important;
+    }
+    .accordion-item button{
+        font-size: 17px !important;
+    }
+    .accordion-body{
+        font-size: 14px !important;
+    }
+    .culb-sec .customeRows{
+        width: 100% !important;
+        margin: 30px auto;
+    }
+    .bg-bule-card-price h3{
+        font-size: 20px;
+    }
+    .info-card-clubs h6{
+        font-size: 16px;
+    }
+    .bg-bule-card-price h2{
+        font-size: 20px;
+    }
+    .sec-profile{
+        width:100%;
+        margin: 30px auto;
+       
+    }
+    .box-upload{
+        width: 100% !important;
+    }
+    .content-view-order h4{
+        font-size: 17px;
+    }
+    .detalis-orders h4{
+        font-size: 17px;
+    }
+    .flex-info-detalis-order h6{
+      font-size: 17px;
+    }
+    .detalis-orders h5{
+        font-size: 17px;
+    }
+    .flex-item-payment{
+        display: block;
+        width: 100% !important;
+    }
+    .action-payment{
+        margin: 10px 0px;
+    }
+    .input-payments{
+        display: block;
+        width: 100% !important;
+    }   
+    .input-payments input{
+        width: 100%;
+        margin: 12px 0px;
+    }
+    .flex-image-payment{
+        display: flex;
+        align-items: center;
+    }
+    .flex-image-payment .imagep-payment{
+        margin: 0px 15px;
+    }
+    .flex-image-payment .imagep-payment img{
+        margin: 0px 15px;
+        width: 50px;
+        height: 30px;
+    }
+    .customeWith{
+        width: 100% !important;
+        margin: 20px auto;
+    }
+    .content-culbs{
+        width: 100% !important;
+        margin: 50px auto;
+    }
+    .card-donwload{
+        width: 100%;
+    }
+    .but-subscribe{
+        width: 100% !important;
+    }
+    .coverImage{
+        width: 100%;
+    }
+    .sec_Info_Card{
+        width: 100%;
+    }
+    .header-mobile{
+        display: block;
+    }
+    .headerPage
+    {
+        display: none;
+    }
+    #phone{
+        width: 500px !important;
+      }
+      .flex-chart{
+        display: block;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin: 20px auto;
+      }
+      .customeLineAfter::after{
+        display: none;
+      }
+}
+@media(min-width:768px) and (max-width:991.98px){
+    .content-auto{
+        width: 60%;
+    }
+    .customeColumeCards{
+        width: 100% !important;
+    }
+    .customeRowProfiles{
+        width: 100% !important;
+    }
+    .CutomeOrderColum{
+        width: 100% !important;
+    }
+    .bg-bule-card-price  h2{
+        font-size: 22px !important;
+    }
+    .customeWith{
+        width: 80% !important;
+        margin: 20px auto;
+    }
+    .content-culbs{
+        width: 100% !important;
+        margin: 50px auto;
+    }
+    .card-donwload{
+        width: 100%;
+    }
+    .but-subscribe{
+        width: 100% !important;
+    }
+    .header-mobile{
+        display: block;
+    }
+    .headerPage
+    {
+        display: none;
+    }
+    #phone{
+        width: 450px !important;
+        display: block !important;
+      }
+      .flex-chart{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin: 20px auto;
+      }
+      .customeLineAfter::after{
+        content: "";
+        position: absolute;
+        left: 120px;
+        top: 50px;
+        width: 100%;
+        height: 2px;
+        border-radius: 25px;
+        background: #707070;
+      }
+}
+@media(min-width:992px) and (max-width:1199.98px){
+    .content-auto{
+        width: 60%;
+    }
+    .CutomeOrderColum{
+        width: 100% !important;
+    }
+    #phone{
+        width: 550px !important;
+      }
+}

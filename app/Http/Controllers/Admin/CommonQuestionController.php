@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\CommonQuestionRequest;
 use App\Http\Requests\Admin\CrudRequest;
 use App\Models\Client;
 use App\Models\CommonQuestion;
@@ -48,7 +49,7 @@ class CommonQuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CrudRequest $request)
+    public function store(CommonQuestionRequest $request)
     {
         try {
             DB::beginTransaction();
@@ -82,7 +83,7 @@ class CommonQuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CrudRequest $request, $id)
+    public function update(CommonQuestionRequest $request, $id)
     {
         try {
             $target = $this->model::query()->findOrFail($id);
