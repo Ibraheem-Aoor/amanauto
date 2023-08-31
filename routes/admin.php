@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CommonCrudController;
+use App\Http\Controllers\Admin\CommonQuestionController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\Admin\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -24,15 +25,18 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', 'admin/dashboard');
 Route::group(['middleware' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
-    Route::post('logout' , [LoginController::class , 'logout'])->name('logout');
+    Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
     //common crud for services and clients.
     Route::resource('crud', CommonCrudController::class);
-    Route::get('crud-table-data' , [CommonCrudController::class , 'getTableData'])->name('crud.table_data');
+    Route::get('crud-table-data', [CommonCrudController::class, 'getTableData'])->name('crud.table_data');
+    // faqs
+    Route::resource('faqs', CommonQuestionController::class);
+    Route::get('faqs-table-data', [CommonQuestionController::class, 'getTableData'])->name('faqs.table_data');
 });
 
 
 Route::group(['as' => 'admin.'], function () {
-    Route::get('login' , [LoginController::class , 'showLoginForm'])->name('login');
-    Route::post('login' , [LoginController::class , 'login'])->name('login');
+    Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+    Route::post('login', [LoginController::class, 'login'])->name('login');
 });

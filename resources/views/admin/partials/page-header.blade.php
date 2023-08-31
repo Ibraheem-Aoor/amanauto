@@ -8,7 +8,7 @@
                <div class="col-sm-6">
                    <ol class="breadcrumb float-sm-right">
                        @isset($section)
-                           <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">{{ $section }}</a></li>
+                           <li class="breadcrumb-item"><a href="@yield('section_link')">{{ $section }}</a></li>
                        @endisset
                        @isset($page)
                            <li class="breadcrumb-item active">{{ $page }}</li>

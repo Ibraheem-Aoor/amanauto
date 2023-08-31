@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class CommonQuestionTranslation extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['question', 'answer'];
 }

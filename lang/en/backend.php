@@ -32,29 +32,27 @@ return [
     'new' => 'New',
     'web_img' => 'Web Image',
     'mobile_img' => 'Mobile Image',
+    'faqs' => 'Frequently Asked Questions',
+    'question' => 'question',
+    'answer' => 'answer',
 
 
 
 
 
-
-    // culutre
-    'culture' => [
-        'cultures' => 'Cultures',
-        'add_new_culture' => 'Add Cultrue',
-        'edit_culture' => 'Edit Culture',
-        'culture_ar' => 'Culture in Arabic',
-        'culture_en' => 'Culture in English',
-
-    ],
 
     // common questions
     'cq' => [
         'common_questions' => 'Common Questions',
         'question_ar' => 'Question in Arabic',
         'question_en' => 'Question in English',
-        'add_new_question' => 'Add Question',
+        'answer_ar' => 'Answer in Arabic',
+        'answer_en' => 'Answer in English',
+        'add_new_question' => 'Add New Question',
+        'create_new_question' => 'Create New Question',
+        'edit_question' => 'Edit Question',
     ],
+
 
     // cities
     'cities' => [

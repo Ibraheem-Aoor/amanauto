@@ -28,12 +28,29 @@ return [
     'password' => 'كلمة المرور',
     'select' => 'إختر',
     'services' => 'الخدمات',
-    'create_new_service'    => 'إضافة خدمة جديدة',
+    'create_new_service' => 'إضافة خدمة جديدة',
     'edit_service' => 'تعديل خدمة',
     'client' => 'الكيانات',
     'new' => 'جديد',
     'web_img' => 'صورة الويب',
     'mobile_img' => 'صورةالتطبيق',
+    'faqs' => 'الاسئلة الشائغة',
+    'question' => 'سؤال',
+    'answer' => 'جواب',
+    'question_ar' => 'سؤال بالعربي',
+
+    // الأسئلة الشائعة
+    'cq' => [
+        'common_questions' => 'الأسئلة الشائعة',
+        'question_ar' => 'السؤال بالعربية',
+        'question_en' => 'السؤال بالإنجليزية',
+        'answer_ar' => 'الجواب بالعربية',
+        'answer_en' => 'الجواب بالإنجليزية',
+        'add_new_question' => 'إضافة سؤال جديد',
+        'create_new_question' => 'إنشاء سؤال جديد',
+        'edit_question' => 'تعديل السؤال',
+    ],
+
 
 
     'staff' => 'طاقم العمل',

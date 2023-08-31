@@ -41,6 +41,14 @@
                           </p>
                       </a>
                   </li>
+                  <li class="nav-item">
+                      <a href="{{ route('admin.faqs.index') }}" class="nav-link">
+                          <i class="nav-icon fas fa-question"></i>
+                          <p>
+                              {{ __('backend.faqs') }}
+                          </p>
+                      </a>
+                  </li>
                   {{-- <li class="nav-item">
                       <a href="{{ route('admin.project-related-crud.index', ['model' => 'ProjectType']) }}"
                           class="nav-link">

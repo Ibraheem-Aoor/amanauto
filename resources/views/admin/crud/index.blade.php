@@ -2,7 +2,6 @@
 @push('css')
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css') }}">
-    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
     {{-- Image Style  --}}
     <style>
         #show-info div .row {
@@ -151,7 +150,6 @@
 
 @push('js')
     <!-- DataTables -->
-    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
     <script src="{{ asset('plugins/datatables/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.js') }}"></script>
 
@@ -223,6 +221,7 @@
                         'url("{{ asset('dist/img/product-placeholder.webp') }}")');
                     $('.image-input-wrapper-mobile').css('background-image',
                         'url("{{ asset('dist/img/product-placeholder.webp') }}")');
+                    $('#create-edit-modal input[type="file"]').val(null);
                 } else {
                     $('#create-edit-modal .modal-title').text("{{ __('backend.edit_service') }} : " + $(this).data('name-ar'));
                     $('#create-edit-modal input[name="name_ar"]').val($(this).data('name-ar'));

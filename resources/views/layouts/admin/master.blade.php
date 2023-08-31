@@ -175,7 +175,13 @@
     </script>
 
     <script src="{{ asset('dist/js/custom/master.js') }}"></script>
-    <script src="{{ asset('dist/js/datatable-ar.js') }}"></script>
+    @if (app()->getLocale() == 'ar')
+        <script src="{{ asset('dist/js/datatable-ar.js') }}"></script>
+    @else
+        <script>
+            var language = 'en';
+        </script>
+    @endif
     @stack('js')
 </body>
 
