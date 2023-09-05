@@ -14,6 +14,7 @@ return [
     'action' => 'Action',
     'added_by' => 'added by',
     'email' => 'Email',
+    'phone' => 'Phone Number',
     'subscribtion_date' => 'Subscribtion Date',
     'subscribers' => 'subscribers',
     'pages' => 'Pages',
@@ -35,6 +36,11 @@ return [
     'faqs' => 'Frequently Asked Questions',
     'question' => 'question',
     'answer' => 'answer',
+    'create_account' => 'Create Account',
+    'already_registerd' => 'Already Registered',
+    'not_registered'    =>  ' Not registered yet',
+    'sign_in' => 'Sign In',
+    'sign_up' => 'Sign up',
 
 
 

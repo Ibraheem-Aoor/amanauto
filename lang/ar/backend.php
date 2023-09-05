@@ -16,6 +16,7 @@ return [
     'action' => 'الإجراء',
     'added_by' => 'تمت الاضافة بواسطة',
     'email' => 'البريد الإلكتروني',
+    'phone' => 'رقم الجوال',
     'subscribtion_date' => 'تاريخ الاشتراك',
     'subscribers' => 'المشتركين',
     'pages' => 'الصفحات',
@@ -38,6 +39,11 @@ return [
     'question' => 'سؤال',
     'answer' => 'جواب',
     'question_ar' => 'سؤال بالعربي',
+    'create_account' => 'إنشاء حساب',
+    'already_registerd' => 'مسجل بالفعل',
+    'not_registered'    =>  ' ليس لديك حساب',
+    'sign_in' => 'تسجيل الدخول',
+    'sign_up' => 'إنشاء حساب',
 
     // الأسئلة الشائعة
     'cq' => [

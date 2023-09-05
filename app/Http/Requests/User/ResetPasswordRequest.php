@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Requests\API\v1;
+namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\Password;
 
-class RegisterRequest extends FormRequest
+class ResetPasswordRequest extends FormRequest
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -15,7 +15,7 @@ class RegisterRequest extends FormRequest
      */
     public function authorize()
     {
-        return !Auth::guard('sanctum')->check();
+        return !Auth::guard('web')->check();
     }
 
     /**
@@ -26,9 +26,9 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'string' , 'phone:INTERNATIONAL', 'unique:users,phone'],
-            'password' => ['required', 'string', 'min:8'],
+            'token' => 'required',
+            'phone' => 'required|phone:INTERNATIONAL',
+            'password' => ['required', 'confirmed', Password::defaults()],
         ];
     }
 }

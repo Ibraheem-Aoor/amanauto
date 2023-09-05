@@ -45,5 +45,12 @@ class User extends Authenticatable
 
 
 
+    public function scopePhone($query , $value)
+    {
+        return $query->where('phone' , $value);
+    }
+
+
+
 
 }

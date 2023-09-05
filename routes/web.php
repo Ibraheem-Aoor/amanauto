@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\BaseAuthController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\Auth;
@@ -16,8 +19,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes();
 Route::get('change-lang/{locale}', [LanguageController::class, 'changeLanguage'])->middleware('locale')->name('change_language');
-
+Route::redirect('/home', '/');
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Auth::routes();
+// otp
+Route::group(['prefix' => 'opt', 'middleware' => 'guest', 'as' => 'user.otp.'], function () {
+    Route::get('/{type}' , [BaseAuthController::class , 'showOtpForm'])->name('form');
+    Route::post('/submit-for-register' , [RegisterController::class , 'verifyOtpForRegister'])->name('submit_for_register');
+    Route::post('/submit-for-pw-reset' , [ResetPasswordController::class , 'verifyOtpForPasswordReset'])->name('submit_for_pw_reset');
+});

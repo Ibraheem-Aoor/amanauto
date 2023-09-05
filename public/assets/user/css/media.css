@@ -153,6 +153,19 @@
       .customeLineAfter::after{
         display: none;
       }
+      .customeClientCard{
+        width: 48% !important;
+      }
+      .customeBoxService{
+        width: 48% !important;
+      }
+      .customeBoxService .card-service h5{
+        font-size: 16px;
+      } 
+      .customeBoxService .card-service img{
+        width: 60px;
+        height: 60px;
+      }
 }
 @media(min-width:576px) and (max-width:767.98px){
     .content-auto{
@@ -347,8 +360,9 @@
         display: none;
     }
     #phone{
-        width: 450px !important;
+        width: 420px !important;
         display: block !important;
+       
       }
       .flex-chart{
         display: flex;

@@ -20,7 +20,14 @@ return [
         'second_headline' => 'For less than one riyal a day Subscribe Now!',
         'entities_headline' => 'Entities we happy to serve its employees',
         'services_headline' => 'Various services secure your way',
-        
+
     ],
+
+
+    'home' => 'HOME',
+    'offers' => 'OFFERS',
+    'clubs' => 'CLUBS',
+    'enter_otp_code' => 'Enter the pin code sent to your mobile phone',
+    'verify_otp' => 'Verify OTP',
 
 ];

@@ -67,13 +67,13 @@ if (!function_exists('generateResponse')) {
         $table_reload = false,
         $table = null,
         $is_deleted = false,
-        $message = ''
+        $message = null
     ) {
         $response_message = !is_null($message) ? ($message) : ($status ? __('general.response_messages.success') : __('general.response_messages.error'));
         return [
             'status' => $status,
             'message' => $response_message,
-            'redirect' => $redirect ? route($redirect) : null,
+            'redirect' => $redirect ? $redirect : null,
             'modal_to_hide' => $modal_to_hide,
             'row_to_delete' => $row_to_delete,
             'reset_form' => $reset_form,

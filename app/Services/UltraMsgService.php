@@ -53,7 +53,8 @@ class UltraMsgService
         } else {
             $response = json_decode($response, true);
             if (@$response['error']) {
-                info(@$response['error'][0]);
+                info('ULTRA MESSAGE ERROR :');
+                info(@$response['error']);
                 return throw new Exception(__('general.response_messages.error'));
             } else {
                 return $response;

@@ -13,20 +13,23 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">HOME</a>
+                        <a class="nav-link active" aria-current="page"
+                            href="{{ route('home') }}">{{ __('general.home') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="offers.html">OFFERS</a>
+                        <a class="nav-link" href="offers.html">{{ __('general.offers') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="culbs.html">Clubs</a>
+                        <a class="nav-link" href="culbs.html">{{ __('general.clubs') }}</a>
                     </li>
                 </ul>
                 <form class="d-flex">
                     <div class="info-header-action-but">
-                        <!-- <div class="box-profile">
+                        @auth
+                            <div class="box-profile">
                                 <span class="bx bxs-user"></span>
-                            </div> -->
+                            </div>
+                        @endauth
                         <div class="box-change-Languages">
                             @php
                                 $locale = app()->getLocale() == 'ar' ? 'en' : 'ar';
@@ -34,10 +37,13 @@
                             <a href="{{ route('change_language', ['locale' => $locale]) }}">
                                 {{ $locale == 'ar' ? 'العربية' : 'English' }}</a>
                         </div>
-                        <div class="actionBut">
-                            <a href="LogIn.html" class="butBgAuto">Sing in</a>
-                            <a href="sign-up.html" class="butNoBg">Sing up</a>
-                        </div>
+                        @guest
+                            <div class="actionBut">
+                                <a href="{{ route('login') }}" class="butBgAuto">{{ __('backend.sign_in') }}</a>
+                                <a href="{{ route('register') }}" class="butNoBg">{{ __('backend.sign_up') }}</a>
+                            </div>
+                        @endguest
+
                     </div>
                 </form>
             </div>

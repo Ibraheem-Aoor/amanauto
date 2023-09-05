@@ -45,7 +45,7 @@
                     <h4>{{ __('general.home_page.entities_headline') }}</h4>
                     <div class="row mt-5">
                         @foreach ($entities as $entity)
-                            <div class="col-sm-12 col-md-6 col-lg-3">
+                            <div class="col-sm-12 col-md-6 col-lg-3 customeClientCard">
                                 <div class="client-card">
                                     <img src="{{ getImageUrl($entity->web_img) }}" alt="" />
                                 </div>
@@ -65,7 +65,7 @@
                         <h4>{{ __('general.home_page.services_headline') }}</h4>
                         <div class="row">
                             @foreach ($services as $service)
-                                <div class="col-sm-12 col-md-12 col-lg-4">
+                                <div class="col-sm-12 col-md-12 col-lg-4 customeBoxService">
                                     <div class="card-service">
                                         <img src="{{ getImageUrl($service->web_img) }}" alt="{{ $service->name }}" loading="lazy" />
                                         <h5>{{ $service->name }}</h5>

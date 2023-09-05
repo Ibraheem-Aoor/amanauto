@@ -41,3 +41,23 @@
     border-radius: 25px;
     background: #707070;
   }
+  .all-input-payment label{
+   text-align: right !important;
+    width: 100% !important;
+    margin: 4px 0px;
+  }
+  .forget-password{
+    direction: rtl;
+    text-align: right !important;
+  }
+  #phone{
+    text-align: left !important;
+    display: block !important;
+  }
+  .iti__country-list{
+    left: 0px !important;
+    right: -430px !important;
+    top: 60px !important;
+    position: absolute !important;
+    width: 470px !important;
+  }
