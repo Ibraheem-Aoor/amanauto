@@ -34,6 +34,14 @@
                       </a>
                   </li>
                   <li class="nav-item">
+                      <a href="{{ route('admin.clubs.index') }}" class="nav-link">
+                          <i class="nav-icon fas fa-cubes"></i>
+                          <p>
+                              {{ __('backend.clubs.clubs') }}
+                          </p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
                       <a href="{{ route('admin.crud.index', ['model' => 'Client']) }}" class="nav-link">
                           <i class="nav-icon fas fa-user"></i>
                           <p>

@@ -165,8 +165,8 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'color' => [
+            'regex' => 'must be valid hexa color',
         ],
     ],
 

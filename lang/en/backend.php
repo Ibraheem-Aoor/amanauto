@@ -38,7 +38,7 @@ return [
     'answer' => 'answer',
     'create_account' => 'Create Account',
     'already_registerd' => 'Already Registered',
-    'not_registered'    =>  ' Not registered yet',
+    'not_registered' => ' Not registered yet',
     'sign_in' => 'Sign In',
     'sign_up' => 'Sign up',
 
@@ -160,4 +160,18 @@ return [
 
     'more_count' => 'and :count more...',
 
+    'clubs' => [
+        'clubs' => 'Clubs',
+        'add_new_club' => 'Add New Club',
+    ],
+
+    'duration' => 'Duration',
+    'duration_type' => 'Duration Type',
+    'times' => 'Times',
+    'description_ar' => 'Description In Arabic',
+    'description_en' => 'Description In English',
+    'price' => 'Price',
+    'color' => 'Color',
+    'unlimited_tip' => '-1 for unlimited',
+    'status' => 'Status',
 ];

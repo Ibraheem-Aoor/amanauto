@@ -41,7 +41,7 @@ return [
     'question_ar' => 'سؤال بالعربي',
     'create_account' => 'إنشاء حساب',
     'already_registerd' => 'مسجل بالفعل',
-    'not_registered'    =>  ' ليس لديك حساب',
+    'not_registered' => ' ليس لديك حساب',
     'sign_in' => 'تسجيل الدخول',
     'sign_up' => 'إنشاء حساب',
 
@@ -115,5 +115,21 @@ return [
 
     'more_count' => 'و:count أكثر...',
 
+
+    'clubs' => [
+        'clubs' => 'الباقات',
+        'add_new_club' => 'إضافة باقة جديدة',
+        'edit_club' => 'تعديل الباقة',
+    ],
+
+    'duration' => 'المدة',
+    'duration_type' => 'نوع المدة',
+    'times' => 'المرات',
+    'description_ar' => 'الوصف باللغة العربية',
+    'description_en' => 'الوصف باللغة الإنجليزية',
+    'price' => 'السعر',
+    'color' => 'اللون',
+    'unlimited_tip' => '-1 لغير محدود',
+    'status' => 'الحالة',
 
 ];

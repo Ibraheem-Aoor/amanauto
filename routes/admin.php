@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ClubController;
 use App\Http\Controllers\Admin\CommonCrudController;
 use App\Http\Controllers\Admin\CommonQuestionController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -23,6 +24,12 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::redirect('/', 'admin/dashboard');
+// ADmin Auth roues
+Route::group(['as' => 'admin.'], function () {
+    Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+    Route::post('login', [LoginController::class, 'login'])->name('login');
+});
+
 Route::group(['middleware' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
@@ -33,10 +40,7 @@ Route::group(['middleware' => 'admin', 'as' => 'admin.'], function () {
     // faqs
     Route::resource('faqs', CommonQuestionController::class);
     Route::get('faqs-table-data', [CommonQuestionController::class, 'getTableData'])->name('faqs.table_data');
-});
-
-
-Route::group(['as' => 'admin.'], function () {
-    Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
-    Route::post('login', [LoginController::class, 'login'])->name('login');
+    // clubs
+    Route::resource('clubs', ClubController::class);
+    Route::get('clubs-table-data', [ClubController::class, 'getTableData'])->name('clubs.table_data');
 });

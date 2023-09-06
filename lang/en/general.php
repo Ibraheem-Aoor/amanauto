@@ -30,4 +30,14 @@ return [
     'enter_otp_code' => 'Enter the pin code sent to your mobile phone',
     'verify_otp' => 'Verify OTP',
 
+    'day' => 'Day',
+    'month' => 'Month',
+    'year' => 'Year',
+
+    'status' => [
+        'active' => 'Active',
+        'inactive' => 'inactive',
+    ],
+
+    'unlimited'     =>  'Unlimited',
 ];
