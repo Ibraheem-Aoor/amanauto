@@ -117,6 +117,7 @@ class ClubController extends Controller
                         'name' => $request->name_en,
                         'description' => $request->description_en,
                     ],
+                    'prev_price' => $club->price,
                     'price' => $request->price,
                     'vat' => $request->vat,
                     'vat_type' => $request->vat_type,

@@ -50,6 +50,6 @@ return [
     'percent' => 'Percent',
     'flat' => 'flat',
 
-    'soon' => 'Soon',
+    'soon' => 'SOON',
 
 ];

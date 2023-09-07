@@ -14,7 +14,20 @@ class Club extends Model implements TranslatableContract
 {
     use HasFactory, Translatable, Trackable;
 
-    protected $fillable = ['duration', 'duration_type', 'times', 'status', 'added_by', 'price', 'color', 'added_by' , 'is_coming_soon' , 'vat' , 'vat_type'];
+    protected $fillable = [
+        'duration',
+        'duration_type',
+        'times',
+        'status',
+        'added_by',
+        'price',
+        'prev_price',
+        'color',
+        'added_by',
+        'is_coming_soon',
+        'vat',
+        'vat_type',
+    ];
 
     protected $with = ['translations'];
 
@@ -28,6 +41,12 @@ class Club extends Model implements TranslatableContract
     }
     ######### END RELATIONS ##########
 
+    ######### START SCOPES ##########
+    public function scopeStatus($query, $value)
+    {
+        return $query->whereStatus($value);
+    }
+    ######### END  SCOPES ##########
 
 
     public function getServicesIds(): array

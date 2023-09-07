@@ -20,6 +20,7 @@ return new class extends Migration {
             $table->string('times');
             $table->string('status');
             $table->double('price');
+            $table->double('prev_price')->default(0);
             $table->string('color');
             $table->boolean('is_coming_soon')->default(false);
             $table->double('vat')->default(0);

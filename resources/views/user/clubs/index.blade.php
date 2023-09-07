@@ -22,7 +22,7 @@
                                     </h6>
                                 </div>
                                 <h2>
-                                    {{ formatPrice($club->price) }}
+                                    {{ $club->is_coming_soon ? __('general.soon')  : formatPrice($club->price) }}
                                 </h2>
                                 <img src="{{ asset('assets/user/img/Group 4962.png') }}" class="shapeCard" alt="">
                             </div>
