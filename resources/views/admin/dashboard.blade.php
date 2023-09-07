@@ -9,12 +9,8 @@
 
         <!-- Content Header (Page header) -->
         @include('admin.partials.page-header', ['main_section' => __('backend.dashboard')])
-        <div class="col-sm-12 text-center">
-            <div class="bootstrap-switch-container"><input type="checkbox" name="my-checkbox" checked=""
-                    data-bootstrap-switch=""></div>
-        </div>
 
-        <
+
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">

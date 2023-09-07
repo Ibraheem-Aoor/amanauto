@@ -163,6 +163,7 @@ return [
     'clubs' => [
         'clubs' => 'Clubs',
         'add_new_club' => 'Add New Club',
+        'edit_club' => 'Edit Club',
     ],
 
     'duration' => 'Duration',

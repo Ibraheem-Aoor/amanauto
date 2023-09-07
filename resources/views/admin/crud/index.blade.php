@@ -2,6 +2,7 @@
 @push('css')
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     {{-- Image Style  --}}
     <style>
         #show-info div .row {
@@ -108,37 +109,43 @@
         ])
         <!-- Main content -->
         <section class="content">
-            <div class="card">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-sm-8">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
 
-                        </div>
-                        <div class="col-sm-2"></div>
-                        <div class="col-sm-2">
-                            <a href="#" data-toggle="modal" data-target="#create-edit-modal" data-is-create="1"
-                                data-form-action="{{ route('admin.crud.store', ['model' => $model]) }}">
-                                <i class="fa fa-plus"> </i>&nbsp;
-                                {{ __('backend.new') }}
-                            </a>
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                    </div>
+                                    <div class="col-sm-2"></div>
+                                    <div class="col-sm-2">
+                                        <a href="#" data-toggle="modal" data-target="#create-edit-modal"
+                                            data-is-create="1"
+                                            data-form-action="{{ route('admin.crud.store', ['model' => $model]) }}">
+                                            <i class="fa fa-plus"> </i>&nbsp;
+                                            {{ __('backend.new') }}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="myTable" class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>{{ __('backend.name_ar') }}</th>
+                                            <th>{{ __('backend.name_en') }}</th>
+                                            <th>{{ __('backend.created_at') }}</th>
+                                            <th>{{ __('backend.action') }}</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
                         </div>
                     </div>
                 </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <table id="myTable" class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-
-                                <th>{{ __('backend.name_ar') }}</th>
-                                <th>{{ __('backend.name_en') }}</th>
-                                <th>{{ __('backend.created_at') }}</th>
-                                <th>{{ __('backend.action') }}</th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-                <!-- /.card-body -->
             </div>
         </section>
         <!-- /.content -->
@@ -151,7 +158,9 @@
 @push('js')
     <!-- DataTables -->
     <script src="{{ asset('plugins/datatables/jquery.dataTables.js') }}"></script>
-    <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.js') }}"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script  src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
 
     <script>
         var table_data_url = "{{ route('admin.crud.table_data', ['model' => $model]) }}";
@@ -171,7 +180,8 @@
                 serverSide: true,
                 ajax: table_data_url,
                 columns: getTableColumns(),
-
+                "autoWidth": false,
+                "responsive": true,
             });
         }
 
@@ -223,7 +233,8 @@
                         'url("{{ asset('dist/img/product-placeholder.webp') }}")');
                     $('#create-edit-modal input[type="file"]').val(null);
                 } else {
-                    $('#create-edit-modal .modal-title').text("{{ __('backend.edit_service') }} : " + $(this).data('name-ar'));
+                    $('#create-edit-modal .modal-title').text("{{ __('backend.edit_service') }} : " + $(
+                        this).data('name-ar'));
                     $('#create-edit-modal input[name="name_ar"]').val($(this).data('name-ar'));
                     $('#create-edit-modal input[name="name_en"]').val($(this).data('name-en'));
                     $('.image-input-wrapper-web').css('background-image', 'url("' + $(this).data(

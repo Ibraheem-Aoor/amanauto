@@ -1,7 +1,8 @@
 @extends('layouts.admin.master')
 @push('css')
     <!-- DataTables -->
-    <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endpush
 @section('content')
@@ -14,55 +15,70 @@
         ])
         <!-- Main content -->
         <section class="content">
-            <div class="card">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-sm-8">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                    </div>
+                                    <div class="col-sm-2"></div>
+                                    <div class="col-sm-2">
+                                        <a href="#" data-toggle="modal" data-target="#create-edit-modal"
+                                            data-is-create="1" data-form-action="{{ route('admin.clubs.store') }}">
+                                            <i class="fa fa-plus"> </i>&nbsp;
+                                            {{ __('backend.new') }}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="myTable" class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>{{ __('backend.name') }}</th>
+                                            <th>{{ __('backend.price') }}</th>
+                                            <th>{{ __('backend.duration') }}</th>
+                                            <th>{{ __('backend.times') }}</th>
+                                            <th>{{ __('backend.services') }}</th>
+                                            <th>{{ __('backend.status') }}</th>
+                                            <th>{{ __('general.soon') }}</th>
+                                            <th>{{ __('backend.created_at') }}</th>
+                                            <th>{{ __('backend.action') }}</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
                         </div>
-                        <div class="col-sm-2"></div>
-                        <div class="col-sm-2">
-                            <a href="#" data-toggle="modal" data-target="#create-edit-modal" data-is-create="1"
-                                data-form-action="{{ route('admin.clubs.store') }}">
-                                <i class="fa fa-plus"> </i>&nbsp;
-                                {{ __('backend.new') }}
-                            </a>
-                        </div>
+                        <!-- /.card -->
+
+                        <!-- /.card -->
                     </div>
+                    <!-- /.col -->
                 </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <table id="myTable" class="table table-bordered table-striped col-sm-12">
-                        <thead>
-                            <tr>
-                                <th>{{ __('backend.name') }}</th>
-                                <th>{{ __('backend.price') }}</th>
-                                <th>{{ __('backend.duration') }}</th>
-                                <th>{{ __('backend.times') }}</th>
-                                <th>{{ __('backend.services') }}</th>
-                                <th>{{ __('backend.status') }}</th>
-                                <th>{{ __('general.soon') }}</th>
-                                <th>{{ __('backend.created_at') }}</th>
-                                <th>{{ __('backend.action') }}</th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-                <!-- /.card-body -->
+                <!-- /.row -->
             </div>
+            <!-- /.container-fluid -->
         </section>
         <!-- /.content -->
     </div>
-    @include('admin.clubs.create-edit-modal')
     <!-- /.content-wrapper -->
+    @include('admin.clubs.create-edit-modal')
 @endsection
 
 
 @push('js')
     <!-- DataTables -->
+
     <script src="{{ asset('plugins/datatables/jquery.dataTables.js') }}"></script>
-    <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.js') }}"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script sync src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="{{ asset('plugins/bootstrap-switch/bootstrap-switch.min.js') }}"></script>
+
 
 
     <script>
@@ -83,6 +99,8 @@
                 serverSide: true,
                 ajax: table_data_url,
                 columns: getTableColumns(),
+                "autoWidth": false,
+                "responsive": true,
             });
         }
 
