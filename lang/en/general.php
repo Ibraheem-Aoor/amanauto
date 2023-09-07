@@ -35,8 +35,10 @@ return [
     'Year' => 'Year',
 
     'status' => [
+        'status'    =>  'Status',
         'active' => 'Active',
         'inactive' => 'inactive',
+
     ],
 
     'unlimited' => 'Unlimited',

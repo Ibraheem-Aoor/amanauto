@@ -34,6 +34,7 @@ return [
     'Year' => 'سنة',
 
     'status' => [
+        'status'    =>  'الحالة',
         'active' => 'فعال',
         'inactive' => 'غير فعال',
     ],

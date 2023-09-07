@@ -166,6 +166,13 @@ return [
         'token' => 'رقم التشفير',
         'web_img' => 'صورة الويب',
         'mobile_img' => 'صورة التطبيق',
+        'discount' => 'الخصم',
+        'discount_type' => 'نوع الخصم',
+        'available_times' => 'الأوقات المتاحة',
+        'count_of_usage' => 'عدد مرات الاستخدام',
+        'code' => 'كود',
+        'start_date' => 'تاريخ البدء',
+        'end_date' => 'تاريخ الانتهاء',
     ],
 
 ];

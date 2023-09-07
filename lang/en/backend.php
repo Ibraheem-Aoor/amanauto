@@ -175,4 +175,16 @@ return [
     'color' => 'Color',
     'unlimited_tip' => '-1 for unlimited',
     'status' => 'Status',
+
+    'coupons' => [
+        'coupons' => 'Coupons',
+    ],
+    'discount' => 'discount',
+    'discount_type' => 'Discount Type',
+    'available_times' => 'Available Times',
+    'count_of_usage' => 'Usage Times',
+    'code' => 'Code',
+    'start_date' => 'Start Date',
+    'end_date' => 'End Date',
+    'generate'      =>  'Generate',
 ];

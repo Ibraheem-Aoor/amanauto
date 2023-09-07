@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ClubController;
 use App\Http\Controllers\Admin\CommonCrudController;
 use App\Http\Controllers\Admin\CommonQuestionController;
+use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\Admin\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -45,4 +46,8 @@ Route::group(['middleware' => 'admin', 'as' => 'admin.'], function () {
     Route::get('clubs-table-data', [ClubController::class, 'getTableData'])->name('clubs.table_data');
     Route::get('clubs-change-status', [ClubController::class, 'changeStatus'])->name('clubs.change_status');
     Route::get('clubs-change-soon', [ClubController::class, 'changeSoon'])->name('clubs.change_soon');
+    // coupons
+    Route::resource('coupons', CouponController::class);
+    Route::get('coupons-table-data', [CouponController::class, 'getTableData'])->name('clubs.table_data');
+    Route::get('coupons-change-soon', [CouponController::class, 'changeStatus'])->name('coupon.change_status');
 });

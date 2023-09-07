@@ -130,6 +130,20 @@ return [
     'price' => 'السعر',
     'color' => 'اللون',
     'unlimited_tip' => '-1 لغير محدود',
+
     'status' => 'الحالة',
+
+    'coupons' => [
+        'coupons' => 'الكوبونات',
+    ],
+    'discount' => 'الخصم',
+    'discount_type' => 'نوع الخصم',
+    'available_times' => 'مرات الاستخدام المتاحة',
+    'count_of_usage' => 'عدد مرات الاستخدام',
+    'code' => 'كود',
+    'start_date' => 'تاريخ البدء',
+    'end_date' => 'تاريخ الانتهاء',
+    'generate' => 'توليد',
+
 
 ];
