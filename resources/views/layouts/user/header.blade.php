@@ -20,7 +20,7 @@
                         <a class="nav-link" href="offers.html">{{ __('general.offers') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="culbs.html">{{ __('general.clubs') }}</a>
+                        <a class="nav-link" href="{{ route('clubs.index') }}">{{ __('general.clubs') }}</a>
                     </li>
                 </ul>
                 <form class="d-flex">
@@ -64,7 +64,7 @@
             <span class="">Offers</span>
         </a>
         <!-- --------- -->
-        <a href="culbs.html">
+        <a href="{{ route('clubs.index') }}">
             <i class="bx bx-crown"></i>
             <span class="">Clubs</span>
         </a>

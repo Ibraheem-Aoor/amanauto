@@ -1,11 +1,11 @@
 <?php
 
+use App\Enums\VatType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -21,6 +21,9 @@ return new class extends Migration
             $table->string('status');
             $table->double('price');
             $table->string('color');
+            $table->boolean('is_coming_soon')->default(false);
+            $table->double('vat')->default(0);
+            $table->string('vat_type')->default(VatType::PERCENT->value);
             $table->foreignId('added_by')->nullable()->constrained('admins')->references('id')->nullOnDelete();
             $table->timestamps();
         });

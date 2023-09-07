@@ -30,14 +30,26 @@ return [
     'enter_otp_code' => 'Enter the pin code sent to your mobile phone',
     'verify_otp' => 'Verify OTP',
 
-    'day' => 'Day',
-    'month' => 'Month',
-    'year' => 'Year',
+    'Day' => 'Day',
+    'Month' => 'Month',
+    'Year' => 'Year',
 
     'status' => [
         'active' => 'Active',
         'inactive' => 'inactive',
     ],
 
-    'unlimited'     =>  'Unlimited',
+    'unlimited' => 'Unlimited',
+    'times' => 'Times',
+    'duration' => 'Duration',
+
+    'various_service_secure' => ' Various services secure your way',
+    'vat' => 'Vat',
+
+    'vat_type' => 'Vat Type',
+    'percent' => 'Percent',
+    'flat' => 'flat',
+
+    'soon' => 'Soon',
+
 ];

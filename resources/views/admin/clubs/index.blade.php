@@ -31,33 +31,28 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <table id="myTable" class="table table-bordered table-striped col-sm-12">
-                                    <thead>
-                                        <tr>
-                                            <th>{{ __('backend.name') }}</th>
-                                            <th>{{ __('backend.price') }}</th>
-                                            <th>{{ __('backend.duration') }}</th>
-                                            <th>{{ __('backend.times') }}</th>
-                                            <th>{{ __('backend.services') }}</th>
-                                            <th>{{ __('backend.status') }}</th>
-                                            <th>{{ __('backend.created_at') }}</th>
-                                            <th>{{ __('backend.action') }}</th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                    <table id="myTable" class="table table-bordered table-striped col-sm-12">
+                        <thead>
+                            <tr>
+                                <th>{{ __('backend.name') }}</th>
+                                <th>{{ __('backend.price') }}</th>
+                                <th>{{ __('backend.duration') }}</th>
+                                <th>{{ __('backend.times') }}</th>
+                                <th>{{ __('backend.services') }}</th>
+                                <th>{{ __('backend.status') }}</th>
+                                <th>{{ __('general.soon') }}</th>
+                                <th>{{ __('backend.created_at') }}</th>
+                                <th>{{ __('backend.action') }}</th>
+                            </tr>
+                        </thead>
+                    </table>
                 </div>
                 <!-- /.card-body -->
             </div>
         </section>
         <!-- /.content -->
-        @include('admin.clubs.create-edit-modal')
     </div>
+    @include('admin.clubs.create-edit-modal')
     <!-- /.content-wrapper -->
 @endsection
 
@@ -67,6 +62,7 @@
     <script src="{{ asset('plugins/datatables/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{{ asset('plugins/bootstrap-switch/bootstrap-switch.min.js') }}"></script>
 
 
     <script>
@@ -128,6 +124,12 @@
                     orderable: true,
                 },
                 {
+                    data: 'is_coming_soon',
+                    name: 'is_coming_soon',
+                    searchable: true,
+                    orderable: true,
+                },
+                {
                     data: 'created_at',
                     name: 'created_at',
                     searchable: true,
@@ -147,6 +149,7 @@
             renderDataTable();
             $('.select2').select2();
 
+
             // Use the event delegation approach to handle the click event
             $(document).on('click', '[data-toggle="modal"][data-target="#create-edit-modal"]', function(e) {
                 var is_create = $(this).data('is-create');
@@ -165,6 +168,8 @@
                     $('textarea[name="description_ar"]').text($(this).data('description_ar'));
                     $('textarea[name="description_en"]').text($(this).data('description_en'));
                     $('input[name="price"]').val($(this).data('price'));
+                    $('input[name="vat"]').val($(this).data('vat'));
+                    $('select[name="vat_type"]').val($(this).data('vat_type'));
                     $('input[name="color"]').val($(this).data('color'));
                     $('input[name="times"]').val($(this).data('times'));
                     $('input[name="duration"]').val($(this).data('duration'));
@@ -174,8 +179,58 @@
                         'change'); // Trigger change event to update select2
                 }
             });
-
-
         });
+
+        function toggleStatus(checkbox) {
+            var isChecked = checkbox.prop('checked'); // Use checkbox.checked to get the boolean value
+            var id = checkbox.prop('value');
+            console.log(isChecked, id);
+
+            // Use jQuery.ajax for the AJAX request
+            $.ajax({
+                url: "{{ route('admin.clubs.change_status') }}",
+                method: "GET",
+                data: {
+                    status: isChecked == true ? 1 : 0,
+                    id: id // Use checkbox.value to get the ID
+                },
+                success: function(response) {
+                    if (response.status) {
+                        toastr.success(response.message);
+                    } else {
+                        toastr.error(response.message);
+                    }
+                },
+                error: function() {
+                    toastr.error(response.message);
+                }
+            });
+        }
+
+        function toggleSoon(checkbox) {
+            var isChecked = checkbox.prop('checked'); // Use checkbox.checked to get the boolean value
+            var id = checkbox.prop('value');
+            console.log(isChecked, id);
+
+            // Use jQuery.ajax for the AJAX request
+            $.ajax({
+                url: "{{ route('admin.clubs.change_soon') }}",
+                method: "GET",
+                data: {
+                    status: isChecked == true ? 1 : 0,
+                    id: id // Use checkbox.value to get the ID
+                },
+                success: function(response) {
+                    if (response.status) {
+                        toastr.success(response.message);
+                    } else {
+                        toastr.error(response.message);
+                    }
+                },
+                error: function() {
+                    toastr.error(response.message);
+                }
+            });
+        }
     </script>
 @endpush

@@ -43,4 +43,6 @@ Route::group(['middleware' => 'admin', 'as' => 'admin.'], function () {
     // clubs
     Route::resource('clubs', ClubController::class);
     Route::get('clubs-table-data', [ClubController::class, 'getTableData'])->name('clubs.table_data');
+    Route::get('clubs-change-status', [ClubController::class, 'changeStatus'])->name('clubs.change_status');
+    Route::get('clubs-change-soon', [ClubController::class, 'changeSoon'])->name('clubs.change_soon');
 });

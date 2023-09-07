@@ -11,9 +11,9 @@ enum Duration: string
     public static function getNames(): array
     {
         return [
-            self::DAY->value => __('general.day'),
-            self::MONTH->value => __('general.month'),
-            self::YEAR->value => __('general.year'),
+            self::DAY->value => __('general.Day'),
+            self::MONTH->value => __('general.Month'),
+            self::YEAR->value => __('general.Year'),
         ];
     }
 }

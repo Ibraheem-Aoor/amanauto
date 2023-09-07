@@ -25,7 +25,8 @@
                                 <h5>{{ __('backend.services') }}</h5>
                                 <select class="select2  select2-hidden-accessible" multiple=""
                                     data-placeholder="Select a State" data-dropdown-css-class="select2-purple"
-                                    style="width: 100%;" data-select2-id="15" tabindex="-1" aria-hidden="true" name="services[]">
+                                    style="width: 100%;" data-select2-id="15" tabindex="-1" aria-hidden="true"
+                                    name="services[]">
                                     @foreach ($services as $service)
                                         <option value="{{ $service->id }}">{{ $service->name }}</option>
                                     @endforeach
@@ -36,8 +37,21 @@
                                 <input name="price" class="form-control">
                             </div>
                             <div class="col-sm-6 mt-4">
+                                <h5>{{ __('general.vat') }}</h5>
+                                <input type="number" name="vat" min="0" class="form-control">
+                            </div>
+                            <div class="col-sm-6 mt-4">
+                                <h5>{{ __('general.vat_type') }}</h5>
+                                <select class="form-control" name="vat_type">
+                                    <option value="">{{ __('backend.select') }}</option>
+                                    @foreach ($vat_types as $key => $value)
+                                        <option value="{{ $key }}">{{ $value }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-sm-6 mt-4">
                                 <h5>{{ __('backend.color') }}</h5>
-                                <input type="color"  name="color" class="form-control">
+                                <input type="color" name="color" class="form-control">
                             </div>
                             <div class="col-sm-6 mt-4">
                                 <h5>{{ __('backend.duration') }}</h5>

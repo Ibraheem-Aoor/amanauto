@@ -3,12 +3,18 @@
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css') }}">
 @endpush
-@section('content')\
+@section('content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
 
         <!-- Content Header (Page header) -->
         @include('admin.partials.page-header', ['main_section' => __('backend.dashboard')])
+        <div class="col-sm-12 text-center">
+            <div class="bootstrap-switch-container"><input type="checkbox" name="my-checkbox" checked=""
+                    data-bootstrap-switch=""></div>
+        </div>
+
+        <
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
@@ -669,4 +675,14 @@
     <!-- DataTables -->
     <script src="{{ asset('plugins/datatables/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.js') }}"></script>
+    <script src="{{ asset('plugins/bootstrap-switch/bootstrap-switch.min.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $("input[data-bootstrap-switch]").each(function() {
+                $(this).bootstrapSwitch('state', $(this).prop('checked'));
+
+            });
+        });
+    </script>
 @endpush

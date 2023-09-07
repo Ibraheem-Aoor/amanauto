@@ -180,3 +180,20 @@ if (!function_exists('columnValueExists')) {
         return $model::where($column, $value)->exists();
     }
 }
+
+
+if (!function_exists('getSystemCurrency')) {
+    function getSystemCurrency()
+    {
+        return app()->getLocale() == 'ar' ? 'ريال' : 'SAR';
+    }
+}
+
+if (!function_exists('formatPrice')) {
+    function formatPrice($price)
+    {
+        $formattedPrice = number_format($price, 2, '.', ','); // 2 decimal places, decimal point is '.', thousands separator is ','
+
+        return $formattedPrice . ' ' . getSystemCurrency(); // You can change the currency symbol as needed
+    }
+}

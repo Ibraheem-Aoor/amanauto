@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enums\ClubStatus;
 use App\Enums\Duration;
+use App\Enums\VatType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ClubRequest;
 use App\Http\Requests\Admin\CommonQuestionRequest;
@@ -45,6 +46,7 @@ class ClubController extends Controller
         $data['model'] = $this->model_name;
         $data['translated_model_name'] = $this->translated_model_name;
         $data['duration_types'] = Duration::getNames();
+        $data['vat_types'] = VatType::getNames();
         $data['services'] = Service::query()->get();
         return view('admin.clubs.index', $data);
     }
@@ -71,6 +73,8 @@ class ClubController extends Controller
                         'description' => $request->description_en,
                     ],
                     'price' => $request->price,
+                    'vat' => $request->vat,
+                    'vat_type' => $request->vat_type,
                     'color' => $request->color,
                     'duration' => $request->duration,
                     'duration_type' => $request->duration_type,
@@ -114,6 +118,8 @@ class ClubController extends Controller
                         'description' => $request->description_en,
                     ],
                     'price' => $request->price,
+                    'vat' => $request->vat,
+                    'vat_type' => $request->vat_type,
                     'color' => $request->color,
                     'duration' => $request->duration,
                     'duration_type' => $request->duration_type,
@@ -175,6 +181,43 @@ class ClubController extends Controller
             ->make(true);
     }
 
+
+
+    /**
+     * Toggle Status for club
+     */
+    public function changeStatus(Request $request)
+    {
+        try {
+            $target = $this->model->findOrFail($request->id);
+            $target->update([
+                'status' => $request->status ? ClubStatus::ACTIVE->value : ClubStatus::INACTIVE->value,
+            ]);
+            $response = generateResponse(status: true, is_deleted: true, message: __('general.response_messages.update_success'));
+        } catch (Throwable $e) {
+            dd($e);
+            $response = generateResponse(status: false);
+        }
+        return response()->json($response, $response['code']);
+    }
+
+    /**
+     * Toggle Status for club
+     */
+    public function changeSoon(Request $request)
+    {
+        try {
+            $target = $this->model->findOrFail($request->id);
+            $target->update([
+                'is_coming_soon' => $request->status,
+            ]);
+            $response = generateResponse(status: true, is_deleted: true, message: __('general.response_messages.update_success'));
+        } catch (Throwable $e) {
+            dd($e);
+            $response = generateResponse(status: false);
+        }
+        return response()->json($response, $response['code']);
+    }
 
 
 
