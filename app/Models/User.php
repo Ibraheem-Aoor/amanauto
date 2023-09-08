@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -22,6 +23,7 @@ class User extends Authenticatable
         'phone',
         'password',
         'ams',
+        'club_id'
     ];
 
     /**
@@ -52,5 +54,16 @@ class User extends Authenticatable
 
 
 
+    ######## START RELATION #########
+    public function subscriptions() : HasMany
+    {
+        return $this->hasMany(Subscription::class , 'user_id');
+    }
+    ######## END RELATION #########
+
+    public function getLastSubscribedClub()
+    {
+        return $this->subscriptions()->latest()->first();
+    }
 
 }

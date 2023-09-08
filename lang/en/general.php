@@ -35,9 +35,10 @@ return [
     'Year' => 'Year',
 
     'status' => [
-        'status'    =>  'Status',
+        'status' => 'Status',
         'active' => 'Active',
         'inactive' => 'inactive',
+        'pending' => 'Pending',
 
     ],
 
@@ -53,5 +54,26 @@ return [
     'flat' => 'flat',
 
     'soon' => 'SOON',
+    'policy_and_terms' => 'Policy & Term & Condtions',
+    'subscribe_with_discount' => 'Subscribe With :discount OFF',
+    'subscribe_now' => 'Subscribe Now',
+    'vichle_istimara' => ' Vehicle Registration / istimara',
+    'upload' => 'Upload',
+    'your_order' => 'YOUR ORDER',
+    'product' => 'PRODUCT',
+    'total' => 'TOTAL',
+    'total_with_vat' => 'TOTAL WITH VAT',
+    'have_coupon_code' => 'DO YOU HAVE CUPON ?',
+    'payment_method' => 'PAYMENT METHOD',
+    'card_number' => 'Card number',
+    'apply' => 'APPLY',
+    'upgrade' => 'Upgrade',
+    'downgrade' => 'Downgrade',
+    'subscribe' => 'New Subscribe',
+    'payment_failed' => 'Payment Failed  , Please Try Again Later',
+    'payment_success' => 'Payment Success',
+    'redirect_to_payment' => 'You Will Be Redirected To Payment Confirm Page',
+    'comlete_payment' => 'Payment',
+    'month/year' => 'MM / YY',
 
 ];

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\Duration;
+use App\Enums\VatType;
 use App\Traits\Trackable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -88,5 +89,19 @@ class Club extends Model implements TranslatableContract
     public function getEncryptedId()
     {
         return encrypt($this->id);
+    }
+
+
+    /**
+     * get total price
+     */
+    public function getTotalPrice($with_currency = false)
+    {
+        if ($this->vat_type == VatType::PERCENT->value) {
+            $total_vat = ($this->vat / 100) * $this->price;
+        } else {
+            $total_vat = $this->vat;
+        }
+        return formatPrice($this->price + $total_vat , $with_currency);
     }
 }

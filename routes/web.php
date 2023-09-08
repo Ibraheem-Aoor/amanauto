@@ -6,6 +6,8 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\User\ClubController;
+use App\Http\Controllers\User\PaymentController;
+use App\Http\Controllers\User\SubscribeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -37,4 +39,11 @@ Route::group(['prefix' => 'opt', 'middleware' => 'guest', 'as' => 'user.otp.'], 
 Route::group(['prefix' => 'club', 'as' => 'clubs.'], function () {
     Route::get('', [ClubController::class, 'index'])->name('index');
     Route::get('show/{id}', [ClubController::class, 'show'])->name('show');
+});
+
+// subscribe
+Route::group(['prefix' => 'subscribe', 'middleware' => ['auth'], 'as' => 'subscribe.'], function () {
+    Route::get('{club}', [SubscribeController::class, 'index'])->name('index');
+    Route::post('/{club}/payment/make', [PaymentController::class, 'makePayment'])->name('make_payment');
+    Route::get('/payment/cc/callback', [PaymentController::class, 'paymentCreditCardCallback'])->name('payment.credit_card_callback');
 });

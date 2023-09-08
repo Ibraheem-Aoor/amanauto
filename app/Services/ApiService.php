@@ -12,16 +12,36 @@ class ApiService
     protected $base_url;
     protected $headers;
 
-    protected $token;
+    protected $auth_credits;
 
+    protected $http_client;
 
-    public function __construct($base_url , $token = null , array $headers)
+    /**
+     * @param $base_url represnts base url target.
+     * @param $headers represnts headers  to sent with each request
+     * @param $auth_credits represnts auth data  authorize .
+     */
+    public function __construct($base_url, array $headers, array $auth_credits = [])
     {
         $this->base_url = $base_url;
-        $this->token = $token;
+        $this->auth_credits = $auth_credits;
         $this->headers = $headers;
+        $this->setHttpClient();
     }
 
+    /**
+     * Set Http Client to reuse in service
+     */
+    protected function setHttpClient()
+    {
+        $this->http_client = Http::baseUrl($this->base_url);
+        if (isset($this->auth_credits['auth_type'])  && $this->auth_credits['auth_type'] == 'berar_token') {
+            $this->http_client->withToken($this->auth_credits['token']);
+        } elseif (isset($this->auth_credits['auth_type'])  && $this->auth_credits['auth_type'] == 'basic_auth') {
+            $this->http_client->withBasicAuth($this->auth_credits['user_name'], $this->auth_credits['password']);
+        }
+        $this->http_client->withHeaders($this->headers);
+    }
 
 
     /**
@@ -29,12 +49,10 @@ class ApiService
      * @param string $endpoint
      * @param array $params
      */
-    public function get(string $endpoint , array $params = [])
+    public function get(string $endpoint, array $params = [])
     {
-        $url = $this->base_url.$endpoint;
-        $response = Http::withToken($this->token)
-            ->withHeaders($this->headers)
-            ->get($url, $params);
+        $response = $this->http_client
+            ->get($endpoint, $params);
         return $response;
     }
 
@@ -44,12 +62,10 @@ class ApiService
      * @param string $endpoint
      * @param array $data represents the form data to send
      */
-    public function post(string $endpoint , array $data)
+    public function post(string $endpoint, array $data)
     {
-        $url = $this->base_url.$endpoint;
-        $response = Http::withToken($this->token)
-                    ->withHeaders($this->headers)
-                    ->post($url  , $data);
+        $response = $this->http_client
+            ->post($endpoint, $data);
         return $response;
     }
 
@@ -59,28 +75,45 @@ class ApiService
      * @param string $endpoint
      * @param array $data represents the form data to send
      */
-    public function put(string $endpoint , array $data)
+    public function put(string $endpoint, array $data)
     {
-        $url = $this->base_url.$endpoint;
-        $response = Http::withToken($this->token)
-                    ->withHeaders($this->headers)
-                    ->timeout(180)
-                    ->put($url  , $data);
+        $response = $this->http_client
+            ->timeout(180)
+            ->put($endpoint, $data);
         return $response;
     }
 
-
-    public function setToken($token)
+    ##### START SETTER/GETTER #######
+    public function setAuthCredits($auth_credits)
     {
-        $this->token = $token;
+        $this->auth_credits = $auth_credits;
+    }
+
+    public function getAuthCredits()
+    {
+        return $this->auth_credits;
     }
 
     public function setHeaders(array $headers)
     {
-        $this->headers  = $headers;
+        $this->headers = $headers;
     }
     public function getHeaders()
     {
         return $this->headers;
     }
+
+    public function setBaseUrl($base_url)
+    {
+        $this->base_url = $base_url;
+    }
+
+    public function getBaseUrl()
+    {
+        return $this->base_url;
+    }
+
+
+    ##### END SETTER/GETTER #######
+
 }

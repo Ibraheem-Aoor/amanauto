@@ -34,9 +34,11 @@ return [
     'Year' => 'سنة',
 
     'status' => [
-        'status'    =>  'الحالة',
+        'status' => 'الحالة',
         'active' => 'فعال',
         'inactive' => 'غير فعال',
+        'pending' => 'قيد الإنتظار',
+
     ],
 
     'unlimited' => 'غير محدود',
@@ -47,11 +49,33 @@ return [
     'vat' => 'ضريبة',
 
 
-    'vat_type'   =>  'نوع الضريبة',
+    'vat_type' => 'نوع الضريبة',
     'percent' => 'مئوية',
     'flat' => 'ثابتة',
 
     'soon' => 'قريبا',
+    'policy_and_terms' => 'الخصوصية والشروط والأحكام',
+
+    'subscribe_with_discount' => 'اشترك الان مع :discount خصم',
+    'subscribe_now' => 'اشترك الان',
+    'vichle_istimara' => 'تسجيل المركبة / الاستمارة',
+    'upload' => 'رفع',
+    'your_order' => 'طلبك',
+    'product' => 'المنتج',
+    'total' => 'الإجمالي',
+    'total_with_vat' => 'الإجمالي مع الضريبة',
+    'have_coupon_code' => 'هل لديك كوبون خصم؟',
+    'payment_method' => 'طريقة الدفع',
+    'card_number' => 'رقم البطاقة',
+    'apply' => 'تطبيق',
+    'upgrade' => 'ترقية',
+    'downgrade' => 'تخفيض',
+    'subscribe' => 'اشتراك جديد',
+    'payment_failed' => 'فشل إتمام الدفع , يرجى المحاولة لاحقا',
+    'payment_success' => 'تم الاشتراك بنجاح',
+    'redirect_to_payment' => 'سيتم تحوبلك لصفحة تأكيد الدفع',
+    'comlete_payment' => 'الدفع',
+    'month/year' => 'شهر / سنة',
 
 
 

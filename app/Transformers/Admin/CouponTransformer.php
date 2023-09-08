@@ -22,7 +22,7 @@ class CouponTransformer extends TransformerAbstract
         return [
             'code' => $model->code,
             'discount_value' => $model->discount_value,
-            'discount_type' => $model->discount_type,
+            'discount_type' => __('general.' . $model->discount_type),
             'times' => $model->times,
             'usages' => $model->usages_count,
             'status' => $this->getStatusColumn($model),
@@ -40,7 +40,7 @@ class CouponTransformer extends TransformerAbstract
     {
         return "<div class='d-flex'><button class='btn-xs btn-success' data-toggle='modal'
             data-target='#create-edit-modal' data-code='" . $model->code . "' data-discount-value='" . $model->discount_value . "' data-discount-type='" . $model->discount_type . "'
-            data-times='" . $model->times . "'  data-start-date='" . $model->start_date . "'  data-end-date='" . $model->end_date . "'
+            data-times='" . $model->getTimesOriginalAttribute() . "'  data-start-date='" . $model->start_date . "'  data-end-date='" . $model->end_date . "'
             data-form-action='" . route('admin.coupons.update', $model->id) . "" . "' data-is-create='0'><i class='fa fa-edit'></i></button> &nbsp;
                 <button class='btn-xs btn-danger' data-toggle='modal' data-target='#delete-modal'
                 data-delete-url='" . route('admin.coupons.destroy', $model->id) . "" . "' id='row-" . $model->id . "' data-model='" . "' data-message='" . __('general.confirm_delete') . "' data-name='" . $model->name . "'><i class='fa fa-trash'></i></button> &nbsp; </div>";

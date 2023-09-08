@@ -1,5 +1,4 @@
 @extends('layouts.user.master')
-
 @section('content')
     <!-- --- Start Main -->
     <main id="Main">
@@ -67,7 +66,8 @@
                             @foreach ($services as $service)
                                 <div class="col-sm-12 col-md-12 col-lg-4 customeBoxService">
                                     <div class="card-service">
-                                        <img src="{{ getImageUrl($service->web_img) }}" alt="{{ $service->name }}" loading="lazy" />
+                                        <img src="{{ getImageUrl($service->web_img) }}" alt="{{ $service->name }}"
+                                            loading="lazy" />
                                         <h5>{{ $service->name }}</h5>
                                     </div>
                                 </div>
@@ -119,7 +119,8 @@
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingOne">
                                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#collapseOne-{{ $loop->index }}" aria-expanded="true" aria-controls="collapseOne-{{ $loop->index }}">
+                                            data-bs-target="#collapseOne-{{ $loop->index }}" aria-expanded="true"
+                                            aria-controls="collapseOne-{{ $loop->index }}">
                                             {{ $common_question->question }}
                                         </button>
                                     </h2>
@@ -142,3 +143,14 @@
     </main>
     <!-- --- End Main -->
 @endsection
+
+@push('js')
+    <script>
+        @if (Session::has('error'))
+            toastr.error("{{ Session::get('error') }}");
+        @elseif (Session::has('success'))
+        console.log('SS');
+            toastr.success("{{ Session::get('success') }}");
+        @endif
+    </script>
+@endpush

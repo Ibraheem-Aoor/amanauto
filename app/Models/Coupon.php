@@ -27,4 +27,18 @@ class Coupon extends Model
         return $this->hasMany(CouponUsage::class);
     }
     ####### END RELATIONS ######
+
+    public function getTimesAttribute()
+    {
+        return $this->attributes['times'] == -1 ? (__('general.unlimited')) : $this->attributes['times'];
+    }
+    /**
+     * return origianal attribute regard custom above getter.
+     * used to display well for admin panel
+     */
+    public function getTimesOriginalAttribute()
+    {
+        return $this->attributes['times'];
+    }
+
 }

@@ -11,10 +11,12 @@
         "php": "^8.0.2",
         "astrotomic/laravel-translatable": "^11.12",
         "guzzlehttp/guzzle": "^7.2",
+        "laravel-validation-rules/credit-card": "^1.8",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.2",
+        "moyasar/moyasar": "^1.1",
         "propaganistas/laravel-phone": "^5.0",
         "yajra/laravel-datatables": "^9.0"
     },

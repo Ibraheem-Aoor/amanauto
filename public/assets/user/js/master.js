@@ -1,9 +1,6 @@
 var preloader = $(".content-loading");
 $(document).ready(function () {
-    setTimeout(function () {
-        preloader.hide(); // Assuming hiding is done by changing the CSS 'display' property
-    }, 3000);
-
+    preloader.hide();
     $('#delete-modal').on('show.bs.modal', function (e) {
         var btn = e.relatedTarget;
         var deleteUrl = btn.getAttribute('data-delete-url');
@@ -82,7 +79,6 @@ $(document).on('submit', '.custom-form', function (e) {
                     $.each(response.responseJSON.errors, function (key, errorsArray) {
                         $.each(errorsArray, function (item, error) {
                             toastr.error(error);
-
                         });
                     });
                 } else if (response.responseJSON.message) {

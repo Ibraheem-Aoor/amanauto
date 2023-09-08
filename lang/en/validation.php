@@ -195,6 +195,19 @@ return [
         'role_id' => 'Role',
         'web_img' => 'Web image',
         'mobile_img' => 'Mobile App Image',
+        'img_vehicle' => 'Vehicle Registration Image',
+    ],
+
+
+    //cc validation
+    'credit_card' => [
+        'card_invalid' => 'Invalid Card',
+        'card_pattern_invalid' => 'Invalid Card Pattern',
+        'card_length_invalid' => 'Invalid Card Length',
+        'card_checksum_invalid' => 'Invalid Card',
+        'card_expiration_year_invalid' => 'Card Expiration Year Invalid',
+        'card_expiration_month_invalid' => 'Card Expiration month Invalid',
+        'card_cvc_invalid' => 'Card CVC Invalid',
     ],
 
 ];

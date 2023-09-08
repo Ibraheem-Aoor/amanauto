@@ -9,6 +9,7 @@ body,html{
 }
 #HomePage{
     width: 100%;
+    overflow: hidden;
 }
 @font-face {
     font-family: Somar;
@@ -585,8 +586,8 @@ body,html{
 }
 .content-view-order #UploadImageFile{
     width: 150px;
-    height: 150px;
-    margin: 15px 0px;
+    height: 80px;
+    margin: 0px 15px;
     border-radius: 8px;
 }
 .detalis-orders{
@@ -1086,7 +1087,8 @@ body,html{
   }
 
   #phone{
-    width: 480px !important;
+    display: block !important;
+    width: 31.5vw  !important;
   }
   .box-download{
     width: 50px;
@@ -1235,4 +1237,55 @@ body,html{
     50%,100%{
       transform: rotate(360deg);
     }
+  }
+
+  .flex-image-uploads{
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+  }
+
+  .card-al-input{
+    width: 80%;
+    height: 50px;
+    background: #F7F7F7;
+    border-radius: 3px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 16px;
+  }
+  .card-al-input input{
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #393E46;
+    
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+  
+  }
+  .input-number{
+    width: 75%;
+    border-right: 3px solid #D2D2D2 !important;
+    margin-right: 15px;
+  }
+  .input-mm{
+    width: 10%;
+  }
+  .customeColor-diccount{
+    color: #FFF ;
+   
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+
+  }
+  .customeColor-diccount span{
+    color: #B42A2A;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
   }

@@ -48,6 +48,6 @@ Route::group(['middleware' => 'admin', 'as' => 'admin.'], function () {
     Route::get('clubs-change-soon', [ClubController::class, 'changeSoon'])->name('clubs.change_soon');
     // coupons
     Route::resource('coupons', CouponController::class);
-    Route::get('coupons-table-data', [CouponController::class, 'getTableData'])->name('clubs.table_data');
+    Route::get('coupons-table-data', [CouponController::class, 'getTableData'])->name('coupons.table_data');
     Route::get('coupons-change-soon', [CouponController::class, 'changeStatus'])->name('coupon.change_status');
 });

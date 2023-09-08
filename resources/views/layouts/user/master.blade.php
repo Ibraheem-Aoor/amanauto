@@ -19,6 +19,8 @@
         <link rel="stylesheet" href="{{ asset('assets/user/css/arbic.css') }}" />
     @endif
     <link rel="stylesheet" href="{{ asset('assets/user/css/media.css') }}" />
+    <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
+
     @stack('css')
 </head>
 
@@ -58,6 +60,7 @@
     <script src="{{ asset('assets/user/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/user/js/main.js') }}"></script>
     <script src="{{ asset('assets/user/js/master.js') }}"></script>
+    <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
     @stack('js')
 </body>
 

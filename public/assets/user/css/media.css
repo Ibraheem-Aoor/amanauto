@@ -141,8 +141,12 @@
         display: none;
     }
     #phone{
-        width: 400px !important;
+        display: block !important;
+        width: 80vw  !important;
       }
+    /* #phone{
+        width: 450px !important;
+      } */
       .flex-chart{
         display: block;
         justify-content: space-between;
@@ -165,6 +169,30 @@
       .customeBoxService .card-service img{
         width: 60px;
         height: 60px;
+      }
+      .customeWithClubs{
+        width: 48% !important;
+      }
+      .All-Card-Service h4{
+        font-size: 19px !important; 
+      }
+      .content-culbs h4{
+        font-size: 19px !important; 
+      }
+      .card-al-input
+      {
+        width: 100% !important;
+        display: block;
+        min-height: 120px;
+        padding-top: 10px;
+      } 
+      .card-al-input input{
+        display: block;
+        width: 100%;
+        margin: 10px 0px;
+      }
+      .input-number{
+        border: none !important;
       }
 }
 @media(min-width:576px) and (max-width:767.98px){
@@ -309,8 +337,12 @@
         display: none;
     }
     #phone{
-        width: 500px !important;
+        display: block !important;
+        width: 80vw  !important;
       }
+    /* #phone{
+        width: 100vw !important;
+      } */
       .flex-chart{
         display: block;
         justify-content: space-between;
@@ -320,6 +352,30 @@
       }
       .customeLineAfter::after{
         display: none;
+      }
+      .customeWithClubs{
+        width: 48% !important;
+      }
+      .All-Card-Service h4{
+        font-size: 19px !important; 
+      }
+      .content-culbs h4{
+        font-size: 19px !important; 
+      }
+      .card-al-input
+      {
+        width: 100% !important;
+        display: block;
+        min-height: 120px;
+        padding-top: 10px;
+      } 
+      .card-al-input input{
+        display: block;
+        width: 100%;
+        margin: 10px 0px;
+      }
+      .input-number{
+        border: none !important;
       }
 }
 @media(min-width:768px) and (max-width:991.98px){
@@ -359,10 +415,14 @@
     {
         display: none;
     }
-    #phone{
+    /* #phone{
         width: 420px !important;
         display: block !important;
        
+      } */
+      #phone{
+        display: block !important;
+        width: 55vw  !important;
       }
       .flex-chart{
         display: flex;
@@ -381,6 +441,17 @@
         border-radius: 25px;
         background: #707070;
       }
+      .customeWithClubs{
+        width: 48% !important;
+      }
+      .card-al-input
+      {
+        width: 100% !important;
+       
+      }
+      .card-al-input .input-number{
+        width: 60% !important;
+      }
 }
 @media(min-width:992px) and (max-width:1199.98px){
     .content-auto{
@@ -389,7 +460,18 @@
     .CutomeOrderColum{
         width: 100% !important;
     }
-    #phone{
+    /* #phone{
         width: 550px !important;
+      } */
+      #phone{
+        display: block !important;
+        width: 55vw  !important;
+      }
+      .card-al-input
+      {
+        width: 100% !important;
+      }
+      .card-al-input .input-number{
+        width: 60% !important;
       }
 }

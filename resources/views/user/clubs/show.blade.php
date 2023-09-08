@@ -59,15 +59,17 @@
                         @endforeach
 
                     </div>
-                    <div class="card-donwload">
-                        <h6>
-                            Policy & Term & Condtions
-                        </h6>
-                        <span class="bx bx-cloud-download"></span>
-                    </div>
-                    <div class="but-subscribe">
-                        <button type="button">Subscribe With 53% OFF</button>
-                    </div>
+                    @if (!$club->is_coming_soon)
+                        <div class="card-donwload">
+                            <h6>
+                                {{ __('general.policy_and_terms') }}
+                            </h6>
+                            <span class="bx bx-cloud-download"></span>
+                        </div>
+                        <div class="but-subscribe">
+                            <button type="button" onclick='window.location.href="{{ route("subscribe.index" , $club->getEncryptedId()) }}"'>{{ getClubSubscribeText($club) }}</button>
+                        </div>
+                    @endif
                 </div>
             </div>
         </section>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\VatType;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -182,6 +183,10 @@ if (!function_exists('columnValueExists')) {
 }
 
 
+/**
+ * get system only currency "SAR"
+ * @return string
+ */
 if (!function_exists('getSystemCurrency')) {
     function getSystemCurrency()
     {
@@ -189,11 +194,76 @@ if (!function_exists('getSystemCurrency')) {
     }
 }
 
-if (!function_exists('formatPrice')) {
-    function formatPrice($price)
-    {
-        $formattedPrice = number_format($price, 2, '.', ','); // 2 decimal places, decimal point is '.', thousands separator is ','
 
-        return $formattedPrice . ' ' . getSystemCurrency(); // You can change the currency symbol as needed
+/**
+ * Format Price
+ * @param double $price
+ */
+
+if (!function_exists('formatPrice')) {
+    function formatPrice($price , $with_currency = true)
+    {
+        $format_price = number_format($price, 2, '.', ','); // 2 decimal places, decimal point is '.', thousands separator is ','
+
+        return $with_currency ?  ( $format_price . ' ' . getSystemCurrency() ) : ($format_price) ; // You can change the currency symbol as needed
     }
 }
+
+
+/**
+ * return good formated club sbuscribe text to display in club details
+ * @param \App\Models\Club $club
+ */
+
+if (!function_exists('getClubSubscribeText')) {
+    function getClubSubscribeText($club)
+    {
+        return $club->prev_price > $club->price ?
+            __('general.subscribe_with_discount', ['discount' => getClubDiscountedPrice(club: $club, return_type: VatType::PERCENT->value, with_currency: false)])
+            :
+            __('general.subscribe_now');
+    }
+}
+
+
+/**
+ * return good formated club sbuscribe text to display in club details
+ * @param \App\Models\Club $club
+ * @param bool $with_currency
+ */
+
+if (!function_exists('getClubDiscountedPrice')) {
+    function getClubDiscountedPrice($club, $return_type, $with_currency = true)
+    {
+        if ($club->prev_price > $club->price) {
+            $total_discount_value = $club->prev_price - $club->price;
+            if ($return_type == VatType::PERCENT->value) {
+                $result = ($total_discount_value / $club->prev_price) * 100;
+            } else {
+                $result = $total_discount_value;
+            }
+            return $with_currency ?
+                $result . ' ' . getSystemCurrency()
+                :
+                $result . '%';
+        } else {
+            return 0;
+        }
+    }
+}
+
+
+/**
+ * return club vat
+ * @param \App\Models\Club $club
+ */
+
+if (!function_exists('getFormatedClubVat')) {
+    function getFormatedClubVat($club)
+    {
+        $percent_or_flat = $club->vat_type == VatType::PERCENT->value ? '%' : getSystemCurrency();
+        return $club->vat . $percent_or_flat;
+    }
+}
+
+

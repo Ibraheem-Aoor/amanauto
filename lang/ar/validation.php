@@ -134,6 +134,7 @@ return [
         'color' => [
             'regex' => 'صيغة اللون غير صحيحة',
         ],
+
     ],
 
     /*
@@ -173,6 +174,24 @@ return [
         'code' => 'كود',
         'start_date' => 'تاريخ البدء',
         'end_date' => 'تاريخ الانتهاء',
+        'expiration_month' => 'شهر الانتهاء',
+        'expiration_year' => 'سنة  الانتهاء',
+        'cvc' => 'الرقم السري للبطاقة',
+        'card_number' => 'ؤقم البطاقة',
+        'img_vehicle' => 'صورة تسجيل المركبة',
+    ],
+
+
+    //cc validation
+
+    'credit_card' => [
+        'card_invalid' => 'بطاقة غير صالحة',
+        'card_pattern_invalid' => 'نمط البطاقة غير صالح',
+        'card_length_invalid' => 'طول البطاقة غير صالح',
+        'card_checksum_invalid' => 'بطاقة غير صالحة',
+        'card_expiration_year_invalid' => 'سنة انتهاء الصلاحية غير صالحة',
+        'card_expiration_month_invalid' => 'شهر انتهاء الصلاحية غير صالح',
+        'card_cvc_invalid' => 'الرمز السري للبطاقة غير صالح',
     ],
 
 ];
