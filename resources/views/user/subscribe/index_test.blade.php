@@ -28,7 +28,7 @@
     <!-- --- Start Main -->
     <main id="Main">
         <section class="view-Order">
-            <form class="method-payment custom-form" action="{{ route('subscribe.make_payment', $club->getEncryptedId()) }}"
+            {{-- <form class="method-payment custom-form" action="{{ route('subscribe.make_payment', $club->getEncryptedId()) }}"
                 enctype="multipart/form-data" method="POST">
                 @csrf
                 <input type="hidden" name="club_id" value="{{ $club->getEncryptedId() }}">
@@ -203,7 +203,7 @@
                         </div>
                     </div>
                 </div>
-            </form>
+            </form> --}}
             <div class="mysr-form"></div>
         </section>
     </main>
@@ -214,7 +214,6 @@
     <!-- Moyasar Scripts -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=fetch"></script>
     <script src="https://cdn.moyasar.com/mpf/1.10.0/moyasar.js"></script>
-    <div class="mysr-form"></div>
     <script>
         Moyasar.init({
             element: '.mysr-form',
