@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\User;
 
+use App\Rules\User\ValidCouponCode;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use LVR\CreditCard\CardCvc;
@@ -36,11 +37,12 @@ class PaymentWithCreditCardRequest extends FormRequest
         $this['expiration_month'] = @$epire_date[0];
         $this['expiration_year'] = @$epire_date[1];
         return [
-            'img_vehicle'       =>  'required|file|mimes:jpeg,jpg,png,webp',
-            'card_number' => ['required' , new CardNumber],
+            'img_vehicle' => 'required|file|mimes:jpeg,jpg,png,webp',
+            'card_number' => ['required', new CardNumber],
             'expiration_year' => ['required', new CardExpirationYear($this->get('expiration_month'))],
             'expiration_month' => ['required', new CardExpirationMonth($this->get('expiration_year'))],
             'cvc' => ['required', new CardCvc($this->get('card_number'))],
+            'coupon_code' => ['sometimes', new ValidCouponCode],
         ];
     }
 }

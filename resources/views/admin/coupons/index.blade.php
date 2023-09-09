@@ -81,7 +81,7 @@
 
 
     <script>
-        var table_data_url = "{{ route('admin.clubs.table_data') }}";
+        var table_data_url = "{{ route('admin.coupons.table_data') }}";
     </script>
     {{-- DatatTable --}}
     <script>

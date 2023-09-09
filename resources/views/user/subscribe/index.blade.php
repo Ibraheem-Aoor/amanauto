@@ -1,4 +1,13 @@
 @extends('layouts.user.master')
+@push('css')
+    <style>
+        .applied-coupon {
+            letter-spacing: 3px;
+            padding: 10px 4px;
+            color: red;
+        }
+    </style>
+@endpush
 @section('content')
     <!-- --- Start Main -->
     <main id="Main">
@@ -27,7 +36,7 @@
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-5 CutomeOrderColum">
-                            <div class="bg-bule-card-price w-100">
+                            <div class="bg-bule-card-price w-100" style="background: {{ $club->color }} !important;">
                                 <h3>
                                     {{ $club->name }}
                                 </h3>
@@ -71,26 +80,16 @@
                             <h6>
                                 {{ __('general.total_with_vat') }} {{ getFormatedClubVat($club) }}
                             </h6>
-                            <h6>
+                            <h6 id="total-price">
                                 {{ $club->getTotalPrice(true) }}
                             </h6>
                         </div>
 
                         <div class="info-payments">
-                            <h5>
+                            <h5 onclick="showCouponDiv($(this));">
                                 {{ __('general.have_coupon_code') }}
                             </h5>
-                            <div class="flex-item-payment">
-                                <article class="input-payments">
-                                    <img src="{{ asset('assets/user/img/coupon.svg') }}" alt="">
-                                    <input type="text" placeholder="" />
-                                    <button type="button">{{ __('general.apply') }}</button>
-                                </article>
-                                <article class="action-payment">
-                                    <button class="check-but" type="button"><span class="bx bx-check"></span></button>
-                                    <button class="close-buts" type="button"><span>&times;</span></button>
-                                </article>
-                            </div>
+
                             <!-- -------- -->
                             <h4>
                                 {{ __('general.payment_method') }}
@@ -108,7 +107,8 @@
                                 <div class="card-al-input">
                                     <input type="text" placeholder="{{ __('general.card_number') }}"
                                         class="input-number" name="card_number" />
-                                    <input type="text" placeholder="{{ __('general.month/year') }}" class="input-mm" name="card_date" />
+                                    <input type="text" placeholder="{{ __('general.month/year') }}" class="input-mm"
+                                        name="card_date" />
                                     <input type="text" placeholder="CVC" class="CVC" name="cvc" />
                                 </div>
 
@@ -221,5 +221,75 @@
                 fileNameHeaderThree.textContent = valueStore;
             }
         });
+    </script>
+    {{-- check coupon code --}}
+    <script>
+        var is_coupon_div_visible = false;
+
+        function showCouponDiv(src) {
+            if (!is_coupon_div_visible) {
+                src.after(`<div class="flex-item-payment" id="coupon-div">
+                    <article class="input-payments">
+                        <img src="{{ asset('assets/user/img/coupon.svg') }}" alt="">
+                        <input type="text" placeholder="" name="coupon_code" />
+                        <h4 class="applied-coupon"></h4>
+                        <button type="button" onclick="checkCouponCode();"
+                        id="applyBtn">{{ __('general.apply') }}</button>
+                        </article>
+                        <article class="action-payment">
+                            <button class="check-but" type="button" onclick="confirmCouponCode();"><span
+                                class="bx bx-check"></span></button>
+                                <button class="close-buts" type="button"
+                                onclick="cleanCouponCode();"><span>&times;</span></button>
+                                </article>
+                                </div>`);
+                is_coupon_div_visible = true;
+            }
+        }
+
+
+        $('.applied-coupon').hide();
+
+        var discount_value = 0;
+        var discount_type = null;
+
+        function checkCouponCode() {
+            var coupon_code = $('input[name="coupon_code"]').val();
+            $.get("{{ route('subscribe.check_coupon_code') }}", {
+                coupon_code: coupon_code,
+            }, function(response) {
+                if (response.is_valid) {
+                    toastr.success(response.message);
+                    discount_value = response.discount_value;
+                    discount_type = response.discount_type;
+                } else {
+                    toastr.error(response.message);
+                    $('input[name="coupon_code"]').val(null);
+                }
+            });
+        }
+
+        // clean input
+        function cleanCouponCode() {
+            $('input[name="coupon_code"]').val(null);
+            $('.applied-coupon').hide();
+            $('input[name="coupon_code"]').show();
+            $('#applyBtn').show();
+            discount_type = null;
+            discount_value = 0;
+            $('#coupon-div').remove();
+            is_coupon_div_visible = false;
+        }
+
+        // confirm coupon code
+        function confirmCouponCode() {
+            if (discount_value != 0 && discount_type != null) {
+                $('.applied-coupon').show();
+                $('.applied-coupon').text($('input[name="coupon_code"]').val() + '   ' + discount_value +
+                    discount_type + " {{ __('general.discount') }} ");
+                $('input[name="coupon_code"]').hide();
+                $('#applyBtn').hide();
+            }
+        }
     </script>
 @endpush

@@ -1,6 +1,9 @@
 <?php
 
 use App\Enums\VatType;
+use App\Models\Coupon;
+use App\Models\CouponUsage;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -201,11 +204,11 @@ if (!function_exists('getSystemCurrency')) {
  */
 
 if (!function_exists('formatPrice')) {
-    function formatPrice($price , $with_currency = true)
+    function formatPrice($price, $with_currency = true)
     {
         $format_price = number_format($price, 2, '.', ','); // 2 decimal places, decimal point is '.', thousands separator is ','
 
-        return $with_currency ?  ( $format_price . ' ' . getSystemCurrency() ) : ($format_price) ; // You can change the currency symbol as needed
+        return $with_currency ? ($format_price . ' ' . getSystemCurrency()) : ($format_price); // You can change the currency symbol as needed
     }
 }
 
@@ -267,3 +270,63 @@ if (!function_exists('getFormatedClubVat')) {
 }
 
 
+
+/**
+ * return if coupon code is valid or not
+ * @param $coupon_code
+ * @return bool
+ */
+
+if (!function_exists('isValidCouponCode')) {
+    function isValidCouponCode($coupon_code)
+    {
+        $coupon = Coupon::where('code', $coupon_code)->first();
+        $coupon_slot_avilable = CouponUsage::query()->where('coupon_id', $coupon->id)->count() < $coupon->times;
+        $coupon_date_valid = $coupon->start_date <= Carbon::today()->toDateString() && $coupon->end_date > Carbon::today()->toDateString();
+        $code_not_used_by_user = !CouponUsage::query()->where('user_id', getAuthUser('web')->id)->where('coupon_id', $coupon->id)->exists();
+        $is_valid = $coupon != null && $code_not_used_by_user && $coupon_slot_avilable && $coupon_date_valid;
+        return $is_valid;
+    }
+}
+
+
+
+/**
+ * calc get coupon dsicount value and type
+ * @param $coupon_code
+ * @return array  $coupon_data
+ */
+
+if (!function_exists('getCouponCodeDiscountValueAndType')) {
+    function getCouponCodeDiscountValueAndType($coupon_code)
+    {
+        $coupon_data = [];
+        if ($coupon_code != null && isValidCouponCode($coupon_code)) {
+            $coupon = Coupon::query()->whereCode($coupon_code)->first();
+            $coupon_data['discount_value'] = $coupon->discount_value;
+            $coupon_data['discount_type'] = $coupon->discount_type;
+            $coupon_data['coupon_id'] = encrypt($coupon->id);
+        }
+        return $coupon_data;
+    }
+}
+/**
+ * calc total amount with discount if exists
+ * @param $coupon_code
+ * @return int  $total_discounted_price
+ */
+
+if (!function_exists('calcTotalAmountWithDiscount')) {
+    function calcTotalAmountWithDiscount($total_price, $coupon_code)
+    {
+        $total_discounted_price = 0;
+        if ($coupon_code != null && isValidCouponCode($coupon_code)) {
+            $coupon = Coupon::query()->whereCode($coupon_code)->first();
+            $discount_value = $coupon->discount_type == VatType::PERCENT->value ? (($coupon->discount_value / 100) * $total_price) : $coupon->discount_value;
+            $total_discounted_price = $total_price - $discount_value;
+        } else {
+            $total_discounted_price = $total_price;
+        }
+        return (int) $total_discounted_price;
+    }
+}

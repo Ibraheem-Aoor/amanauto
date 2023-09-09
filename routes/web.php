@@ -41,9 +41,17 @@ Route::group(['prefix' => 'club', 'as' => 'clubs.'], function () {
     Route::get('show/{id}', [ClubController::class, 'show'])->name('show');
 });
 
-// subscribe
-Route::group(['prefix' => 'subscribe', 'middleware' => ['auth'], 'as' => 'subscribe.'], function () {
-    Route::get('{club}', [SubscribeController::class, 'index'])->name('index');
-    Route::post('/{club}/payment/make', [PaymentController::class, 'makePayment'])->name('make_payment');
-    Route::get('/payment/cc/callback', [PaymentController::class, 'paymentCreditCardCallback'])->name('payment.credit_card_callback');
+
+// auth user routes
+Route::group(['middleware' => 'auth'], function () {
+    // subscribe
+    Route::group(['prefix' => 'subscribe', 'as' => 'subscribe.'], function () {
+        Route::get('{club}/club', [SubscribeController::class, 'index'])->name('index');
+        Route::get('check-coupon-code' , [SubscribeController::class, 'checkCouponCode'])->name('check_coupon_code');
+        Route::post('/{club}/payment/make', [PaymentController::class, 'makePayment'])->name('make_payment');
+        Route::get('/payment/cc/callback', [PaymentController::class, 'paymentCreditCardCallback'])->name('payment.credit_card_callback');
+    });
+
+
+
 });

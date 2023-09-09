@@ -75,5 +75,9 @@ return [
     'redirect_to_payment' => 'You Will Be Redirected To Payment Confirm Page',
     'comlete_payment' => 'Payment',
     'month/year' => 'MM / YY',
+    'valid_coupon_code' => 'Valid Coupon Code',
+    'invalid_coupon_code' => 'Invalid Coupon Code',
+    'discount' => 'OFF',
+
 
 ];

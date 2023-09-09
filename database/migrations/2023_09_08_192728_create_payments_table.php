@@ -20,7 +20,7 @@ return new class extends Migration {
             $table->integer('amount');
             $table->text('description');
             $table->text('metadata');
-            $table->unsignedBigInteger('subscription_id');
+            $table->unsignedBigInteger('subscription_id')->nullable();
             $table->foreign('subscription_id')->references('id')->on('subscriptions');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

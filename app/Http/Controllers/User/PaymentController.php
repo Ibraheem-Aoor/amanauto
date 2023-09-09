@@ -67,13 +67,15 @@ class PaymentController extends Controller
                 $subscription = (new SubscriptionService($payment->metadata['club_id']))->confirmUserSubscription();
                 $this->moyasar_payment_service->logPayment($payment, $subscription->id, 'creditcard');
                 DB::commit();
-            } else {
-                info($payment);
+            } elseif ($payment?->status == 'failed') {
+                $this->moyasar_payment_service->logPayment($payment, null, 'creditcard');
+                info('FAILED PAYMENT AT paymentCreditCardCallback');
+                info($payment->toJson());
                 throw new Exception;
             }
             session()->flash('success', __('general.payment_success'));
         } catch (Throwable $e) {
-            dd($e);
+            // dd($e);
             DB::rollBack();
             info('PAYMENT WITH CC ERROR:');
             info($e);

@@ -76,6 +76,9 @@ return [
     'redirect_to_payment' => 'سيتم تحوبلك لصفحة تأكيد الدفع',
     'comlete_payment' => 'الدفع',
     'month/year' => 'شهر / سنة',
+    'valid_coupon_code' => 'كود الخصم صالح',
+    'invalid_coupon_code' => 'كود الخصم غير صالح',
+    'discount'      => 'خصم',
 
 
 

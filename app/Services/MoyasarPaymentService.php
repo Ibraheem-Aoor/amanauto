@@ -3,6 +3,7 @@ namespace App\Services;
 
 use App\Http\Requests\User\PaymentWithCreditCardRequest;
 use App\Models\Club;
+use App\Models\CouponUsage;
 use App\Models\Payment;
 use Exception;
 use Illuminate\Http\Request;
@@ -21,6 +22,7 @@ class MoyasarPaymentService
     protected $club;
 
     protected $moyasar_payments_library;
+
     /**
      * set payment service.
      * we use club here because payment done on only 1 club
@@ -69,8 +71,21 @@ class MoyasarPaymentService
      */
     private function getOrderDataForCreditCard($request)
     {
+        // put neccssarry data in metadata for payment info
+        $meta_data = [
+            'club_id' => $this->club->getEncryptedId(),
+            'vat' => $this->club->vat,
+            'vat_type' => $this->club->vat_type,
+            'total_amount_without_vat' => $this->club->price,
+            'total_amount_with_vat' => $this->club->getTotalPrice(),
+        ];
+        $coupon_data = getCouponCodeDiscountValueAndType($request->coupon_code);
+        if (!is_null($coupon_data)) {
+            $meta_data['coupon_code'] = $request->coupon_code;
+            $meta_data = array_merge($meta_data, $coupon_data);
+        }
         return [
-            'amount' => (int) $this->club->getTotalPrice(),
+            'amount' => calcTotalAmountWithDiscount($this->club->getTotalPrice(), $request->coupon_code),
             'currency' => 'SAR',
             'description' => "AMANAUTO SUBSCRIPTION {$this->club->translate('en')->name} X 1",
             'callback_url' => route('subscribe.payment.credit_card_callback', ['club_id' => $this->club->getEncryptedId()]),
@@ -82,11 +97,7 @@ class MoyasarPaymentService
                 'month' => $request->expiration_month,
                 'year' => $request->expiration_year,
             ],
-            'metadata' => [
-                'club_id' => $this->club->getEncryptedId(),
-                'vat' => $this->club->vat,
-                'vat_type' => $this->club->vat_type,
-            ],
+            'metadata' => $meta_data
         ];
     }
 
@@ -100,15 +111,30 @@ class MoyasarPaymentService
         Payment::query()->create([
             'payment_id' => $payment->id,
             'status' => $payment->status,
-            'method' => $payment_method,
+            'method' => $payment->source->company,
             'amount' => $payment->amount,
             'description' => $payment->description,
             'metadata' => json_encode($payment->metadata),
             'subscription_id' => $subscription_id,
             'user_id' => getAuthUser('web')->id,
         ]);
+        $this->logCouponUsageIfExists($payment);
     }
 
+
+
+    /**
+     * Log Coupon Usage if exists
+     */
+    protected function logCouponUsageIfExists($payment)
+    {
+        if (isset($payment->metadata['coupon_code']) && $payment?->status == 'paid') {
+            CouponUsage::query()->create([
+                'user_id' => getAuthUser('web')->id,
+                'coupon_id' => decrypt($payment->metadata['coupon_id']),
+            ]);
+        }
+    }
 
 
     public function getMoyasarPaymentLibrary()
