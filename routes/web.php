@@ -43,7 +43,7 @@ Route::group(['prefix' => 'club', 'as' => 'clubs.'], function () {
 
 
 // auth user routes
-Route::group(['middleware' => 'auth'], function () {
+// Route::group(['middleware' => 'auth'], function () {
     // subscribe
     Route::group(['prefix' => 'subscribe', 'as' => 'subscribe.'], function () {
         Route::get('{club}/club', [SubscribeController::class, 'index'])->name('index');
@@ -54,4 +54,4 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
-});
+// });
