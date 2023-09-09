@@ -17,7 +17,7 @@ class SubscribeController extends Controller
     public function index(Request $request, $club)
     {
         $data['club'] = Club::query()->findOrFail(decrypt($club));
-        return view('user.subscribe.index', $data);
+        return view('user.subscribe.index_test', $data);
     }
 
     /**
