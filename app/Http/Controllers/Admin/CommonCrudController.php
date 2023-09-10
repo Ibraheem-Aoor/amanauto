@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\CommonQuestionStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CrudRequest;
 use App\Models\Client;

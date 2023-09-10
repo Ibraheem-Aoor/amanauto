@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasStatus;
 use App\Traits\Trackable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,11 +12,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Service extends Model implements TranslatableContract
 {
-    use HasFactory, Translatable, Trackable;
+    use HasFactory, Translatable, Trackable , HasStatus;
     protected $fillable = [
         'added_by',
         'web_img',
         'mobile_img',
+        'status',
     ];
 
     protected $with = ['translations'];
@@ -28,6 +30,9 @@ class Service extends Model implements TranslatableContract
         return $this->belongsToMany(Club::class , 'club_services');
     }
     ######### END RELATIONS ##########
+
+
+
 
 
 }

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\API\v1\AuthController;
+use App\Http\Controllers\API\v1\ClubController;
+use App\Http\Controllers\API\v1\HomeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,14 +22,22 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::group(['prefix' => 'auth'] , function () {
+Route::group(['prefix' => 'auth'], function () {
     // Auth Routes
-    Route::post('register'  , [AuthController::class , 'register']);
-    Route::post('register/verfiy'  , [AuthController::class , 'verifyOtpForRegister']);
-    Route::post('login'  , [AuthController::class , 'login']);
-    Route::post('otp/resend'  , [AuthController::class , 'resendOTP']);
-    Route::post('password/otp/request'  , [AuthController::class , 'resendOTP']);
-    Route::post('password/change/request'  , [AuthController::class , 'resetPasswordRequest']);
-    Route::post('password/change'  , [AuthController::class , 'changePassword']);
-    Route::post('logout'  , [AuthController::class , 'logout'])->middleware('auth:sanctum');
+    Route::post('register', [AuthController::class, 'register']);
+    Route::post('register/verfiy', [AuthController::class, 'verifyOtpForRegister']);
+    Route::post('login', [AuthController::class, 'login']);
+    Route::post('otp/resend', [AuthController::class, 'resendOTP']);
+    Route::post('password/otp/request', [AuthController::class, 'resendOTP']);
+    Route::post('password/change/request', [AuthController::class, 'resetPasswordRequest']);
+    Route::post('password/change', [AuthController::class, 'changePassword']);
+    Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+});
+
+// home data
+Route::get('home', [HomeController::class, 'index']);
+
+Route::group(['prefix' => 'clubs'], function () {
+    Route::get('index', [ClubController::class, 'index']);
+    Route::get('show/{id}', [ClubController::class, 'show']);
 });

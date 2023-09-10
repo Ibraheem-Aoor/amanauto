@@ -78,7 +78,7 @@
                         </div>
                         <div class="flex-info-detalis-order">
                             <h6>
-                                {{ __('general.total_with_vat') }} {{ getFormatedClubVat($club) }}
+                                {{ $club->getTotalVatText() }}
                             </h6>
                             <h6 id="total-price">
                                 {{ $club->getTotalPrice(true) }}

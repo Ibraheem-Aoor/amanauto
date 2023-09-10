@@ -233,6 +233,7 @@ if (!function_exists('getClubSubscribeText')) {
  * return good formated club sbuscribe text to display in club details
  * @param \App\Models\Club $club
  * @param bool $with_currency
+ * @return int $result
  */
 
 if (!function_exists('getClubDiscountedPrice')) {
@@ -246,9 +247,9 @@ if (!function_exists('getClubDiscountedPrice')) {
                 $result = $total_discount_value;
             }
             return $with_currency ?
-                $result . ' ' . getSystemCurrency()
+                (int)$result . ' ' . getSystemCurrency()
                 :
-                $result . '%';
+                (int)$result . '%';
         } else {
             return 0;
         }
@@ -264,7 +265,7 @@ if (!function_exists('getClubDiscountedPrice')) {
 if (!function_exists('getFormatedClubVat')) {
     function getFormatedClubVat($club)
     {
-        $percent_or_flat = $club->vat_type == VatType::PERCENT->value ? '%' : getSystemCurrency();
+        $percent_or_flat = $club->vat_type == VatType::PERCENT->value ? '%' : ' '.getSystemCurrency();
         return $club->vat . $percent_or_flat;
     }
 }

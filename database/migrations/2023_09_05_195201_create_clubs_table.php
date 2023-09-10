@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\ClubStatus;
 use App\Enums\VatType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -18,7 +19,7 @@ return new class extends Migration {
             $table->integer('duration');
             $table->string('duration_type');
             $table->string('times');
-            $table->string('status');
+            $table->string('status')->default(ClubStatus::ACTIVE->value);
             $table->double('price');
             $table->double('prev_price')->default(0);
             $table->string('color');

@@ -102,6 +102,14 @@ class Club extends Model implements TranslatableContract
         } else {
             $total_vat = $this->vat;
         }
-        return formatPrice($this->price + $total_vat , $with_currency);
+        return formatPrice($this->price + $total_vat, $with_currency);
+    }
+
+    /**
+     * return total vat in text format to display in order page
+     */
+    public function getTotalVatText()
+    {
+        return __('general.total_with_vat') . ' '. getFormatedClubVat($this);
     }
 }
