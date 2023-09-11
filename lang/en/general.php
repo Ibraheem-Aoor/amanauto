@@ -80,4 +80,12 @@ return [
     'discount' => 'OFF',
 
 
+    'subscribtions_steps' => [
+        'register' => 'Register',
+        'subscription' => 'Subscription',
+        'service_call' => 'Service Call',
+        'subscribtions_steps' => 'Subscribtions Steps',
+    ],
+
+
 ];

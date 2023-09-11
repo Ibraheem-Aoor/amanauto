@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CommonCrudController;
 use App\Http\Controllers\Admin\CommonQuestionController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\OfferCompanyController;
 use App\Http\Controllers\Auth\Admin\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -50,4 +51,7 @@ Route::group(['middleware' => 'admin', 'as' => 'admin.'], function () {
     Route::resource('coupons', CouponController::class);
     Route::get('coupons-table-data', [CouponController::class, 'getTableData'])->name('coupons.table_data');
     Route::get('coupons-change-soon', [CouponController::class, 'changeStatus'])->name('coupon.change_status');
+    // offer companies
+    Route::resource('offer-company', OfferCompanyController::class);
+    Route::get('offer-companies-table-data', [OfferCompanyController::class, 'getTableData'])->name('offer-company.table_data');
 });

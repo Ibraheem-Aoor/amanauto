@@ -2,38 +2,44 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Enums\CommonQuestionStatus;
+use App\Enums\ClubStatus;
+use App\Enums\Duration;
+use App\Enums\VatType;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\ClubRequest;
+use App\Http\Requests\Admin\CommonQuestionRequest;
+use App\Http\Requests\Admin\CouponRequest;
 use App\Http\Requests\Admin\CrudRequest;
+use App\Http\Requests\Admin\OfferCompanyRequest;
 use App\Models\Client;
+use App\Models\Club;
+use App\Models\CommonQuestion;
+use App\Models\Coupon;
+use App\Models\OfferCompany;
 use App\Models\Service;
+use App\Transformers\Admin\ClubTransformer;
+use App\Transformers\Admin\CommonQuestionTransformer;
+use App\Transformers\Admin\CouponTransformer;
 use App\Transformers\Admin\CrudTransfromer;
+use App\Transformers\Admin\OfferCompanyTransformer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 use Yajra\DataTables\Facades\DataTables;
 
-class CommonCrudController extends Controller
+class OfferCompanyController extends Controller
 {
 
 
     protected $model;
     protected $model_name;
     public $translated_model_name;
-    public function __construct(Request $request)
+
+    public function __construct()
     {
-        $this->model_name = $request->model;
-        if ($this->model_name != null) {
-            if ($this->model_name == 'Service') {
-                $this->model = new Service;
-                $this->translated_model_name = 'services';
-            } elseif ($this->model_name == 'Client') {
-                $this->model = new Client;
-                $this->translated_model_name = 'client';
-            }
-        } else {
-            return back();
-        }
+        $this->model_name = 'Offer Company';
+        $this->model = new OfferCompany();
+        $this->translated_model_name = __('backend.offers.offer_companies');
     }
 
     /**
@@ -45,7 +51,8 @@ class CommonCrudController extends Controller
     {
         $data['model'] = $this->model_name;
         $data['translated_model_name'] = $this->translated_model_name;
-        return view('admin.crud.index', $data);
+        $data['discount_types'] = VatType::getNames();
+        return view('admin.offer_companies.index', $data);
     }
 
 
@@ -55,11 +62,9 @@ class CommonCrudController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CrudRequest $request)
+    public function store(OfferCompanyRequest $request)
     {
         try {
-            $web_img = saveImage(strtolower($this->model_name) . '/web', $request->file('web_img'));
-            $mobile_img = saveImage(strtolower($this->model_name) . '/mobile', $request->file('mobile_img'));
             DB::beginTransaction();
             $this->model::create(
                 [
@@ -69,17 +74,12 @@ class CommonCrudController extends Controller
                     'en' => [
                         'name' => $request->name_en,
                     ],
-                    'web_img' => $web_img,
-                    'mobile_img' => $mobile_img,
-                    'added_by'  => getAuthUser('admin')->id,
+                    'location_url' => $request->location_url
                 ]
             );
             DB::commit();
-            $response = generateResponse(status: true, modal_to_hide: '#create-edit-modal', table_reload: true, table: '#myTable', message: __('general.response_messages.create_success'));
+            $response = generateResponse(status: true, modal_to_hide: '#create-edit-modal', reset_form: true, table_reload: true, table: '#myTable', message: __('general.response_messages.create_success'));
         } catch (Throwable $e) {
-            dd($e);
-            deleteImage($web_img);
-            deleteImage($mobile_img);
             $response = generateResponse(status: false);
         }
         return response()->json($response, $response['code']);
@@ -94,13 +94,12 @@ class CommonCrudController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CrudRequest $request, $id)
+    public function update(OfferCompanyRequest $request, $id)
     {
         try {
-            $target = $this->model::query()->findOrFail($id);
-            $images = $this->updateImages($request, $target);
             DB::beginTransaction();
-            $target->update(
+            $coupon = $this->model->findOrFail($id);
+            $coupon->update(
                 [
                     'ar' => [
                         'name' => $request->name_ar,
@@ -108,12 +107,11 @@ class CommonCrudController extends Controller
                     'en' => [
                         'name' => $request->name_en,
                     ],
-                    'web_img' => $images['web_img'],
-                    'mobile_img' => $images['mobile_img'],
+                    'location_url' => $request->location_url
                 ]
             );
             DB::commit();
-            $response = generateResponse(status: true, modal_to_hide: '#create-edit-modal', table_reload: true, table: '#myTable', message: __('general.response_messages.create_success'));
+            $response = generateResponse(status: true, modal_to_hide: '#create-edit-modal', reset_form: true, table_reload: true, table: '#myTable', message: __('general.response_messages.update_success'));
         } catch (Throwable $e) {
             dd($e);
             $response = generateResponse(status: false);
@@ -121,25 +119,6 @@ class CommonCrudController extends Controller
         return response()->json($response, $response['code']);
     }
 
-    /**
-     * Update Images when update model
-     */
-    protected function updateImages($request, $target)
-    {
-        if ($request->hasFile('web_img')) {
-            $images['web_img'] = saveImage(strtolower($this->model_name) . '/web', $request->file('web_img'));
-            deleteImage($target->web_img);
-        } else {
-            $images['web_img'] = $target->web_img;
-        }
-        if ($request->hasFile('mobile_img')) {
-            $images['mobile_img'] = saveImage(strtolower($this->model_name) . '/mobile', $request->file('mobile_img'));
-            deleteImage($target->mobile_img);
-        } else {
-            $images['mobile_img'] = $target->mobile_img;
-        }
-        return $images;
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -151,8 +130,6 @@ class CommonCrudController extends Controller
     {
         try {
             $target = $this->model->findOrFail($id);
-            deleteImage($target->web_img);
-            deleteImage($target->mobile_img);
             $target->delete();
             $response = generateResponse(status: true, is_deleted: true, row_to_delete: $id, message: __('general.response_messages.deleted_successflly'));
         } catch (Throwable $e) {
@@ -164,19 +141,18 @@ class CommonCrudController extends Controller
 
 
     /**
-     *
+     *  DataTable
      */
     public function getTableData(Request $request)
     {
-        $query = $this->model::query();
-
+        $query = $this->model::query()->withCount('offers');
         return DataTables::eloquent($query)
-            ->setTransformer(new CrudTransfromer($this->model_name))
+            ->setTransformer(OfferCompanyTransformer::class)
             ->orderColumn('name_ar', function ($query, $order) {
-                $query->orderBy(DB::raw("(SELECT name FROM service_translations WHERE service_translations.service_id = services.id AND locale = 'ar')"), $order);
+                $query->orderBy(DB::raw("(SELECT name FROM offer_company_translations WHERE offer_company_translations.offer_company_id = offer_companies.id AND locale = 'ar')"), $order);
             })
             ->orderColumn('name_en', function ($query, $order) {
-                $query->orderBy(DB::raw("(SELECT name FROM service_translations WHERE service_translations.service_id = services.id AND locale = 'en')"), $order);
+                $query->orderBy(DB::raw("(SELECT name FROM offer_company_translations WHERE offer_company_translations.offer_company_id = offer_companies.id AND locale = 'en')"), $order);
             })
             ->filterColumn('name_ar', function ($query, $keyword) {
                 $query->whereHas('translations', function ($query) use ($keyword) {
@@ -190,6 +166,30 @@ class CommonCrudController extends Controller
             })
             ->make(true);
     }
+
+
+
+    /**
+     * Toggle Status for club
+     */
+    public function changeStatus(Request $request)
+    {
+        try {
+            $target = $this->model->findOrFail($request->id);
+            $target->update([
+                'status' => $request->status ? ClubStatus::ACTIVE->value : ClubStatus::INACTIVE->value,
+            ]);
+            $response = generateResponse(status: true, is_deleted: true, message: __('general.response_messages.update_success'));
+        } catch (Throwable $e) {
+            dd($e);
+            $response = generateResponse(status: false);
+        }
+        return response()->json($response, $response['code']);
+    }
+
+
+
+
 
 
 }

@@ -186,5 +186,17 @@ return [
     'code' => 'Code',
     'start_date' => 'Start Date',
     'end_date' => 'End Date',
-    'generate'      =>  'Generate',
+    'generate' => 'Generate',
+
+
+    'offers' => [
+        'offers' => 'Offers',
+        'offer_companies' => 'Offer Companies',
+        'count_of_offers' => 'Count Of Offers',
+        'location' => 'Location',
+        'location_url' => 'Location URL',
+        'add_new' => 'Add New Offer Company',
+        'edit' => 'Edit Offer Company : ',
+    ],
+
 ];

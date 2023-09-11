@@ -105,10 +105,20 @@ class ServiceSeeder extends Seeder
                 'mobile_img' => ('service/mobile/g19.png'),
                 'added_by' => Admin::query()->first()->id
             ],
+            [
+                'ar' => [
+                    'name' => 'قطر الاصطدام',
+                ],
+                'en' => [
+                    'name' => "CRASH TOWING",
+                ],
+                'web_img' => ('service/web/bump.svg'),
+                'mobile_img' => ('service/mobile/bump.svg'),
+                'added_by' => Admin::query()->first()->id
+            ],
         ];
 
-        foreach($services as $service)
-        {
+        foreach ($services as $service) {
             Service::query()->create($service);
         }
     }

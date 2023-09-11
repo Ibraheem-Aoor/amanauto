@@ -83,24 +83,24 @@
         <section class="SubScribe text-center"">
             <div class="container">
                 <div class="All-Card-Service">
-                    <h4>Subscribtions Steps</h4>
+                    <h4>{{ __('general.subscribtions_steps.subscribtions_steps') }}</h4>
                     <div class="row justify-content-between">
                         <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="card-sub">
                                 <img src="{{ asset('assets/user/img/add-user.svg') }}" alt="" />
-                                <h5>Register</h5>
+                                <h5>{{ __('general.subscribtions_steps.register') }}</h5>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="card-sub">
                                 <img src="{{ asset('assets/user/img/id-card.svg') }}" alt="" />
-                                <h5>Subscription</h5>
+                                <h5>{{ __('general.subscribtions_steps.subscription') }}</h5>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="card-sub customeTestRight text-right">
                                 <img src="{{ asset('assets/user/img/call.svg') }}" alt="" />
-                                <h5>Service Call</h5>
+                                <h5>{{ __('general.subscribtions_steps.service_call') }}</h5>
                             </div>
                         </div>
                     </div>

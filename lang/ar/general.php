@@ -78,7 +78,14 @@ return [
     'month/year' => 'شهر / سنة',
     'valid_coupon_code' => 'كود الخصم صالح',
     'invalid_coupon_code' => 'كود الخصم غير صالح',
-    'discount'      => 'خصم',
+    'discount' => 'خصم',
+
+    'subscribtions_steps' => [
+        'register' => 'التسجيل',
+        'subscription' => 'الاشتراك',
+        'service_call' => 'مكالمة الخدمة',
+        'subscribtions_steps' => 'خطوات الإشتراك',
+    ],
 
 
 
