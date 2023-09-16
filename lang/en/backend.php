@@ -197,6 +197,8 @@ return [
         'location_url' => 'Location URL',
         'add_new' => 'Add New Offer Company',
         'edit' => 'Edit Offer Company : ',
+        'company'       =>  'Company',
+
     ],
 
 ];

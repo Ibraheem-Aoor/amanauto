@@ -20,6 +20,8 @@ class OfferCompany extends Model implements TranslatableContract
 
     public $translatedAttributes = ['name'];
 
+    protected $with = ['translations'];
+
     ####### START REALTION #######
     public function offers(): HasMany
     {

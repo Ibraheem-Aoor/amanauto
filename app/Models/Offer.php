@@ -22,8 +22,12 @@ class Offer extends Model implements TranslatableContract
         'offer_company_id',
     ];
 
+    protected $with = ['translations'];
 
-    public function offerCompany() : BelongsTo
+    public $translatedAttributes = ['name' , 'description'];
+
+
+    public function company() : BelongsTo
     {
         return $this->belongsTo(OfferCompany::class , 'offer_company_id');
     }

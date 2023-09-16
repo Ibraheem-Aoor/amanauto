@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CommonQuestionController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OfferCompanyController;
+use App\Http\Controllers\Admin\OfferController;
 use App\Http\Controllers\Auth\Admin\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -54,4 +55,8 @@ Route::group(['middleware' => 'admin', 'as' => 'admin.'], function () {
     // offer companies
     Route::resource('offer-company', OfferCompanyController::class);
     Route::get('offer-companies-table-data', [OfferCompanyController::class, 'getTableData'])->name('offer-company.table_data');
+    // offers
+    Route::resource('offer', OfferController::class);
+    Route::get('offe-table-data', [OfferController::class, 'getTableData'])->name('offer.table_data');
+    Route::get('offe-change-status', [OfferController::class, 'changeStatus'])->name('offer.change_status');
 });
