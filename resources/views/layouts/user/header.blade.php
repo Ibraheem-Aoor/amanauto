@@ -17,7 +17,7 @@
                             href="{{ route('home') }}">{{ __('general.home') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="offers.html">{{ __('general.offers') }}</a>
+                        <a class="nav-link" href="{{ route('offers.index') }}">{{ __('general.offers') }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('clubs.index') }}">{{ __('general.clubs') }}</a>
@@ -26,7 +26,7 @@
                 <form class="d-flex">
                     <div class="info-header-action-but">
                         @auth
-                            <div class="box-profile">
+                            <div class="box-profile" onclick='window.location.href="{{ route("profile.index") }}"'>
                                 <span class="bx bxs-user"></span>
                             </div>
                         @endauth

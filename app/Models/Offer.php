@@ -9,10 +9,11 @@ use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Offer extends Model implements TranslatableContract
 {
-    use HasFactory , Trackable , Translatable , HasStatus;
+    use HasFactory, Trackable, Translatable, HasStatus;
     protected $fillable = [
         'added_by',
         'end_date',
@@ -24,11 +25,27 @@ class Offer extends Model implements TranslatableContract
 
     protected $with = ['translations'];
 
-    public $translatedAttributes = ['name' , 'description'];
+    public $translatedAttributes = ['name', 'description'];
 
 
-    public function company() : BelongsTo
+    public function company(): BelongsTo
     {
-        return $this->belongsTo(OfferCompany::class , 'offer_company_id');
+        return $this->belongsTo(OfferCompany::class, 'offer_company_id');
+    }
+
+
+    ############ START REALTIONS ##############
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'offer_users')->withTimestamps();
+    }
+    ############ END REALTIONS ##############
+
+    /**
+     * Get Encrypted Id
+     */
+    public function getEncryptedId()
+    {
+        return encrypt($this->id);
     }
 }

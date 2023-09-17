@@ -39,7 +39,7 @@ return [
         'active' => 'Active',
         'inactive' => 'inactive',
         'pending' => 'Pending',
-
+        'expired' => 'Expired',
     ],
 
     'unlimited' => 'Unlimited',
@@ -87,5 +87,11 @@ return [
         'subscribtions_steps' => 'Subscribtions Steps',
     ],
 
+    'confirm_delete_offer_user' => 'are u sure to delete offer from user : ',
+    'no_offers_found' => 'No offers for now..please come back later',
+    'amanauto_ams' => 'AMS',
+    'vin' => 'VIN',
+    'offers_for_you' => 'Offers For You',
+    'end_date' => 'ُEnd date',
 
 ];

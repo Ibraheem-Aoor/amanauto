@@ -45,6 +45,7 @@ class OfferTransformer extends TransformerAbstract
             data-description-en='" . $model->translate('en')->description . "'  data-discount-value='" . $model->discount_value . "'
             data-end-date='" . $model->end_date . "'  data-discount-type='" . $model->discount_type . "'  data-company='" . $model->offer_company_id . "'
             data-form-action='" . route('admin.offer.update', $model->id) . "" . "' data-is-create='0'><i class='fa fa-edit'></i></button> &nbsp;
+            <a  class='btn-xs btn-secondary' href='".route('admin.offer.users'  , $model->id)."'><i class='fa fa-users'></i></a>&nbsp;
                 <button class='btn-xs btn-danger' data-toggle='modal' data-target='#delete-modal'
                 data-delete-url='" . route('admin.offer.destroy', $model->id) . "" . "' id='row-" . $model->id . "' data-model='" . "' data-message='" . __('general.confirm_delete') . "' data-name='" . $model->name . "'><i class='fa fa-trash'></i></button> &nbsp; </div>";
     }

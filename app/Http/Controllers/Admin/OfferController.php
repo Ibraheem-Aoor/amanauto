@@ -7,6 +7,7 @@ use App\Enums\Duration;
 use App\Enums\OfferStatus;
 use App\Enums\VatType;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\AddOfferUserReqeust;
 use App\Http\Requests\Admin\ClubRequest;
 use App\Http\Requests\Admin\CommonQuestionRequest;
 use App\Http\Requests\Admin\CouponRequest;
@@ -19,13 +20,16 @@ use App\Models\CommonQuestion;
 use App\Models\Coupon;
 use App\Models\Offer;
 use App\Models\OfferCompany;
+use App\Models\OfferUser;
 use App\Models\Service;
+use App\Models\User;
 use App\Transformers\Admin\ClubTransformer;
 use App\Transformers\Admin\CommonQuestionTransformer;
 use App\Transformers\Admin\CouponTransformer;
 use App\Transformers\Admin\CrudTransfromer;
 use App\Transformers\Admin\OfferCompanyTransformer;
 use App\Transformers\Admin\OfferTransformer;
+use App\Transformers\Admin\OfferUserTransformer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Throwable;
@@ -43,7 +47,7 @@ class OfferController extends Controller
     {
         $this->model_name = 'Offer';
         $this->model = new Offer();
-        $this->translated_model_name = __('backend.offers.offer_companies');
+        $this->translated_model_name = __('backend.offers.offers');
     }
 
     /**
@@ -221,7 +225,66 @@ class OfferController extends Controller
 
 
 
+    /**
+     * Show Offer Users
+     */
 
+    public function showUsers(Request $request, Offer $offer)
+    {
+        $data['offer'] = $offer;
+        $data['users'] = User::query()->get(['id', 'name']);
+        return view('admin.offers.users', $data);
+    }
+
+
+
+    /**
+     *  DataTable for offer users
+     */
+    public function getUsersTableData(Request $request, Offer $offer)
+    {
+        $users = $offer->users->pluck('id')->toArray();
+        $query = User::query()->whereIn('id', $users);
+        return DataTables::eloquent($query)
+            ->setTransformer(new OfferUserTransformer($offer))
+            ->make(true);
+    }
+
+    /**
+     * Assign Offer to a  user in order to use it.
+     */
+    public function storeUser(AddOfferUserReqeust $request, Offer $offer)
+    {
+        try {
+            DB::beginTransaction();
+            $offer->users()->attach($request->user_id);
+            DB::commit();
+            $response = generateResponse(status: true, modal_to_hide: '#create-edit-modal', reset_form: true, table_reload: true, table: '#myTable', message: __('general.response_messages.create_success'));
+        } catch (Throwable $e) {
+            dd($e);
+            $response = generateResponse(status: false);
+        }
+        return response()->json($response, $response['code']);
+    }
+
+
+    /**
+     * remove offer user.
+     */
+    public function removeUser(Request $request)
+    {
+        try {
+            OfferUser::query()->where([
+                ['offer_id' , $request->query('offer_id')],
+                ['user_id' , $request->query('user_id')],
+            ])->delete();
+            $response = generateResponse(status: true, is_deleted: true, row_to_delete: $request->query('user_id'), message: __('general.response_messages.deleted_successflly'));
+        } catch (Throwable $e) {
+            dd($e);
+            $response = generateResponse(status: false);
+        }
+        return response()->json($response, $response['code']);
+    }
 
 
 }

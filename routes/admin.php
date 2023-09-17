@@ -57,6 +57,11 @@ Route::group(['middleware' => 'admin', 'as' => 'admin.'], function () {
     Route::get('offer-companies-table-data', [OfferCompanyController::class, 'getTableData'])->name('offer-company.table_data');
     // offers
     Route::resource('offer', OfferController::class);
-    Route::get('offe-table-data', [OfferController::class, 'getTableData'])->name('offer.table_data');
+    Route::get('offer-table-data', [OfferController::class, 'getTableData'])->name('offer.table_data');
     Route::get('offe-change-status', [OfferController::class, 'changeStatus'])->name('offer.change_status');
+    // offer users
+    Route::get('offe-users/{offer}', [OfferController::class, 'showUsers'])->name('offer.users');
+    Route::post('offer-users-store/{offer}', [OfferController::class, 'storeUser'])->name('offer.store_users');
+    Route::delete('offer-users-store', [OfferController::class, 'removeUser'])->name('offer.destroy_user');
+    Route::get('offer-users-table-data/{offer}', [OfferController::class, 'getUsersTableData'])->name('offer.users_table_data');
 });

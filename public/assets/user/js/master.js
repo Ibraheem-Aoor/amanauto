@@ -1,6 +1,9 @@
 var preloader = $(".content-loading");
 $(document).ready(function () {
-    preloader.hide();
+    setTimeout(function () {
+        preloader.fadeToggle();
+    }, 3000);
+    // preloader.hide();
     $('#delete-modal').on('show.bs.modal', function (e) {
         var btn = e.relatedTarget;
         var deleteUrl = btn.getAttribute('data-delete-url');

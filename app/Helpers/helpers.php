@@ -247,9 +247,9 @@ if (!function_exists('getClubDiscountedPrice')) {
                 $result = $total_discount_value;
             }
             return $with_currency ?
-                (int)$result . ' ' . getSystemCurrency()
+                (int) $result . ' ' . getSystemCurrency()
                 :
-                (int)$result . '%';
+                (int) $result . '%';
         } else {
             return 0;
         }
@@ -265,7 +265,7 @@ if (!function_exists('getClubDiscountedPrice')) {
 if (!function_exists('getFormatedClubVat')) {
     function getFormatedClubVat($club)
     {
-        $percent_or_flat = $club->vat_type == VatType::PERCENT->value ? '%' : ' '.getSystemCurrency();
+        $percent_or_flat = $club->vat_type == VatType::PERCENT->value ? '%' : ' ' . getSystemCurrency();
         return $club->vat . $percent_or_flat;
     }
 }
@@ -329,5 +329,24 @@ if (!function_exists('calcTotalAmountWithDiscount')) {
             $total_discounted_price = $total_price;
         }
         return (int) $total_discounted_price;
+    }
+}
+/**
+ * format discount as needed
+ * @param  $discount_value
+ * @param  $discount_type => VatType is the base for all discount types.
+ * @param  $with_currency
+ */
+
+if (!function_exists('c')) {
+    function getFormattedDiscountText($discount_value, $discount_type)
+    {
+        $discount = $discount_value;
+        if ($discount_type == VatType::PERCENT->value) {
+            $discount .= '%';
+        } else {
+            $discount .= ' ' . getSystemCurrency();
+        }
+        return $discount;
     }
 }

@@ -197,8 +197,12 @@ return [
         'location_url' => 'Location URL',
         'add_new' => 'Add New Offer Company',
         'edit' => 'Edit Offer Company : ',
-        'company'       =>  'Company',
-
+        'company' => 'Company',
+        'offer_users' => 'Offer Users',
+        'add_new_offer_user' => 'Add New User',
     ],
+    'ams' => 'AMS',
+    'user' => 'user',
+
 
 ];

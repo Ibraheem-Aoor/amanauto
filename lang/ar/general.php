@@ -38,7 +38,7 @@ return [
         'active' => 'فعال',
         'inactive' => 'غير فعال',
         'pending' => 'قيد الإنتظار',
-
+        'expired' => 'انتهى',
     ],
 
     'unlimited' => 'غير محدود',
@@ -87,6 +87,11 @@ return [
         'subscribtions_steps' => 'خطوات الإشتراك',
     ],
 
-
+    'confirm_delete_offer_user' => 'هل انت متأكد من ازالة العرض للمستخدم : ',
+    'no_offers_found' => ' لا يوجد عروض حاليا.. يرجى العودة في وقت لاحق',
+    'amanauto_ams' => 'رقم العضوية',
+    'vin' => 'معرف المركبة',
+    'offers_for_you' => 'عروض خصيصا لك',
+    'end_date'          =>  'تاريخ الانتهاء',
 
 ];
