@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'app_name' => 'أمان أوتو',
     // resposne messages for api/form calls
     'response_messages' => [
         'error' => 'حدث خطأ ما',
@@ -38,7 +39,7 @@ return [
         'active' => 'فعال',
         'inactive' => 'غير فعال',
         'pending' => 'قيد الإنتظار',
-
+        'expired' => 'انتهى',
     ],
 
     'unlimited' => 'غير محدود',
@@ -78,8 +79,34 @@ return [
     'month/year' => 'شهر / سنة',
     'valid_coupon_code' => 'كود الخصم صالح',
     'invalid_coupon_code' => 'كود الخصم غير صالح',
-    'discount'      => 'خصم',
+    'discount' => 'خصم',
 
+    'subscribtions_steps' => [
+        'register' => 'التسجيل',
+        'subscription' => 'الاشتراك',
+        'service_call' => 'مكالمة الخدمة',
+        'subscribtions_steps' => 'خطوات الإشتراك',
+    ],
 
+    'confirm_delete_offer_user' => 'هل انت متأكد من ازالة العرض للمستخدم : ',
+    'no_offers_found' => ' لا يوجد عروض حاليا.. يرجى العودة في وقت لاحق',
+    'amanauto_ams' => 'رقم العضوية',
+    'vin' => 'معرف المركبة',
+    'offers_for_you' => 'عروض خصيصا لك',
+    'end_date' => 'تاريخ الانتهاء',
+    'profile' => 'الملف الشخصي',
+
+    'my_accounts' => 'حساباتي',
+    'inbox' => 'البريد الوارد',
+    'documents' => 'المستندات',
+    'cards_settings' => 'إعدادات البطاقات',
+    'app' => 'التطبيق',
+    'settings' => 'الإعدادات',
+    'security' => 'الأمان',
+    'notifications' => 'الإشعارات',
+    'help_center' => 'مركز المساعدة',
+    'info' => 'معلومات',
+    'welcome_back'  => 'أهلا بعودتك',
+    'welcome_to_site' => 'أهلا بك في أمان أوتو',
 
 ];

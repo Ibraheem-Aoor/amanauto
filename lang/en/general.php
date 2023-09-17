@@ -1,5 +1,7 @@
 <?php
 return [
+    'app_name' => 'AMAN AUTO',
+
     // Response messages for API/form calls
     'response_messages' => [
         'error' => 'Something Went Wrong',
@@ -39,7 +41,7 @@ return [
         'active' => 'Active',
         'inactive' => 'inactive',
         'pending' => 'Pending',
-
+        'expired' => 'Expired',
     ],
 
     'unlimited' => 'Unlimited',
@@ -79,5 +81,34 @@ return [
     'invalid_coupon_code' => 'Invalid Coupon Code',
     'discount' => 'OFF',
 
+
+    'subscribtions_steps' => [
+        'register' => 'Register',
+        'subscription' => 'Subscription',
+        'service_call' => 'Service Call',
+        'subscribtions_steps' => 'Subscribtions Steps',
+    ],
+
+    'confirm_delete_offer_user' => 'are u sure to delete offer from user : ',
+    'no_offers_found' => 'No offers for now..please come back later',
+    'amanauto_ams' => 'AMS',
+    'vin' => 'VIN',
+    'offers_for_you' => 'Offers For You',
+    'end_date' => 'ُEnd date',
+    'profile' => 'Profile',
+
+
+    'my_accounts' => 'My accounts',
+    'inbox' => 'Inbox',
+    'documents' => 'Documents',
+    'cards_settings' => 'Cards settings',
+    'app' => 'App',
+    'settings' => 'Settings',
+    'security' => 'Security',
+    'notifications' => 'Notifications',
+    'help_center' => 'Help center',
+    'info' => 'Info',
+    'welcome_back' => 'Welcome Back',
+    'welcome_to_site' => 'Welcome To AMAN AUTO',
 
 ];

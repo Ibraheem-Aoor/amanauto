@@ -1,4 +1,6 @@
 @extends('layouts.user.master')
+@section('page', $club->name)
+
 @push('css')
     <style>
         .applied-coupon {

@@ -67,6 +67,7 @@ class ClientSeeder extends Seeder
         foreach($clients as $client)
         {
             Client::query()->create($client);
+            Client::query()->create($client);
         }
     }
 }

@@ -53,6 +53,7 @@ class SubscriptionService
             'duration' => $this->club->getDurationOriginalAttribute(),
             'status' => SubscriptionStatus::PENDING->value, //pending till vin is set
             'img_vehicle' => $img_vehicle,
+            'end_date'    =>  getSubscriptionEndDate($this->club),
         ]);
     }
 

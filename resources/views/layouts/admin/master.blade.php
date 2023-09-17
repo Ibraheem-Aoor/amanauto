@@ -57,13 +57,13 @@
 
         .loader {
             border: 6px solid #f3f3f3;
-            border-top: 6px solid #1dc1d;
+            border-top: 6px solid #00CCB0;
             border-radius: 50%;
             width: 40px;
             height: 40px;
-            animation: spin 2s linear infinite !important;
+            animation: spin 2s linear infinite;
             position: absolute;
-            top: 55%;
+            top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
 
@@ -78,17 +78,6 @@
                 transform: rotate(360deg);
             }
         }
-
-        .loader-img {
-            position: absolute;
-            top: 40%;
-            left: 48%;
-            display: block !important;
-            width: 100px !important;
-            height: ;
-            : 100px !important;
-            z-index: 99 !important;
-        }
     </style>
     @stack('css')
 </head>
@@ -96,8 +85,8 @@
 <body class="hold-transition sidebar-mini layout-fixed">
     {{-- Loader --}}
     <div id="preloader" class="preloader">
-        <img src="https://uploads-ssl.webflow.com/646cf06dfcf771640a01dcb4/649980cd11ce28b0518fd9b3_aman%20auto-01.svg"
-            class="loader-img">
+        {{-- <img src="https://uploads-ssl.webflow.com/646cf06dfcf771640a01dcb4/649980cd11ce28b0518fd9b3_aman%20auto-01.svg"
+            class="loader-img"> --}}
         <div class="loader"></div>
     </div>
     <div class="wrapper">

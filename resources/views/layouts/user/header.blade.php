@@ -17,7 +17,7 @@
                             href="{{ route('home') }}">{{ __('general.home') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="offers.html">{{ __('general.offers') }}</a>
+                        <a class="nav-link" href="{{ route('offers.index') }}">{{ __('general.offers') }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('clubs.index') }}">{{ __('general.clubs') }}</a>
@@ -26,7 +26,7 @@
                 <form class="d-flex">
                     <div class="info-header-action-but">
                         @auth
-                            <div class="box-profile">
+                            <div class="box-profile" onclick='window.location.href="{{ route('profile.index') }}"'>
                                 <span class="bx bxs-user"></span>
                             </div>
                         @endauth
@@ -54,24 +54,24 @@
 <!-- --- Start Header Mobile -->
 <div class="header-mobile">
     <div class="flex-page-links">
-        <a href="index.html" class="activePage">
+        <a href="{{ route('home') }}" class="activePage">
             <i class="bx bx-home"></i>
-            <span class="">Home</span>
+            <span class="">{{ __('general.home') }}</span>
         </a>
         <!-- ---- -->
-        <a href="offers.html">
+        <a href="{{ route('offers.index') }}">
             <i class="bx bxs-discount"></i>
-            <span class="">Offers</span>
+            <span class="">{{ __('general.offers') }}</span>
         </a>
         <!-- --------- -->
         <a href="{{ route('clubs.index') }}">
             <i class="bx bx-crown"></i>
-            <span class="">Clubs</span>
+            <span class="">{{ __('general.clubs') }}</span>
         </a>
         <!-- ---- -->
         <a href="profile.html">
-            <i class="bx bx-user"></i>
-            <span class="">Profile</span>
+            <i class="bx bx-user" onclick='window.location.href="{{ route('profile.index') }}"'></i>
+            <span class="">{{ __('general.profile') }}</span>
         </a>
     </div>
 </div>

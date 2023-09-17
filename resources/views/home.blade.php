@@ -1,4 +1,8 @@
 @extends('layouts.user.master')
+@section('page', __('general.home'))
+@push('css')
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+@endpush
 @section('content')
     <!-- --- Start Main -->
     <main id="Main">
@@ -10,8 +14,13 @@
                         <div class="content-cover">
                             <div class="flex-title-top-cover">
                                 <h6>
-                                    <i class="bx bx-euro"></i>
-                                    <span>3.210,00</span>
+                                    <span>@auth
+                                            {{ __('general.welcome_back') . ' ' . getAuthUser('web')->name }}
+                                        @endauth
+                                        @guest
+                                        {{ __('general.welcome_to_site') }}
+                                        @endguest
+                                    </span>
                                 </h6>
                                 <img src="{{ asset('assets/user/img/waving-hand_1f44b.png') }}" alt="" />
                             </div>
@@ -39,7 +48,7 @@
         <!-- --- End_Cover -->
         @if (isset($entities) && !$entities->isEmpty())
             <!-- -- Start Client -->
-            <section class="client">
+            <section class="client" data-aos="fade-right" data-aos-duration="3000">
                 <div class="container">
                     <h4>{{ __('general.home_page.entities_headline') }}</h4>
                     <div class="row mt-5">
@@ -58,7 +67,7 @@
         @endif
         @if (isset($services) && !$services->isEmpty())
             <!-- ---- Start Sevice -->
-            <section class="sevice">
+            <section class="sevice" data-aos="fade-down" data-aos-duration="3000">
                 <div class="container">
                     <div class="All-Card-Service">
                         <h4>{{ __('general.home_page.services_headline') }}</h4>
@@ -80,27 +89,27 @@
         @endif
 
         <!-- --- Start SubScribe -->
-        <section class="SubScribe text-center"">
+        <section class="SubScribe text-center" data-aos="zoom-in" data-aos-duration="3000">
             <div class="container">
                 <div class="All-Card-Service">
-                    <h4>Subscribtions Steps</h4>
+                    <h4>{{ __('general.subscribtions_steps.subscribtions_steps') }}</h4>
                     <div class="row justify-content-between">
                         <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="card-sub">
                                 <img src="{{ asset('assets/user/img/add-user.svg') }}" alt="" />
-                                <h5>Register</h5>
+                                <h5>{{ __('general.subscribtions_steps.register') }}</h5>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="card-sub">
                                 <img src="{{ asset('assets/user/img/id-card.svg') }}" alt="" />
-                                <h5>Subscription</h5>
+                                <h5>{{ __('general.subscribtions_steps.subscription') }}</h5>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-4">
                             <div class="card-sub customeTestRight text-right">
                                 <img src="{{ asset('assets/user/img/call.svg') }}" alt="" />
-                                <h5>Service Call</h5>
+                                <h5>{{ __('general.subscribtions_steps.service_call') }}</h5>
                             </div>
                         </div>
                     </div>
@@ -110,7 +119,7 @@
         <!-- --- End SubScribe -->
         @if (isset($common_questions) && !$common_questions->isEmpty())
             <!-- --- Start Sec_Questions -->
-            <section class="sec-questions">
+            <section class="sec-questions" data-aos="zoom-out" data-aos-duration="3000">
                 <div class="container">
                     <div class="All-Questions">
                         <h4>{{ __('backend.cq.common_questions') }}</h4>
@@ -149,8 +158,12 @@
         @if (Session::has('error'))
             toastr.error("{{ Session::get('error') }}");
         @elseif (Session::has('success'))
-        console.log('SS');
+            console.log('SS');
             toastr.success("{{ Session::get('success') }}");
         @endif
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
     </script>
 @endpush

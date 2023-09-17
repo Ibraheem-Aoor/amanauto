@@ -6,7 +6,7 @@
 return [
     // general trans
     'system_name' => 'AMAN AUTO',
-    'dashboard' => 'Dashboar',
+    'dashboard' => 'Dashboard',
     'save' => 'Save',
     'cancel' => 'Cancel',
     'please_wait' => 'Please wait...',
@@ -186,5 +186,33 @@ return [
     'code' => 'Code',
     'start_date' => 'Start Date',
     'end_date' => 'End Date',
-    'generate'      =>  'Generate',
+    'generate' => 'Generate',
+
+
+    'offers' => [
+        'offers' => 'Offers',
+        'offer_companies' => 'Offer Companies',
+        'count_of_offers' => 'Count Of Offers',
+        'location' => 'Location',
+        'location_url' => 'Location URL',
+        'add_new' => 'Add New Offer Company',
+        'edit' => 'Edit Offer Company : ',
+        'company' => 'Company',
+        'offer_users' => 'Offer Users',
+        'add_new_offer_user' => 'Add New User',
+    ],
+    'ams' => 'AMS',
+    'user' => 'user',
+    'users' => [
+        'all_users' => 'All Users',
+        'all_subscribers' => 'All Subscribers',
+        'user_and_subscribtions' => 'Users and Subscribers',
+    ],
+    'subscribtion_status' => 'Subscribtion Status',
+    'subscribed' => 'Subscribed',
+    'unsubscribed' => 'Unsubscribed',
+    'subscription_status' => 'Subscribtion Status',
+    'current_club' => 'Current Club',
+    'general_settings' => 'Geenral Settings',
+
 ];

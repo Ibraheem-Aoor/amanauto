@@ -9,6 +9,7 @@ use App\Models\Client;
 use App\Models\Service;
 use App\Transformers\Admin\CrudTransfromer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 use Yajra\DataTables\Facades\DataTables;
@@ -75,6 +76,7 @@ class CommonCrudController extends Controller
                 ]
             );
             DB::commit();
+            Artisan::call('cache:clear');
             $response = generateResponse(status: true, modal_to_hide: '#create-edit-modal', table_reload: true, table: '#myTable', message: __('general.response_messages.create_success'));
         } catch (Throwable $e) {
             dd($e);
@@ -113,6 +115,7 @@ class CommonCrudController extends Controller
                 ]
             );
             DB::commit();
+            Artisan::call('cache:clear');
             $response = generateResponse(status: true, modal_to_hide: '#create-edit-modal', table_reload: true, table: '#myTable', message: __('general.response_messages.create_success'));
         } catch (Throwable $e) {
             dd($e);
@@ -154,6 +157,7 @@ class CommonCrudController extends Controller
             deleteImage($target->web_img);
             deleteImage($target->mobile_img);
             $target->delete();
+            Artisan::call('cache:clear');
             $response = generateResponse(status: true, is_deleted: true, row_to_delete: $id, message: __('general.response_messages.deleted_successflly'));
         } catch (Throwable $e) {
             dd($e);
@@ -176,7 +180,7 @@ class CommonCrudController extends Controller
                 $query->orderBy(DB::raw("(SELECT name FROM service_translations WHERE service_translations.service_id = services.id AND locale = 'ar')"), $order);
             })
             ->orderColumn('name_en', function ($query, $order) {
-                $query->orderBy(DB::raw("(SELECT name FROM service_translations WHERE service_translations.service_id = services.id AND locale = 'ar')"), $order);
+                $query->orderBy(DB::raw("(SELECT name FROM service_translations WHERE service_translations.service_id = services.id AND locale = 'en')"), $order);
             })
             ->filterColumn('name_ar', function ($query, $keyword) {
                 $query->whereHas('translations', function ($query) use ($keyword) {

@@ -13,7 +13,15 @@ class Subscription extends Model
     /**
      * This Model Represnests  User Club Subscriptions.
      */
-    protected $fillable = ['user_id', 'club_id', 'type', 'duration', 'status' , 'img_vehicle'];
+    protected $fillable = [
+        'user_id',
+        'club_id',
+        'type',
+        'duration',
+        'status',
+        'img_vehicle',
+        'end_date',
+    ];
 
 
 

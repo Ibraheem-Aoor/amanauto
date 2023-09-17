@@ -60,6 +60,8 @@ class MoyasarPaymentService
         if (@$response['status'] == 'initiated' && isset($response['id']) && isset($response['source']['transaction_url'])) {
             return response()->json(generateResponse(status: true, message: __('general.redirect_to_payment'), redirect: ($response['source']['transaction_url'])));
         } else {
+            info('PAYMENT SERVICE ERROR WITH CC:');
+            info($response);
             throw new Exception(__('general.payment_failed'));
         }
     }

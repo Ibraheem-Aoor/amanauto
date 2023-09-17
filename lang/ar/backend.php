@@ -146,4 +146,37 @@ return [
     'generate' => 'توليد',
 
 
+
+
+    'offers' => [
+        'offers' => 'العروض',
+        'offer_companies' => 'شركات العروض',
+        'count_of_offers' => 'عدد العروض',
+        'location' => 'الموقع',
+        'location_url' => 'رابط الموقع على الخريطة',
+        'add_new' => 'إضافة شركة عروض جديدة',
+        'edit' => 'تعديل شركة العروض : ',
+        'company' => 'الشركة',
+        'offer_users' => 'مستخدمين العرض',
+        'add_new_offer_user' => 'اضافة مستخدم جديد للعرض',
+    ],
+
+    'user' => 'المستخدم',
+    'ams' => 'رقم العضوية',
+
+    'users' => [
+        'all_users' => 'المستخدمين',
+        'all_subscribers' => 'جميع المشتركين',
+        'user_and_subscribtions' => 'المستخدمين والمشتركين',
+    ],
+
+
+    'subscribtion_status' => 'حالة الاشتراك',
+    'subscribed' => 'مشترك',
+    'unsubscribed' => 'غير مشترك',
+    'subscription_status' => 'حالة الاشتراك',
+    'current_club' => 'الباقة  الحالية',
+    'general_settings' => 'الإعدادات العامة',
+
+
 ];

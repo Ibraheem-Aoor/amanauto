@@ -4,7 +4,9 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -47,17 +49,22 @@ class User extends Authenticatable
 
 
 
-    public function scopePhone($query , $value)
+    public function scopePhone($query, $value)
     {
-        return $query->where('phone' , $value);
+        return $query->where('phone', $value);
     }
 
 
 
     ######## START RELATION #########
-    public function subscriptions() : HasMany
+    public function subscriptions(): HasMany
     {
-        return $this->hasMany(Subscription::class , 'user_id');
+        return $this->hasMany(Subscription::class, 'user_id');
+    }
+
+    public function offers(): BelongsToMany
+    {
+        return $this->belongsToMany(Offer::class, 'offer_users')->withTimestamps();
     }
     ######## END RELATION #########
 
@@ -65,5 +72,12 @@ class User extends Authenticatable
     {
         return $this->subscriptions()->latest()->first();
     }
+
+
+    public function club()
+    {
+        return $this->getLastSubscribedClub()?->club;
+    }
+
 
 }

@@ -5,6 +5,9 @@ use App\Http\Controllers\Admin\CommonCrudController;
 use App\Http\Controllers\Admin\CommonQuestionController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\OfferCompanyController;
+use App\Http\Controllers\Admin\OfferController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\Admin\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -50,4 +53,24 @@ Route::group(['middleware' => 'admin', 'as' => 'admin.'], function () {
     Route::resource('coupons', CouponController::class);
     Route::get('coupons-table-data', [CouponController::class, 'getTableData'])->name('coupons.table_data');
     Route::get('coupons-change-soon', [CouponController::class, 'changeStatus'])->name('coupon.change_status');
+    // offer companies
+    Route::resource('offer-company', OfferCompanyController::class);
+    Route::get('offer-companies-table-data', [OfferCompanyController::class, 'getTableData'])->name('offer-company.table_data');
+    // offers
+    Route::resource('offer', OfferController::class);
+    Route::get('offer-table-data', [OfferController::class, 'getTableData'])->name('offer.table_data');
+    Route::get('offe-change-status', [OfferController::class, 'changeStatus'])->name('offer.change_status');
+    // offer users
+    Route::get('offe-users/{offer}', [OfferController::class, 'showUsers'])->name('offer.users');
+    Route::post('offer-users-store/{offer}', [OfferController::class, 'storeUser'])->name('offer.store_users');
+    Route::delete('offer-users-store', [OfferController::class, 'removeUser'])->name('offer.destroy_user');
+    Route::get('offer-users-table-data/{offer}', [OfferController::class, 'getUsersTableData'])->name('offer.users_table_data');
+
+    // users routes
+    Route::resource('users', UserController::class);
+    Route::get('users-table-data', [UserController::class, 'getTableData'])->name('users.table_data');
+
+    // subscribtion routes
+    Route::resource('subscribtions', UserController::class);
+    Route::get('subscribtions-table-data', [UserController::class, 'getTableData'])->name('subscribtions.table_data');
 });

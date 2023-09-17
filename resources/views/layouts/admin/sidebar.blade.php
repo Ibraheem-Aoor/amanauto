@@ -2,14 +2,20 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <a href="{{ route('admin.dashboard') }}" class="brand-link text-center">
-          <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
-              class="brand-image img-circle elevation-3" style="opacity: .8">
+          <img src="{{ asset('assets/user/img/Group 4927.svg') }}" alt="AdminLTE Logo" class="brand-image  elevation-3">
           <span class="brand-text font-weight-light">{{ __('backend.system_name') }}</span>
       </a>
 
       <!-- Sidebar -->
       <div class="sidebar">
-
+          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+              <div class="image">
+                  <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+              </div>
+              <div class="info">
+                  <a href="#" class="d-block">{{ getAuthUser('admin')->name }}</a>
+              </div>
+          </div>
           <!-- Sidebar Menu -->
           <nav class="mt-2">
               <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
@@ -18,7 +24,8 @@
                with font-awesome or any other icon font library -->
 
                   <li class="nav-item">
-                      <a href="{{ route('admin.dashboard') }}" class="nav-link">
+                      <a href="{{ route('admin.dashboard') }}"
+                          class="nav-link {{ areActiveRoutes(['admin.dashboard']) }}">
                           <i class="nav-icon fas fa-tachometer-alt"></i>
                           <p>
                               {{ __('backend.dashboard') }}
@@ -26,7 +33,8 @@
                       </a>
                   </li>
                   <li class="nav-item">
-                      <a href="{{ route('admin.crud.index', ['model' => 'Service']) }}" class="nav-link">
+                      <a href="{{ route('admin.crud.index', ['model' => 'Service']) }}"
+                          class="nav-link {{ areActiveRoutes(['admin.crud.index']) }}">
                           <i class="nav-icon fas fa-cubes"></i>
                           <p>
                               {{ __('backend.services') }}
@@ -34,15 +42,72 @@
                       </a>
                   </li>
                   <li class="nav-item">
-                      <a href="{{ route('admin.clubs.index') }}" class="nav-link">
-                          <i class="nav-icon fas fa-cubes"></i>
+                      <a href="{{ route('admin.clubs.index') }}"
+                          class="nav-link {{ areActiveRoutes(['admin.clubs.index']) }}">
+                          <i class="nav-icon ion ion-bag"></i>
                           <p>
                               {{ __('backend.clubs.clubs') }}
                           </p>
                       </a>
                   </li>
+                  {{-- offers --}}
+                  <li
+                      class="nav-item menu-is-opening  {{ areActiveRoutes(['admin.offer.index', 'admin.offer-company.index'], 'menu-open') }} ">
+                      <a href="#"
+                          class="nav-link {{ areActiveRoutes(['admin.offer.index', 'admin.offer-company.index']) }}">
+                          <i class="nav-icon fas fa-tachometer-alt"></i>
+                          <p>
+                              {{ __('backend.offers.offers') }}
+                              <i class="right fas fa-angle-left"></i>
+                          </p>
+                      </a>
+                      <ul class="nav nav-treeview" style="display: block;">
+                          <li class="nav-item">
+                              <a href="{{ route('admin.offer-company.index') }}"
+                                  class="nav-link {{ areActiveRoutes(['admin.offer-company.index']) }}">
+                                  <i class="far fa-circle nav-icon"></i>
+                                  <p>{{ __('backend.offers.offer_companies') }}</p>
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="{{ route('admin.offer.index') }}"
+                                  class="nav-link {{ areActiveRoutes(['admin.offer.index']) }}">
+                                  <i class="far fa-circle nav-icon"></i>
+                                  <p>{{ __('backend.offers.offers') }}</p>
+                              </a>
+                          </li>
+                      </ul>
+                  </li>
+                  {{-- subscribers --}}
+                  <li
+                      class="nav-item menu-is-opening {{ areActiveRoutes(['admin.users.index', 'admin.subscribtions.index'], 'menu-open') }}">
+                      <a href="#"
+                          class="nav-link {{ areActiveRoutes(['admin.users.index', 'admin.subscribtions.index']) }}">
+                          <i class="nav-icon fas fa-tachometer-alt"></i>
+                          <p>
+                              {{ __('backend.users.user_and_subscribtions') }}
+                              <i class="right fas fa-angle-left"></i>
+                          </p>
+                      </a>
+                      <ul class="nav nav-treeview" style="display: block;">
+                          <li class="nav-item">
+                              <a href="{{ route('admin.users.index') }}"
+                                  class="nav-link {{ areActiveRoutes(['admin.users.index']) }}">
+                                  <i class="far fa-circle nav-icon"></i>
+                                  <p>{{ __('backend.users.all_users') }}</p>
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="#" class="nav-link">
+                                  <i class="far fa-circle nav-icon"></i>
+                                  <p>{{ __('backend.users.all_subscribers') }}</p>
+                              </a>
+                          </li>
+                      </ul>
+                  </li>
                   <li class="nav-item">
-                      <a href="{{ route('admin.coupons.index') }}" class="nav-link">
+                      <a href="{{ route('admin.coupons.index') }}"
+                          class="nav-link {{ areActiveRoutes(['admin.coupons.index']) }}">
                           <i class="nav-icon fas fa-cubes"></i>
                           <p>
                               {{ __('backend.coupons.coupons') }}
@@ -58,67 +123,22 @@
                       </a>
                   </li>
                   <li class="nav-item">
-                      <a href="{{ route('admin.faqs.index') }}" class="nav-link">
+                      <a href="{{ route('admin.faqs.index') }}"
+                          class="nav-link {{ areActiveRoutes(['admin.faqs.index']) }}">
                           <i class="nav-icon fas fa-question"></i>
                           <p>
                               {{ __('backend.faqs') }}
                           </p>
                       </a>
                   </li>
-                  {{-- <li class="nav-item">
-                      <a href="{{ route('admin.project-related-crud.index', ['model' => 'ProjectType']) }}"
-                          class="nav-link">
-                          <i class="nav-icon fas fa-cubes"></i>
+                  <li class="nav-item">
+                      <a href="#" class="nav-link">
+                          <i class="nav-icon fas fa-cogs"></i>
                           <p>
-                              أنواع التعدات
+                              {{ __('backend.general_settings') }}
                           </p>
                       </a>
                   </li>
-                  <li class="nav-item">
-                      <a href="{{ route('admin.project-related-crud.index', ['model' => 'ProjectArea']) }}"
-                          class="nav-link">
-                          <i class="nav-icon fas fa-map"></i>
-                          <p>
-                              المناطق
-                          </p>
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a href="{{ route('admin.project-related-crud.index', ['model' => 'ProjectSector']) }}"
-                          class="nav-link">
-                          <i class="nav-icon fas fa-cube"></i>
-                          <p>
-                              القطاع
-                          </p>
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a href="{{ route('admin.project-related-crud.index', ['model' => 'ProjectBoard']) }}"
-                          class="nav-link">
-                          <i class="nav-icon fas fa-chess-board"></i>
-                          <p>
-                              اللجان
-                          </p>
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a href="{{ route('admin.project-related-crud.index', ['model' => 'ProjectAction']) }}"
-                          class="nav-link">
-                          <i class="nav-icon fas fa-bars"></i>
-                          <p>
-                              الإجراءات
-                          </p>
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a href="{{ route('admin.report.index') }}"
-                          class="nav-link">
-                          <i class="nav-icon fas fa-file"></i>
-                          <p>
-                              التقارير
-                          </p>
-                      </a>
-                  </li> --}}
               </ul>
           </nav>
           <!-- /.sidebar-menu -->

@@ -6,6 +6,7 @@ use App\Models\CouponUsage;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -247,9 +248,9 @@ if (!function_exists('getClubDiscountedPrice')) {
                 $result = $total_discount_value;
             }
             return $with_currency ?
-                (int)$result . ' ' . getSystemCurrency()
+                (int) $result . ' ' . getSystemCurrency()
                 :
-                (int)$result . '%';
+                (int) $result . '%';
         } else {
             return 0;
         }
@@ -265,7 +266,7 @@ if (!function_exists('getClubDiscountedPrice')) {
 if (!function_exists('getFormatedClubVat')) {
     function getFormatedClubVat($club)
     {
-        $percent_or_flat = $club->vat_type == VatType::PERCENT->value ? '%' : ' '.getSystemCurrency();
+        $percent_or_flat = $club->vat_type == VatType::PERCENT->value ? '%' : ' ' . getSystemCurrency();
         return $club->vat . $percent_or_flat;
     }
 }
@@ -329,5 +330,50 @@ if (!function_exists('calcTotalAmountWithDiscount')) {
             $total_discounted_price = $total_price;
         }
         return (int) $total_discounted_price;
+    }
+}
+/**
+ * format discount as needed
+ * @param  $discount_value
+ * @param  $discount_type => VatType is the base for all discount types.
+ * @param  $with_currency
+ */
+
+if (!function_exists('getFormattedDiscountText')) {
+    function getFormattedDiscountText($discount_value, $discount_type)
+    {
+        $discount = $discount_value;
+        if ($discount_type == VatType::PERCENT->value) {
+            $discount .= '%';
+        } else {
+            $discount .= ' ' . getSystemCurrency();
+        }
+        return $discount;
+    }
+}
+/**
+ * calculate the end date of the subscription according to current date
+ * end_date = current_date + club->duration
+ * @param  $club
+ * @return $date
+ */
+
+if (!function_exists('getSubscriptionEndDate')) {
+    function getSubscriptionEndDate($club)
+    {
+        // addDays  , addMonth , addYears
+        $duration_to_add = 'add' . ucfirst($club->duration_type) . 's';
+        return Carbon::now()->$duration_to_add($club->getDurationOriginalAttribute())->toDateString();
+    }
+}
+
+//highlights the selected navigation on admin panel
+if (!function_exists('areActiveRoutes')) {
+    function areActiveRoutes(array $routes, $output = "active")
+    {
+        foreach ($routes as $route) {
+            if (Route::currentRouteName() == $route)
+                return $output;
+        }
     }
 }
