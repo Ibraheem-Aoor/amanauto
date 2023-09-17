@@ -22,7 +22,7 @@
                                         {{ __('general.vin') }} : <span>WBAYG01256EDE597</span>
                                     </h6>
                                     <h6>
-                                        {{ __('backend.end_date') }} : <span> 20 / 12 / 2023</span>
+                                        {{ __('backend.end_date') }} : <span> {{ getSubscriptionEndDate($club) }}</span>
                                     </h6>
                                 </div>
                                 <img src="{{ asset('assets/user/img/Group 4993.svg') }}" class="logoCard" alt="">
@@ -40,13 +40,13 @@
                                         <h4>
                                             {{ $service->name }}
                                         </h4>
-                                        <h6>
+                                        {{-- <h6>
                                             Today - 18:21
-                                        </h6>
+                                        </h6> --}}
                                     </article>
-                                    <h3>
+                                    {{-- <h3>
                                         Open
-                                    </h3>
+                                    </h3> --}}
                                 </div>
                             @endforeach
                         @endisset
