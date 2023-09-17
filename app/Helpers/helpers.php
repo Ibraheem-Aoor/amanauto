@@ -338,7 +338,7 @@ if (!function_exists('calcTotalAmountWithDiscount')) {
  * @param  $with_currency
  */
 
-if (!function_exists('c')) {
+if (!function_exists('getFormattedDiscountText')) {
     function getFormattedDiscountText($discount_value, $discount_type)
     {
         $discount = $discount_value;
@@ -348,5 +348,20 @@ if (!function_exists('c')) {
             $discount .= ' ' . getSystemCurrency();
         }
         return $discount;
+    }
+}
+/**
+ * calculate the end date of the subscription according to current date
+ * end_date = current_date + club->duration
+ * @param  $club
+ * @return $date
+ */
+
+if (!function_exists('getSubscriptionEndDate')) {
+    function getSubscriptionEndDate($club)
+    {
+        // addDays  , addMonth , addYears
+        $duration_to_add = 'add' . ucfirst($club->duration_type) .'s';
+        return Carbon::now()->$duration_to_add($club->getDurationOriginalAttribute())->toDateString();
     }
 }
