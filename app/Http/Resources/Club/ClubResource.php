@@ -18,11 +18,13 @@ class ClubResource extends JsonResource
     {
         $locale = app()->getLocale();
         return [
+            'id'   =>   $this->getEncryptedId(),
             'name' => $this->translate($locale)->name,
             'duration' => $this->duration,
             'times' => $this->times,
             'price' => $this->price,
             'prev_price' => $this->prev_price,
+            'is_coming_soon' => $this->is_coming_soon,
             'discount' => getClubDiscountedPrice(
                 $this,
                 return_type: VatType::FLAT->value,

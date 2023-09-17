@@ -16,6 +16,7 @@ class CommonQuestionResource extends JsonResource
     {
         $locale = app()->getLocale();
         return [
+            'id'    =>  $this->id,
             'question'      => $this->translate($locale)->question,
             'answer'      => $this->translate($locale)->answer,
         ];

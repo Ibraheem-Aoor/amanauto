@@ -16,6 +16,7 @@ class ClientResource extends JsonResource
     {
         $locale = app()->getLocale();
         return [
+            'id'    =>  $this->id,
             'img'    =>  url(getImageUrl($this->mobile_img)),
         ];
     }
