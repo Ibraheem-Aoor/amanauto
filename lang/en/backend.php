@@ -213,6 +213,6 @@ return [
     'unsubscribed' => 'Unsubscribed',
     'subscription_status' => 'Subscribtion Status',
     'current_club' => 'Current Club',
-
+    'general_settings' => 'Geenral Settings',
 
 ];

@@ -176,5 +176,7 @@ return [
     'unsubscribed' => 'غير مشترك',
     'subscription_status' => 'حالة الاشتراك',
     'current_club' => 'الباقة  الحالية',
+    'general_settings' => 'الإعدادات العامة',
+
 
 ];
