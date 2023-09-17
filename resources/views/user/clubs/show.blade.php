@@ -1,5 +1,5 @@
 @extends('layouts.user.master')
-
+@section('page', $club->name)
 @section('content')
     <!-- --- Start Main -->
     <main id="Main">
@@ -29,11 +29,11 @@
         </section>
         <!-- ----Start Content Culbs -->
         <section class="content-culbs">
-            <div class="container">
+            <div class="container text-center">
                 <h4>
                     {{ $club->name }}
                 </h4>
-                <p>
+                <p class="tex-center">
                     {{ $club->description }}
                 </p>
             </div>

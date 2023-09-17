@@ -1,4 +1,5 @@
 @extends('layouts.user.master')
+@section('page', $offer->name)
 @section('content')
     <!-- --- Start Main -->
     <main id="Main">
@@ -7,11 +8,7 @@
             <div class="container">
                 <div class="center-card ">
                     <div class="barCode text-center">
-                        {!! str_replace(
-                            '<?xml version="1.0"encoding="UTF-8"?>>',
-                            '',
-                            QrCode::size(100)->generate('https://www.google.com'),
-                        ) !!}
+                        {!! QrCode::size(100)->generate('https://www.google.com') !!}
                     </div>
                     <img src="{{ asset('assets/user/img/Group 4927.svg') }}" class="logo-tops" alt="">
                     <div class="bg-bule-card-price ">

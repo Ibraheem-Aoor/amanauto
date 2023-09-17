@@ -1,5 +1,7 @@
 <?php
 return [
+    'app_name' => 'AMAN AUTO',
+
     // Response messages for API/form calls
     'response_messages' => [
         'error' => 'Something Went Wrong',
@@ -93,5 +95,20 @@ return [
     'vin' => 'VIN',
     'offers_for_you' => 'Offers For You',
     'end_date' => 'ُEnd date',
+    'profile' => 'Profile',
+
+
+    'my_accounts' => 'My accounts',
+    'inbox' => 'Inbox',
+    'documents' => 'Documents',
+    'cards_settings' => 'Cards settings',
+    'app' => 'App',
+    'settings' => 'Settings',
+    'security' => 'Security',
+    'notifications' => 'Notifications',
+    'help_center' => 'Help center',
+    'info' => 'Info',
+    'welcome_back' => 'Welcome Back',
+    'welcome_to_site' => 'Welcome To AMAN AUTO',
 
 ];

@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'app_name' => 'أمان أوتو',
     // resposne messages for api/form calls
     'response_messages' => [
         'error' => 'حدث خطأ ما',
@@ -92,6 +93,20 @@ return [
     'amanauto_ams' => 'رقم العضوية',
     'vin' => 'معرف المركبة',
     'offers_for_you' => 'عروض خصيصا لك',
-    'end_date'          =>  'تاريخ الانتهاء',
+    'end_date' => 'تاريخ الانتهاء',
+    'profile' => 'الملف الشخصي',
+
+    'my_accounts' => 'حساباتي',
+    'inbox' => 'البريد الوارد',
+    'documents' => 'المستندات',
+    'cards_settings' => 'إعدادات البطاقات',
+    'app' => 'التطبيق',
+    'settings' => 'الإعدادات',
+    'security' => 'الأمان',
+    'notifications' => 'الإشعارات',
+    'help_center' => 'مركز المساعدة',
+    'info' => 'معلومات',
+    'welcome_back'  => 'أهلا بعودتك',
+    'welcome_to_site' => 'أهلا بك في أمان أوتو',
 
 ];

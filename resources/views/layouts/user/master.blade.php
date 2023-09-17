@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ config('app.name') }}|@yield('page')</title>
+    <title>{{ __('general.app_name') }} | @yield('page')</title>
     <!-- ----------- -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -62,7 +62,7 @@
     <script src="{{ asset('assets/user/js/main.js') }}"></script>
     <script src="{{ asset('assets/user/js/master.js') }}"></script>
     <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
-   
+
     @stack('js')
 </body>
 

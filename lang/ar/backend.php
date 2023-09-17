@@ -163,4 +163,11 @@ return [
 
     'user' => 'المستخدم',
     'ams' => 'رقم العضوية',
+
+    'users' => [
+        'all_users' => 'المستخدمين',
+        'all_subscribers' => 'جميع المشتركين',
+        'user_and_subscribtions' => 'المستخدمين والمشتركين',
+    ],
+
 ];

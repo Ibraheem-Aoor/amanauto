@@ -1,4 +1,5 @@
 @extends('layouts.user.master')
+@section('page', __('general.offers'))
 @section('content')
     <!-- --- Start Main -->
     <main id="Main">

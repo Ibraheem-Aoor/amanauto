@@ -1,4 +1,5 @@
 @extends('layouts.user.master')
+@section('page', __('general.home'))
 @push('css')
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 @endpush
@@ -6,15 +7,20 @@
     <!-- --- Start Main -->
     <main id="Main">
         <!-- -- Sec_Cover -->
-        <section class="sec-cover" >
+        <section class="sec-cover">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-sm-12 col-md-6 col-lg-6">
                         <div class="content-cover">
                             <div class="flex-title-top-cover">
                                 <h6>
-                                    <i class="bx bx-euro"></i>
-                                    <span>3.210,00</span>
+                                    <span>@auth
+                                            {{ __('general.welcome_back') . ' ' . getAuthUser('web')->name }}
+                                        @endauth
+                                        @guest
+                                        {{ __('general.welcome_to_site') }}
+                                        @endguest
+                                    </span>
                                 </h6>
                                 <img src="{{ asset('assets/user/img/waving-hand_1f44b.png') }}" alt="" />
                             </div>

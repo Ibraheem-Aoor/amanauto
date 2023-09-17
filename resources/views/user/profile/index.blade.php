@@ -1,4 +1,5 @@
 @extends('layouts.user.master')
+@section('page', __('general.profile'))
 @section('content')
     <!-- -- Start Main -->
     <main>

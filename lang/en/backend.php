@@ -6,7 +6,7 @@
 return [
     // general trans
     'system_name' => 'AMAN AUTO',
-    'dashboard' => 'Dashboar',
+    'dashboard' => 'Dashboard',
     'save' => 'Save',
     'cancel' => 'Cancel',
     'please_wait' => 'Please wait...',
@@ -203,6 +203,12 @@ return [
     ],
     'ams' => 'AMS',
     'user' => 'user',
+    'users' => [
+        'all_users' => 'All Users',
+        'all_subscribers' => 'All Subscribers',
+        'user_and_subscriptions' => 'Users and Subscribers',
+    ],
+
 
 
 ];
