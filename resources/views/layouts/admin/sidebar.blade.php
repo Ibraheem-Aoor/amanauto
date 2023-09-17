@@ -24,7 +24,8 @@
                with font-awesome or any other icon font library -->
 
                   <li class="nav-item">
-                      <a href="{{ route('admin.dashboard') }}" class="nav-link">
+                      <a href="{{ route('admin.dashboard') }}"
+                          class="nav-link {{ areActiveRoutes(['admin.dashboard']) }}">
                           <i class="nav-icon fas fa-tachometer-alt"></i>
                           <p>
                               {{ __('backend.dashboard') }}
@@ -32,7 +33,8 @@
                       </a>
                   </li>
                   <li class="nav-item">
-                      <a href="{{ route('admin.crud.index', ['model' => 'Service']) }}" class="nav-link">
+                      <a href="{{ route('admin.crud.index', ['model' => 'Service']) }}"
+                          class="nav-link {{ areActiveRoutes(['admin.crud.index']) }}">
                           <i class="nav-icon fas fa-cubes"></i>
                           <p>
                               {{ __('backend.services') }}
@@ -40,7 +42,8 @@
                       </a>
                   </li>
                   <li class="nav-item">
-                      <a href="{{ route('admin.clubs.index') }}" class="nav-link">
+                      <a href="{{ route('admin.clubs.index') }}"
+                          class="nav-link {{ areActiveRoutes(['admin.clubs.index']) }}">
                           <i class="nav-icon ion ion-bag"></i>
                           <p>
                               {{ __('backend.clubs.clubs') }}
@@ -48,8 +51,10 @@
                       </a>
                   </li>
                   {{-- offers --}}
-                  <li class="nav-item menu-is-opening menu-open">
-                      <a href="#" class="nav-link active">
+                  <li
+                      class="nav-item menu-is-opening  {{ areActiveRoutes(['admin.offer.index', 'admin.offer-company.index'], 'menu-open') }} ">
+                      <a href="#"
+                          class="nav-link {{ areActiveRoutes(['admin.offer.index', 'admin.offer-company.index']) }}">
                           <i class="nav-icon fas fa-tachometer-alt"></i>
                           <p>
                               {{ __('backend.offers.offers') }}
@@ -58,13 +63,15 @@
                       </a>
                       <ul class="nav nav-treeview" style="display: block;">
                           <li class="nav-item">
-                              <a href="{{ route('admin.offer-company.index') }}" class="nav-link active">
+                              <a href="{{ route('admin.offer-company.index') }}"
+                                  class="nav-link {{ areActiveRoutes(['admin.offer-company.index']) }}">
                                   <i class="far fa-circle nav-icon"></i>
                                   <p>{{ __('backend.offers.offer_companies') }}</p>
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a href="{{ route('admin.offer.index') }}" class="nav-link">
+                              <a href="{{ route('admin.offer.index') }}"
+                                  class="nav-link {{ areActiveRoutes(['admin.offer.index']) }}">
                                   <i class="far fa-circle nav-icon"></i>
                                   <p>{{ __('backend.offers.offers') }}</p>
                               </a>
@@ -72,8 +79,10 @@
                       </ul>
                   </li>
                   {{-- subscribers --}}
-                  <li class="nav-item menu-is-opening menu-open">
-                      <a href="#" class="nav-link active">
+                  <li
+                      class="nav-item menu-is-opening {{ areActiveRoutes(['admin.users.index', 'admin.subscribtions.index'], 'menu-open') }}">
+                      <a href="#"
+                          class="nav-link {{ areActiveRoutes(['admin.users.index', 'admin.subscribtions.index']) }}">
                           <i class="nav-icon fas fa-tachometer-alt"></i>
                           <p>
                               {{ __('backend.users.user_and_subscribtions') }}
@@ -82,13 +91,14 @@
                       </a>
                       <ul class="nav nav-treeview" style="display: block;">
                           <li class="nav-item">
-                              <a href="{{ route('admin.offer-company.index') }}" class="nav-link active">
+                              <a href="{{ route('admin.users.index') }}"
+                                  class="nav-link {{ areActiveRoutes(['admin.users.index']) }}">
                                   <i class="far fa-circle nav-icon"></i>
                                   <p>{{ __('backend.users.all_users') }}</p>
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a href="{{ route('admin.offer.index') }}" class="nav-link">
+                              <a href="#" class="nav-link">
                                   <i class="far fa-circle nav-icon"></i>
                                   <p>{{ __('backend.users.all_subscribers') }}</p>
                               </a>
@@ -96,7 +106,8 @@
                       </ul>
                   </li>
                   <li class="nav-item">
-                      <a href="{{ route('admin.coupons.index') }}" class="nav-link">
+                      <a href="{{ route('admin.coupons.index') }}"
+                          class="nav-link {{ areActiveRoutes(['admin.coupons.index']) }}">
                           <i class="nav-icon fas fa-cubes"></i>
                           <p>
                               {{ __('backend.coupons.coupons') }}
@@ -112,7 +123,8 @@
                       </a>
                   </li>
                   <li class="nav-item">
-                      <a href="{{ route('admin.faqs.index') }}" class="nav-link">
+                      <a href="{{ route('admin.faqs.index') }}"
+                          class="nav-link {{ areActiveRoutes(['admin.faqs.index']) }}">
                           <i class="nav-icon fas fa-question"></i>
                           <p>
                               {{ __('backend.faqs') }}

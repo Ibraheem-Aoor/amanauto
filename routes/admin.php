@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OfferCompanyController;
 use App\Http\Controllers\Admin\OfferController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\Admin\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -64,4 +65,12 @@ Route::group(['middleware' => 'admin', 'as' => 'admin.'], function () {
     Route::post('offer-users-store/{offer}', [OfferController::class, 'storeUser'])->name('offer.store_users');
     Route::delete('offer-users-store', [OfferController::class, 'removeUser'])->name('offer.destroy_user');
     Route::get('offer-users-table-data/{offer}', [OfferController::class, 'getUsersTableData'])->name('offer.users_table_data');
+
+    // users routes
+    Route::resource('users', UserController::class);
+    Route::get('users-table-data', [UserController::class, 'getTableData'])->name('users.table_data');
+
+    // subscribtion routes
+    Route::resource('subscribtions', UserController::class);
+    Route::get('subscribtions-table-data', [UserController::class, 'getTableData'])->name('subscribtions.table_data');
 });

@@ -206,9 +206,13 @@ return [
     'users' => [
         'all_users' => 'All Users',
         'all_subscribers' => 'All Subscribers',
-        'user_and_subscriptions' => 'Users and Subscribers',
+        'user_and_subscribtions' => 'Users and Subscribers',
     ],
-
+    'subscribtion_status' => 'Subscribtion Status',
+    'subscribed' => 'Subscribed',
+    'unsubscribed' => 'Unsubscribed',
+    'subscription_status' => 'Subscribtion Status',
+    'current_club' => 'Current Club',
 
 
 ];

@@ -6,6 +6,7 @@ use App\Models\CouponUsage;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -361,7 +362,18 @@ if (!function_exists('getSubscriptionEndDate')) {
     function getSubscriptionEndDate($club)
     {
         // addDays  , addMonth , addYears
-        $duration_to_add = 'add' . ucfirst($club->duration_type) .'s';
+        $duration_to_add = 'add' . ucfirst($club->duration_type) . 's';
         return Carbon::now()->$duration_to_add($club->getDurationOriginalAttribute())->toDateString();
+    }
+}
+
+//highlights the selected navigation on admin panel
+if (!function_exists('areActiveRoutes')) {
+    function areActiveRoutes(array $routes, $output = "active")
+    {
+        foreach ($routes as $route) {
+            if (Route::currentRouteName() == $route)
+                return $output;
+        }
     }
 }

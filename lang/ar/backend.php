@@ -170,4 +170,11 @@ return [
         'user_and_subscribtions' => 'المستخدمين والمشتركين',
     ],
 
+
+    'subscribtion_status' => 'حالة الاشتراك',
+    'subscribed' => 'مشترك',
+    'unsubscribed' => 'غير مشترك',
+    'subscription_status' => 'حالة الاشتراك',
+    'current_club' => 'الباقة  الحالية',
+
 ];
