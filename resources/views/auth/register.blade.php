@@ -71,7 +71,7 @@
     <script src="{{ asset('assets/user/js/main.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
 
-    <script src="{{ asset('assets/user/js/master.js') }}"></script>
+    <script src="{{ asset('assets/user/js/master.js') }}?v=0.01"></script>
     {{-- Toastr js --}}
     <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
     {{-- tel input --}}
