@@ -138,6 +138,14 @@ arabicInputs.forEach((input) => {
     });
 });
 
+const textInputs = document.querySelectorAll('.text-only');
+// Iterate over each input and attach event listeners
+textInputs.forEach((input) => {
+    input.addEventListener('input', (event) => {
+        input.value = input.value.replace(/[^a-zA-Z]/g, '');
+    });
+});
+
 
 
 

@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="but-Auto">
-                    <button type="submit" class="but-Log">{{ __('backend.create_account') }}</button>
+                    <button type="submit" class="but-Log">{{ __('auth.login') }}</button>
                 </div>
                 <div class="signUp">
                     <p>
