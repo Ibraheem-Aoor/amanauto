@@ -194,7 +194,28 @@
       .input-number{
         border: none !important;
       }
-}
+     .barCode{
+        width: 100px;
+        height: 100px;
+        margin: 50px auto;
+        display: block;
+      }
+      .customeWithMobile{
+        width: 100% !important;
+      }
+      .center-card{
+        width: 100% !important;
+      }
+      .sec-profile{
+        padding-bottom: 100px;
+      }
+      .menu-cads{
+        display: block;
+      }
+      .link-page-profile{
+        display: none;
+      }
+} 
 @media(min-width:576px) and (max-width:767.98px){
     .content-auto{
         width: 90%;
@@ -377,6 +398,27 @@
       .input-number{
         border: none !important;
       }
+      .barCode{
+        width: 100px;
+        height: 100px;
+        margin: 50px auto;
+        display: block;
+      }
+      .customeWithMobile{
+        width: 100% !important;
+      }
+      .center-card{
+        width: 100% !important;
+      }
+      .sec-profile{
+        padding-bottom: 70px;
+      }
+      .menu-cads{
+        display: block;
+      }
+      .link-page-profile{
+        display: none;
+      }
 }
 @media(min-width:768px) and (max-width:991.98px){
     .content-auto{
@@ -452,6 +494,12 @@
       .card-al-input .input-number{
         width: 60% !important;
       }
+      .center-card{
+        width: 80% !important;
+      }
+      .sec-profile{
+        padding-bottom: 70px;
+      }
 }
 @media(min-width:992px) and (max-width:1199.98px){
     .content-auto{
@@ -472,6 +520,9 @@
         width: 100% !important;
       }
       .card-al-input .input-number{
+        width: 60% !important;
+      }
+      .center-card{
         width: 60% !important;
       }
 }

@@ -155,7 +155,7 @@ body,html{
 .image-cover img{
     width: 100%;
     height: 100%;
-
+    
 }
 .content-cover h4{
     color: #1DC1DD;
@@ -225,7 +225,7 @@ body,html{
     width: 60%;
 }
 .All-Card-Service .row{
-
+ 
     justify-content: space-between !important;
     align-items: center !important;
 }
@@ -270,7 +270,7 @@ body,html{
 .card-sub{
     width: 100%;
     margin: 20px auto;
-
+    
 }
 
 .card-sub img{
@@ -422,7 +422,7 @@ body,html{
     padding: 25px;
     position: relative;
     overflow: hidden;
-
+   
 }
 .customeBg2{
     border-radius: 20px;
@@ -432,7 +432,7 @@ body,html{
     padding: 25px;
     position: relative;
     overflow: hidden;
-
+   
 }
 /* .bg-bule-card-price::after{
     content: "";
@@ -573,7 +573,7 @@ body,html{
 }
 .box-upload span{
     color: #1DC1DD;
-
+    
     font-size:30px;
     font-style: normal;
     font-weight: 500;
@@ -721,11 +721,11 @@ body,html{
 .sec-profile{
     width: 70%;
     margin: 30px auto;
-
+   
 }
 .flex-items-prfoile{
     display: flex;
-
+    
     align-items: center;
     width: 100%;
     height: 50px;
@@ -806,7 +806,7 @@ body,html{
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-
+ 
 }
 .custome-flex-offers{
     border-radius: 10px;
@@ -818,11 +818,6 @@ body,html{
     justify-content: space-between;
     align-items: center;
     margin: 12px 0px;
-}
-
-.custome-flex-offers:hover
-{
-    cursor: pointer !important;
 }
 .custome-flex-offers h5{
     color: #1DC1DD;
@@ -966,7 +961,7 @@ body,html{
     background: #00CCB0;
     pointer-events: auto;
   }
-
+  
   .info-from-title h4{
     font-weight: 600;
     font-size: 22px;
@@ -990,10 +985,10 @@ body,html{
     font-size: 22px;
   }
   .headerPage .navbar-toggler:focus{
-
+    
     border: none !important;
   }
-
+ 
   .icon-watsApp{
     position: fixed;
     bottom: 80px;
@@ -1052,7 +1047,7 @@ body,html{
     left: 0px;
     width: 100%;
     z-index: 2000 !important;
-
+   
   }
   .flex-page-links a{
     text-align: center;
@@ -1080,7 +1075,7 @@ body,html{
   #Main{
     padding-bottom: 80px;
   }
-  .customeAutoHeader{
+  .customeAutoHeader{ 
     height: 100px;
     padding-bottom: 10px;
     background: #fff;
@@ -1113,7 +1108,7 @@ body,html{
     font-family: 'Roboto', sans-serif !important;
   }
   .content-payment a{
-
+   
 
     font-size: 18px;
     margin: 0px 6px;
@@ -1191,7 +1186,7 @@ body,html{
     font-weight: 600;
   }
 
-
+  
 .content-loading{
     width: 100%;
     height: 100vh;
@@ -1201,7 +1196,7 @@ body,html{
     display: flex;
     justify-content: center;
     align-items: center;
-
+    
   }
   .content-loading svg{
     width: 0;
@@ -1233,7 +1228,7 @@ body,html{
     height: 40px;
     box-shadow: 0 0 10px #241666;
     background:  linear-gradient(300deg, #1ca6c6 0%, #1DC1DD 100%);
-
+  
   }
   @keyframes animate{
     0%{
@@ -1265,11 +1260,11 @@ body,html{
     outline: none;
     background: transparent;
     color: #393E46;
-
+    
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
-
+  
   }
   .input-number{
     width: 75%;
@@ -1281,7 +1276,7 @@ body,html{
   }
   .customeColor-diccount{
     color: #FFF ;
-
+   
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -1306,7 +1301,7 @@ body,html{
   }
   .content-offer-center .flex-list-art{
     display: flex;
-
+   
   }
   .content-offer-center .flex-list-art i{
     color: #00CCB0;
@@ -1334,4 +1329,19 @@ body,html{
     margin: 12px auto;
     display: block;
   }
-
+  .icon-toggles{
+    width: 40px;
+    height: 40px;
+    background: #00CCB0;
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px auto;    
+    cursor: pointer;
+    
+  }
+  .menu-cads{
+    display: none;
+  }

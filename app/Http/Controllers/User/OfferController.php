@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Enums\OfferStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Offer;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class OfferController extends Controller
     public function index()
     {
         $data['user'] = getAuthUser('web');
-        $data['offers'] = $data['user']->offers;
+        $data['offers'] = $data['user']->offers()->status(OfferStatus::ACTIVE->value)->get();
         return view('user.offers.index', $data);
     }
 
