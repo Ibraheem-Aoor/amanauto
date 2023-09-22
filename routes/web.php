@@ -58,7 +58,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'offers', 'as' => 'offers.'], function () {
         Route::get('', [OfferController::class, 'index'])->name('index');
         Route::get('show/{id}', [OfferController::class, 'show'])->name('show');
-        Route::get('pdf/{id}', [OfferController::class, 'downloadPdf'])->name('pdf_download');
+        Route::get('pdf/{id}', [OfferController::class, 'downloadPdf'])->name('pdf_download')->withoutMiddleware('auth');
     });
 
     // profile

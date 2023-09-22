@@ -8,7 +8,7 @@
             <div class="container">
                 <div class="center-card ">
                     <div class="barCode text-center">
-                        {!! QrCode::size(100)->generate('https://www.google.com') !!}
+                        {!! $qr_code !!}
                     </div>
                     <img src="{{ asset('assets/user/img/Group 4927.svg') }}" class="logo-tops" alt="">
                     <div class="bg-bule-card-price ">

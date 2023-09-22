@@ -16,7 +16,7 @@ class OfferResource extends JsonResource
     public function toArray($request)
     {
         $user = getAuthUser('sanctum');
-        $qrcode = QrCode::size(150)->generate('www.google.com');
+        $qrcode = QrCode::size(150)->generate(route('offers.pdf_download', ['id' => $this->getEncryptedId(), 'preview_type' => 'stream' , 'guard'   =>  'sanctum']));
         $code = (string) $qrcode;
         $qr_code = substr($code, 38);
         return [

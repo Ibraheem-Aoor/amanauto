@@ -37,6 +37,9 @@ class OfferController extends Controller
     {
         $data['user'] = getAuthUser('web');
         $data['offer'] = Offer::query()->find(decrypt($id));
+        $qrcode = QrCode::size(150)->generate(route('offers.pdf_download', ['id' => $id, 'preview_type' => 'stream']));
+        $code = (string) $qrcode;
+        $data['qr_code'] = substr($code, 38);
         return view('user.offers.show', $data);
     }
 
@@ -46,14 +49,19 @@ class OfferController extends Controller
      */
     public function downloadPdf(Request $request, $id)
     {
-        $data['user'] = getAuthUser('web');
+        $data['user'] = getAuthUser($request->query('guard', 'web'));
         $data['offer'] = Offer::query()->findOrFail(decrypt($id));
-        $data['lang'] = app()->getLocale();
-        $qrcode = QrCode::size(150)->generate('A basic example of QR code!');
-        $code = (string) $qrcode;
-        $data['qr_code'] = substr($code, 38);
-        $pdf = PDF::loadView('user.offers.pdf', $data);
-        return response()->file($pdf->stream($data['offer']->name . '.pdf'));
+        if ($data['user']->offers->has($data['offer']->id)) {
+            $data['lang'] = app()->getLocale();
+            $qrcode = QrCode::size(150)->generate(route('offers.pdf_download', ['id' => $id, 'preview_type' => 'stream']));
+            $code = (string) $qrcode;
+            $data['qr_code'] = substr($code, 38);
+            $pdf = PDF::loadView('user.offers.pdf', $data);
+            $download_or_stream = $request->query('preview_type', 'stream');
+            return response()->$download_or_stream($pdf->stream($data['offer']->name . '.pdf'));
+        } else {
+            return back();
+        }
     }
 
 }

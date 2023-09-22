@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Offer;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class AllOffersResource extends JsonResource
 {
@@ -20,7 +21,7 @@ class AllOffersResource extends JsonResource
             'discount' => getFormattedDiscountText($this->discount_value, $this->discount_type),
             'company' => $this->company->name,
             'end_date' => $this->end_date,
-            'download_url' => 'google.com',
+            'download_url' => route('offers.pdf_download', ['id' => $this->getEncryptedId(), 'preview_type' => 'download', 'guard' => 'sanctum']),
         ];
     }
 
