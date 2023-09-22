@@ -377,3 +377,24 @@ if (!function_exists('areActiveRoutes')) {
         }
     }
 }
+
+
+
+/**
+ * Gather the meta data for the response.
+ *
+ * @param  LengthAwarePaginator  $paginated
+ * @return array
+ */
+if (!function_exists('pagination')) {
+    function pagination($paginated)
+    {
+        return [
+            'current' => $paginated->currentPage(),
+            'last' => $paginated->lastPage(),
+            'base' => $paginated->url(1),
+            'next' => $paginated->nextPageUrl(),
+            'prev' => $paginated->previousPageUrl()
+        ];
+    }
+}
