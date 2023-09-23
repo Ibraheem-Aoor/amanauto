@@ -59,7 +59,6 @@ class ClubController extends Controller
             $message = __('general.response_messages.success');
             $response = generateApiResoponse(true, 201, $data, $message);
         } catch (Throwable $e) {
-            dd($e);
             $data = [];
             $message = __('general.response_messages.error');
             $code = 500;

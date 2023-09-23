@@ -62,7 +62,13 @@
     <script src="{{ asset('assets/user/js/main.js') }}?v=0.01"></script>
     <script src="{{ asset('assets/user/js/master.js') }}"></script>
     <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
-
+    <script>
+        @if (Session::has('error'))
+            toastr.error("{{ Session::get('error') }}");
+        @elseif (Session::has('success'))
+            toastr.success("{{ Session::get('success') }}");
+        @endif
+    </script>
     @stack('js')
 </body>
 

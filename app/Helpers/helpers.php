@@ -1,10 +1,12 @@
 <?php
 
 use App\Enums\VatType;
+use App\Models\BusinessSetting;
 use App\Models\Coupon;
 use App\Models\CouponUsage;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
@@ -396,5 +398,27 @@ if (!function_exists('pagination')) {
             'next' => $paginated->nextPageUrl(),
             'prev' => $paginated->previousPageUrl()
         ];
+    }
+}
+
+
+
+
+
+
+if (!function_exists('getSetting')) {
+    function getSetting($key, $default = null, $lang = false)
+    {
+        $settings = Cache::remember('business_settings', 86400, function () {
+            return BusinessSetting::all();
+        });
+
+        if ($lang == false) {
+            $setting = $settings->where('key', $key)->first();
+        } else {
+            $setting = $settings->where('key', $key)->where('lang', $lang)->first();
+            $setting = !$setting ? $settings->where('key', $key)->first() : $setting;
+        }
+        return $setting == null ? $default : $setting->value;
     }
 }

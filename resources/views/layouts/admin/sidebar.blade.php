@@ -132,7 +132,7 @@
                       </a>
                   </li>
                   <li class="nav-item">
-                      <a href="#" class="nav-link">
+                      <a href="{{ route('admin.settings.index') }}" class="nav-link">
                           <i class="nav-icon fas fa-cogs"></i>
                           <p>
                               {{ __('backend.general_settings') }}

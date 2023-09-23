@@ -110,5 +110,9 @@ return [
     'info' => 'Info',
     'welcome_back' => 'Welcome Back',
     'welcome_to_site' => 'Welcome To AMAN AUTO',
+    'whatsapp_number' => 'Whatsapp Number',
+    'terms_file' => 'Terms & Conditions File',
+    'invoice_system_status' => 'Enable Invoice System',
+    'uploaded_file'     =>  'Uploaded File',
 
 ];

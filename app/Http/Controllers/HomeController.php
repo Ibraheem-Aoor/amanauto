@@ -7,6 +7,8 @@ use App\Models\CommonQuestion;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
+use Throwable;
 
 class HomeController extends Controller
 {
@@ -33,5 +35,18 @@ class HomeController extends Controller
         return Cache::rememberForever($key, function () use ($model) {
             return $model::query()->get();
         });
+    }
+
+    /**
+     * Downlaod Terms & Conditions File
+     */
+    public function downloadTermsFile()
+    {
+        try {
+            return Storage::disk('public')->download((getSetting('terms_file')));
+        } catch (Throwable $e) {
+            session()->flash('error', __('general.response_messages.error'));
+            return back();
+        }
     }
 }

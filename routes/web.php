@@ -43,6 +43,9 @@ Route::group(['prefix' => 'club', 'as' => 'clubs.'], function () {
     Route::get('show/{id}', [ClubController::class, 'show'])->name('show');
 });
 
+// terms file downlaod
+Route::get('terms-download' , [HomeController::class, 'downloadTermsFile'])->name('terms.dowmload');
+
 
 // auth user routes
 Route::group(['middleware' => 'auth'], function () {

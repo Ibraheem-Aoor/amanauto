@@ -33,6 +33,7 @@ class ClubResource extends JsonResource
             'color' => $this->color,
             'description' => $this->description,
             'subscribe_text' => getClubSubscribeText($this),
+            'terms_file_url' => route('terms.dowmload'),
             'services' => ServiceResource::collection($this->whenLoaded('services')),
         ];
     }
