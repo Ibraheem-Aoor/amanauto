@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 
 class OfferRequest extends BaseAdminRequest
@@ -21,7 +22,7 @@ class OfferRequest extends BaseAdminRequest
             'company_id' => 'required',
             'discount_value' => 'required|numeric',
             'discount_type' => 'required',
-            'end_date' => 'required|date',
+            'end_date' => 'required|date|after:'.Carbon::today()->toDateString(),
             'description_ar' => $name_validation,
             'description_en' => $name_validation,
         ];

@@ -129,12 +129,13 @@
                 $('#create-edit-modal form').attr('action', form_action);
                 $('#create-edit-modal form input[name="_method"]').val(form_method);
                 if (is_create === 1) {
+                    $('#create-edit-modal button[type="reset"]').click(); // Reset the form
+                    $('#create-edit-modal textarea[name="question_ar"]').text(null);
+                    $('#create-edit-modal textarea[name="question_en"]').text(null);
+                    $('#create-edit-modal textarea[name="answer_ar"]').text(null);
+                    $('#create-edit-modal textarea[name="answer_en"]').text(null);
                     $('#create-edit-modal .modal-title').text(
                         "{{ __('backend.cq.create_new_question') }}");
-                    $('#create-edit-modal textarea[name="question_ar"]').text('');
-                    $('#create-edit-modal textarea[name="question_en"]').text('');
-                    $('#create-edit-modal textarea[name="answer_ar"]').text('');
-                    $('#create-edit-modal textarea[name="answer_en"]').text('');
                 } else {
                     $('#create-edit-modal .modal-title').text("{{ __('backend.cq.edit_question') }}");
                     $('#create-edit-modal textarea[name="question_ar"]').text($(this).data('question-ar'));

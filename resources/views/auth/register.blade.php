@@ -62,7 +62,7 @@
                     <label for="">
                         {{ __('backend.name') }}:
                     </label>
-                    <input type="text" name="name" class="en-only text-only" />
+                    <input type="text" name="name" class="text-only" />
                 </div>
                 <div class="all-input-payment">
                     <label for="">

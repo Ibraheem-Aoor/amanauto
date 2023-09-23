@@ -15,7 +15,7 @@
                         <div class="row">
                             <div class="col-sm-12 mt-4 text-center">
                                 <h5>{{ __('backend.user') }}</h5>
-                                <select class="form-control" name="user_id">
+                                <select class="form-control select2" name="user_id" style="width:100% !important;">
                                     <option value="">{{ __('backend.select') }}</option>
                                     @foreach ($users as $user)
                                         <option value="{{ $user->id }}">{{ $user->name }}</option>

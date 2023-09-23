@@ -21,7 +21,7 @@
                                 {{ __('general.vin') }} : <span>WBAYG01256EDE597</span>
                             </h6>
                             <h6>
-                                {{ __('backend.end_date') }} : <span> 20 / 12 / 2023</span>
+                                {{ __('backend.end_date') }} : <span> {{ $offer->end_date }}</span>
                             </h6>
                         </div>
                         <img src="{{ asset('assets/user/img/Group 4993.svg') }}" class="logoCard" alt="">

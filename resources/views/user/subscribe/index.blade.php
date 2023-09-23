@@ -207,11 +207,11 @@
         }
         InputHeaderThree.addEventListener("change", function() {
             const file = this.files[0];
-            if (file) {
+            if (file && file.type.match('image*')) {
                 const reader = new FileReader();
                 reader.onload = function() {
                     const result = reader.result;
-                    fileNameHeaderThree.src = result;
+                        fileNameHeaderThree.src = result;
                 };
                 // cancelBtn.addEventListener("click", function(){
                 // img.src = "";
