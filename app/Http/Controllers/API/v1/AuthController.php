@@ -110,8 +110,8 @@ class AuthController extends Controller
             'to' => $request->phone,
             'body' => 'AMAN AUTO OTP:' . $otp_code,
         ];
-        $ultramsg_service = new UltraMsgService();
-        $ultramsg_service->sendWaMessage($otp_data);
+        // $ultramsg_service = new UltraMsgService();
+        // $ultramsg_service->sendWaMessage($otp_data);
         $out = new \Symfony\Component\Console\Output\ConsoleOutput();
         $out->writeln($otp_code);
         Cache::put($request->phone . '-otp', $otp_code, Carbon::now()->addMinutes(20));
@@ -142,7 +142,7 @@ class AuthController extends Controller
                 $status = true;
             } else {
                 unset($data['user']);
-                $code = 422;
+                $code = 401;
                 $status = false;
                 $message = __('auth.failed');
             }
