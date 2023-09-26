@@ -27,6 +27,30 @@
 
 
 <body>
+    <!-- ------ Start HomePage -->
+    <div class="content-loading">
+        <div class="lodingLogo">
+            <span style="--i: 1"></span>
+            <span style="--i: 2"></span>
+            <span style="--i: 3"></span>
+            <span style="--i: 4"></span>
+            <span style="--i: 5"></span>
+            <span style="--i: 6"></span>
+            <span style="--i: 7"></span>
+        </div>
+        <svg>
+            <filter id="gooey">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" />
+                <feColorMatrix
+                    values="
+              1 0 0 0 0
+              0 1 0 0 0
+              0 0 1 0 0
+              0 0 0 20 -10
+            " />
+            </filter>
+        </svg>
+    </div>
     @include('layouts.user.header')
     <!-- ----- Start WapperAuto -->
     <section class="WapperAuto">
@@ -38,7 +62,7 @@
                     <label for="">
                         {{ __('backend.name') }}:
                     </label>
-                    <input type="text" name="name" />
+                    <input type="text" name="name" class="text-only" />
                 </div>
                 <div class="all-input-payment">
                     <label for="">
@@ -71,7 +95,7 @@
     <script src="{{ asset('assets/user/js/main.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
 
-    <script src="{{ asset('assets/user/js/master.js') }}"></script>
+    <script src="{{ asset('assets/user/js/master.js') }}?v=0.01"></script>
     {{-- Toastr js --}}
     <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
     {{-- tel input --}}

@@ -197,6 +197,7 @@ return [
         'mobile_img' => 'Mobile App Image',
         'img_vehicle' => 'Vehicle Registration Image',
         'user_id' => 'user',
+
     ],
 
 

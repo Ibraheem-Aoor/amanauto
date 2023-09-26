@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OfferCompanyController;
 use App\Http\Controllers\Admin\OfferController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\Admin\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -73,4 +74,10 @@ Route::group(['middleware' => 'admin', 'as' => 'admin.'], function () {
     // subscribtion routes
     Route::resource('subscribtions', UserController::class);
     Route::get('subscribtions-table-data', [UserController::class, 'getTableData'])->name('subscribtions.table_data');
+
+    // settings
+    Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
+        Route::get('index', [SettingController::class, 'index'])->name('index');
+        Route::post('update', [SettingController::class, 'update'])->name('update');
+    });
 });

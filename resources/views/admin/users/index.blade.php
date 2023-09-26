@@ -122,13 +122,13 @@
                 {
                     data: 'subscription',
                     name: 'subscription',
-                    searchable: true,
+                    searchable: false,
                     orderable: true,
                 },
                 {
                     data: 'current_club',
                     name: 'current_club',
-                    searchable: true,
+                    searchable: false,
                     orderable: true,
                 },
                 {

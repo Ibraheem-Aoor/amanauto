@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\v1;
 
 use App\Enums\ClubStatus;
 use App\Enums\CommonQuestionStatus;
+use App\Enums\OfferStatus;
 use App\Enums\ServiceStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\v1\ChangePasswordRequest;
@@ -11,12 +12,14 @@ use App\Http\Requests\API\v1\LoginRequest;
 use App\Http\Requests\API\v1\OtpRequest;
 use App\Http\Requests\API\v1\OtpVerfiyRequest;
 use App\Http\Requests\API\v1\RegisterRequest;
-use App\Http\Resources\Club\AllClubResource;
 use App\Http\Resources\Club\ClubResource;
 use App\Http\Resources\CommonQuestionResource;
+use App\Http\Resources\Offer\AllOffersResource;
+use App\Http\Resources\Offer\OfferResource;
 use App\Http\Resources\ServiceResource;
 use App\Models\Club;
 use App\Models\CommonQuestion;
+use App\Models\Offer;
 use App\Models\Service;
 use App\Models\User;
 use App\Services\UltraMsgService;
@@ -27,19 +30,23 @@ use Illuminate\Support\Facades\Hash;
 use Throwable;
 use Str;
 
-class ClubController extends Controller
+class OfferController extends Controller
 {
 
     /**
-     * retrive all active clubs
+     * retrive all active offers
      */
     public function index()
     {
         try {
-            $data['clubs'] = AllClubResource::collection(Club::query()->status(ClubStatus::ACTIVE->value)->get());
+            $user = getAuthUser('sanctum');
+            $offers = $user->offers()->status(OfferStatus::ACTIVE->value)->with('company')->paginate(1);
+            $data['offers'] = AllOffersResource::collection($offers);
+            $data['links'] = pagination($offers);
             $message = __('general.response_messages.success');
             $response = generateApiResoponse(true, 201, $data, $message);
         } catch (Throwable $e) {
+            dd($e);
             $data = [];
             $message = __('general.response_messages.error');
             $code = 500;
@@ -49,16 +56,16 @@ class ClubController extends Controller
     }
 
     /**
-     * return   Club Details
+     * return  Offer Details
      */
     public function show(Request $request, $id)
     {
         try {
-            $relations = $request->has('relations') && $request->query('relations') != null ? explode(',', $request->query('relations', null)) : [];
-            $data['club'] = new ClubResource(Club::query()->with($relations)->find(decrypt($id)));
+            $data['offer'] = new OfferResource(Offer::query()->with(['company'])->find(decrypt($id)));
             $message = __('general.response_messages.success');
             $response = generateApiResoponse(true, 201, $data, $message);
         } catch (Throwable $e) {
+            dd($e);
             $data = [];
             $message = __('general.response_messages.error');
             $code = 500;

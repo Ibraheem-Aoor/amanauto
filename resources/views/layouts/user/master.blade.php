@@ -14,11 +14,11 @@
         rel="stylesheet" />
 
     <link rel="stylesheet" href="{{ asset('assets/user/css/bootstrap.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/user/css/style.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/user/css/style.css') }}?v=0.02" />
     @if (app()->getLocale() == 'ar')
         <link rel="stylesheet" href="{{ asset('assets/user/css/arbic.css') }}" />
     @endif
-    <link rel="stylesheet" href="{{ asset('assets/user/css/media.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/user/css/media.css') }}?v=0.01" />
     <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
 
 
@@ -59,10 +59,16 @@
 
     <script src="{{ asset('assets/user/js/jquery-3.5.1.min.js') }}"></script>
     <script src="{{ asset('assets/user/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/user/js/main.js') }}"></script>
+    <script src="{{ asset('assets/user/js/main.js') }}?v=0.01"></script>
     <script src="{{ asset('assets/user/js/master.js') }}"></script>
     <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
-
+    <script>
+        @if (Session::has('error'))
+            toastr.error("{{ Session::get('error') }}");
+        @elseif (Session::has('success'))
+            toastr.success("{{ Session::get('success') }}");
+        @endif
+    </script>
     @stack('js')
 </body>
 

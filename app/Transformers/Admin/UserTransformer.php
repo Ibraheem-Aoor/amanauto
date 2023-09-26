@@ -20,7 +20,6 @@ class UserTransformer extends TransformerAbstract
     public function transform($model): array
     {
         $current_subscribed_club = $model->getLastSubscribedClub();
-
         return [
             'name' => $model->name,
             'ams' => $model->ams,

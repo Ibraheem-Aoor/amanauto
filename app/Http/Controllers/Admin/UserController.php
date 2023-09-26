@@ -128,6 +128,16 @@ class UserController extends Controller
         $query = $this->model::query();
         return DataTables::eloquent($query)
             ->setTransformer(UserTransformer::class)
+            ->orderColumn('subscription' , function($query   , $order){
+                $query->whereHas('subscriptions')
+                ->orWhereDoesntHave('subscriptions')
+                ->orderBy('club_id' ,$order);
+            })
+            ->orderColumn('current_club' , function($query   , $order){
+                $query->whereHas('subscriptions')
+                ->orWhereDoesntHave('subscriptions')
+                ->orderBy('club_id' ,$order);
+            })
             ->make(true);
     }
 

@@ -11,6 +11,7 @@ use App\Models\Service;
 use App\Transformers\Admin\CommonQuestionTransformer;
 use App\Transformers\Admin\CrudTransfromer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 use Yajra\DataTables\Facades\DataTables;
@@ -67,6 +68,7 @@ class CommonQuestionController extends Controller
                 ]
             );
             DB::commit();
+            Artisan::call('cache:clear');
             $response = generateResponse(status: true, modal_to_hide: '#create-edit-modal', table_reload: true, table: '#myTable', message: __('general.response_messages.create_success'));
         } catch (Throwable $e) {
             $response = generateResponse(status: false);
@@ -101,6 +103,7 @@ class CommonQuestionController extends Controller
                 ]
             );
             DB::commit();
+            Artisan::call('cache:clear');
             $response = generateResponse(status: true, modal_to_hide: '#create-edit-modal', table_reload: true, table: '#myTable', message: __('general.response_messages.create_success'));
         } catch (Throwable $e) {
             dd($e);
@@ -122,6 +125,7 @@ class CommonQuestionController extends Controller
             $target = $this->model->findOrFail($id);
             $target->delete();
             $response = generateResponse(status: true, is_deleted: true, row_to_delete: $id, message: __('general.response_messages.deleted_successflly'));
+            Artisan::call('cache:clear');
         } catch (Throwable $e) {
             $response = generateResponse(status: false);
         }

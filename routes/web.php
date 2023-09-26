@@ -43,6 +43,9 @@ Route::group(['prefix' => 'club', 'as' => 'clubs.'], function () {
     Route::get('show/{id}', [ClubController::class, 'show'])->name('show');
 });
 
+// terms file downlaod
+Route::get('terms-download' , [HomeController::class, 'downloadTermsFile'])->name('terms.dowmload');
+
 
 // auth user routes
 Route::group(['middleware' => 'auth'], function () {
@@ -58,7 +61,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'offers', 'as' => 'offers.'], function () {
         Route::get('', [OfferController::class, 'index'])->name('index');
         Route::get('show/{id}', [OfferController::class, 'show'])->name('show');
-        Route::get('pdf/{id}', [OfferController::class, 'downloadPdf'])->name('pdf_download');
+        Route::get('pdf/{id}', [OfferController::class, 'downloadPdf'])->name('pdf_download')->withoutMiddleware('auth');
     });
 
     // profile

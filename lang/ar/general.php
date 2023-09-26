@@ -106,7 +106,10 @@ return [
     'notifications' => 'الإشعارات',
     'help_center' => 'مركز المساعدة',
     'info' => 'معلومات',
-    'welcome_back'  => 'أهلا بعودتك',
+    'welcome_back' => 'أهلا بعودتك',
     'welcome_to_site' => 'أهلا بك في أمان أوتو',
-
+    'whatsapp_number' => 'رقم الواتساب',
+    'terms_file' => 'ملف الشروط والاحكام',
+    'invoice_system_status' => 'نفعيل نظام التقسيط',
+    'uploaded_file'     =>  'الملف المرفق',
 ];

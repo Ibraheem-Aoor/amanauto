@@ -6,6 +6,11 @@
         <!-- -- Start Section Profile -->
         <section class="sec-profile">
             <div class="container">
+                <div class="menu-cads">
+                    <div class="icon-toggles">
+                        <span class="bx bx-menu"></span>
+                    </div>
+                </div>
                 <div class="row">
                     @include('user.profile.sidebar')
                     <div class="col-sm-12 col-md-7 col-lg-8 customeRowProfiles">

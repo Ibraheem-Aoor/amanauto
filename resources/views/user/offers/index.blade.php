@@ -37,7 +37,7 @@
                                         </h5>
                                     </article>
                                     <div class="box-download"
-                                        onclick='window.location.href="{{ route("offers.pdf_download", $offer->getEncryptedId()) }}"'>
+                                        onclick='window.location.href="{{ route("offers.pdf_download", ["id" => $offer->getEncryptedId() , "preview_type" => "download"]) }}"'>
                                         <img src="{{ asset('assets/user/img/Path 13351.svg') }}" alt="">
                                     </div>
                                 </article>

@@ -819,11 +819,6 @@ body,html{
     align-items: center;
     margin: 12px 0px;
 }
-
-.custome-flex-offers:hover
-{
-    cursor: pointer !important;
-}
 .custome-flex-offers h5{
     color: #1DC1DD;
     font-size: 22px;
@@ -1334,4 +1329,19 @@ body,html{
     margin: 12px auto;
     display: block;
   }
+  .icon-toggles{
+    width: 40px;
+    height: 40px;
+    background: #1DC1DD;
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px auto;
+    cursor: pointer;
 
+  }
+  .menu-cads{
+    display: none;
+  }

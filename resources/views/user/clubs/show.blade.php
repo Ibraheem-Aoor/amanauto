@@ -1,5 +1,12 @@
 @extends('layouts.user.master')
 @section('page', $club->name)
+@push('css')
+    <style>
+        .card-donwload a {
+            text-decoration: none !important;
+        }
+    </style>
+@endpush
 @section('content')
     <!-- --- Start Main -->
     <main id="Main">
@@ -64,10 +71,13 @@
                             <h6>
                                 {{ __('general.policy_and_terms') }}
                             </h6>
-                            <span class="bx bx-cloud-download"></span>
+                            <a href="{{ route('terms.dowmload') }}">
+                                <span class="bx bx-cloud-download"></span>
+                            </a>
                         </div>
                         <div class="but-subscribe">
-                            <button type="button" onclick='window.location.href="{{ route("subscribe.index" , $club->getEncryptedId()) }}"'>{{ getClubSubscribeText($club) }}</button>
+                            <button type="button"
+                                onclick='window.location.href="{{ route('subscribe.index', $club->getEncryptedId()) }}"'>{{ getClubSubscribeText($club) }}</button>
                         </div>
                     @endif
                 </div>

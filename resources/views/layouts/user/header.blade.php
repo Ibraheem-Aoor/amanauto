@@ -69,8 +69,8 @@
             <span class="">{{ __('general.clubs') }}</span>
         </a>
         <!-- ---- -->
-        <a href="profile.html">
-            <i class="bx bx-user" onclick='window.location.href="{{ route('profile.index') }}"'></i>
+        <a href="{{ route('profile.index') }}">
+            <i class="bx bx-user"></i>
             <span class="">{{ __('general.profile') }}</span>
         </a>
     </div>
