@@ -9,6 +9,9 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Crypt;
+use Laravel\Sanctum\PersonalAccessToken;
+use Illuminate\Support\Facades\Cache;
 use Throwable;
 use \Moyasar\Providers\PaymentService as MoyasarPaymentLibrary;
 
@@ -90,7 +93,7 @@ class MoyasarPaymentService
             'amount' => calcTotalAmountWithDiscount($this->club->getTotalPrice(), $request->coupon_code),
             'currency' => 'SAR',
             'description' => "AMANAUTO SUBSCRIPTION {$this->club->translate('en')->name} X 1",
-            'callback_url' => route('subscribe.payment.credit_card_callback', ['club_id' => $this->club->getEncryptedId()]),
+            'callback_url' => str_starts_with($request->path(), 'api') ? route('api.payment.credit_card_callback', ['club_id' => $this->club->getEncryptedId(),'auth_token'=>Crypt::encryptString(str_replace('Bearer ','', $request->header('Authorization')))]) : route('subscribe.payment.credit_card_callback', ['club_id' => $this->club->getEncryptedId()]) ,
             'source' => [
                 'type' => 'creditcard',
                 'name' => $request->user()->name,
@@ -110,6 +113,17 @@ class MoyasarPaymentService
 
     public function logPayment($payment, $subscription_id, $payment_method)
     {
+
+        if(str_starts_with(request()->path(), 'api')){
+            $decrypted = Crypt::decryptString(urldecode(request()->auth_token));
+            $user=PersonalAccessToken::findToken($decrypted);
+            $user_id=$user->tokenable->id;
+
+        }
+        else{
+            $user_id=getAuthUser('web')->id;
+        }
+
         Payment::query()->create([
             'payment_id' => $payment->id,
             'status' => $payment->status,
@@ -118,9 +132,12 @@ class MoyasarPaymentService
             'description' => $payment->description,
             'metadata' => json_encode($payment->metadata),
             'subscription_id' => $subscription_id,
-            'user_id' => getAuthUser('web')->id,
+            'user_id' =>$user_id ,
         ]);
         $this->logCouponUsageIfExists($payment);
+
+        $name="subscriptions/{$user_id}";
+        Cache::forget('img_vehicle_' . $name);
     }
 
 
