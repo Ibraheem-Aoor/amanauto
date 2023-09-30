@@ -26,7 +26,7 @@ class UserTransformer extends TransformerAbstract
             'ams' => $model->ams,
             'phone' => $model->phone,
             'subscription' => $current_subscribed_club != null ? __('backend.subscribed') : __('backend.unsubscribed'),
-            'current_club' => $model->club() != null ? $model->club()->name : __('backend.unsubscribed'),
+            'current_club' => $model->club != null ? $model->club->name : __('backend.unsubscribed'),
             'subscribtion_type' => $this->getSubscribtionTypeBadge($current_subscribed_club),
             'created_at' => $model->created_at->format('Y-m-d H:i:s'),
             'action' => $this->getActionButtons($model, $current_subscribed_club),
