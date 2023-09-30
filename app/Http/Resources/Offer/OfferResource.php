@@ -16,7 +16,7 @@ class OfferResource extends JsonResource
     public function toArray($request)
     {
         $user = getAuthUser('sanctum');
-        $qrcode = QrCode::size(150)->generate(route('offers.pdf_download', ['id' => $this->getEncryptedId(), 'preview_type' => 'stream' , 'guard'   =>  'sanctum']));
+        $qrcode = QrCode::size(150)->generate(route('offers.pdf_download', ['id' => $this->getEncryptedId(), 'preview_type' => 'stream', 'guard' => 'sanctum']));
         $code = (string) $qrcode;
         $qr_code = substr($code, 38);
         return [
@@ -26,8 +26,9 @@ class OfferResource extends JsonResource
             'vin' => $user->vin,
             'company' => $this->company->name,
             'end_date' => $this->end_date,
-            'qr_code' =>  $qr_code,
+            'qr_code' => json_encode(base64_encode($qr_code)),
             'description' => $this->description,
+            'color' => $user->card_color,
         ];
     }
 }

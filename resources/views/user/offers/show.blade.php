@@ -11,8 +11,7 @@
                         {!! $qr_code !!}
                     </div>
                     <img src="{{ asset('assets/user/img/Group 4927.svg') }}" class="logo-tops" alt="">
-                    <div class="bg-bule-card-price ">
-
+                    <div class="bg-bule-card-price" style="background: {{ $user->card_color }} !important;">
                         <div class="info-card-clubs">
                             <h6>
                                 {{ __('general.amanauto_ams') }}: <span>{{ $user->ams }}</span>

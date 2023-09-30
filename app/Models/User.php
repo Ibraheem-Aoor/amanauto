@@ -87,5 +87,8 @@ class User extends Authenticatable
         return $this->getCurrentSubscription()?->vin ?? ' --- ';
     }
 
-    
+    public function getCardColorAttribute()
+    {
+        return $this->club?->color ?? '#1DC1DD';
+    }
 }
