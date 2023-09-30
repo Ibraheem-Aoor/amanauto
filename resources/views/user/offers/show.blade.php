@@ -18,7 +18,7 @@
                                 {{ __('general.amanauto_ams') }}: <span>{{ $user->ams }}</span>
                             </h6>
                             <h6>
-                                {{ __('general.vin') }} : <span>WBAYG01256EDE597</span>
+                                {{ __('general.vin') }} : <span>{{ $user->vin }}</span>
                             </h6>
                             <h6>
                                 {{ __('backend.end_date') }} : <span> {{ $offer->end_date }}</span>

@@ -68,7 +68,7 @@ class User extends Authenticatable
     }
     ######## END RELATION #########
 
-    public function getLastSubscribedClub()
+    public function getCurrentSubscription()
     {
         return $this->subscriptions()->latest()->first();
     }
@@ -76,8 +76,14 @@ class User extends Authenticatable
 
     public function club()
     {
-        return $this->getLastSubscribedClub()?->club;
+        return $this->getCurrentSubscription()?->club;
     }
 
+
+
+    public function getVinAttribute()
+    {
+        return $this->getCurrentSubscription()?->vin ?? ' --- ';
+    }
 
 }

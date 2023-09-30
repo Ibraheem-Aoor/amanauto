@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Club extends Model implements TranslatableContract
 {
@@ -39,6 +40,10 @@ class Club extends Model implements TranslatableContract
     public function services(): BelongsToMany
     {
         return $this->belongsToMany(Service::class, 'club_services')->withTimestamps();
+    }
+    public function subscriptions(): HasMany
+    {
+        return $this->hasMany(Subscription::class, 'club_id');
     }
     ######### END RELATIONS ##########
 
@@ -110,6 +115,6 @@ class Club extends Model implements TranslatableContract
      */
     public function getTotalVatText()
     {
-        return __('general.total_with_vat') . ' '. getFormatedClubVat($this);
+        return __('general.total_with_vat') . ' ' . getFormatedClubVat($this);
     }
 }
