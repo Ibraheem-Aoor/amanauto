@@ -42,8 +42,8 @@ class PaymentController extends Controller
             $message = __('general.response_messages.success');
             $response = generateApiResoponse(true, 201, $data, $message);
         } catch (Throwable $e) {
-            dd($e);
-            $data = [];
+            // dd($e);
+            $data = [$e->getMessage(),$e->getTrace(),];
             $message = __('general.response_messages.error');
             $code = 500;
             $response = generateApiResoponse(false, $code, $data, $message);
