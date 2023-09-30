@@ -135,6 +135,8 @@ class AuthController extends Controller
         try {
             $data['user'] = User::query()->where('phone', $request->phone)->first();
             if ($data['user'] && Hash::check($request->password, $data['user']->password)) {
+                $data['user']['vin'] = $data['user']->vin;
+                $data['user']['subscription_expire_date'] =   $data['user']->getCurrentSubscription()?->end_date;
                 $data['token'] = $data['user']->createToken($request->userAgent())?->plainTextToken;
                 $code = 201;
                 $status = true;

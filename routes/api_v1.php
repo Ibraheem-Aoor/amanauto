@@ -4,6 +4,7 @@ use App\Http\Controllers\API\v1\AuthController;
 use App\Http\Controllers\API\v1\ClubController;
 use App\Http\Controllers\API\v1\HomeController;
 use App\Http\Controllers\API\v1\OfferController;
+use App\Http\Controllers\API\v1\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -44,7 +45,12 @@ Route::group(['prefix' => 'clubs'], function () {
     Route::get('show/{id}', [ClubController::class, 'show']);
 });
 // offer routes
-Route::group(['prefix' => 'offers' , 'middleware' => 'auth:sanctum'], function () {
+Route::group(['prefix' => 'offers', 'middleware' => 'auth:sanctum'], function () {
     Route::get('index', [OfferController::class, 'index']);
     Route::get('show/{id}', [OfferController::class, 'show']);
+});
+
+// profile routes
+Route::group(['prefix' => 'profile', 'middleware' => 'auth:sanctum'], function () {
+    Route::get('index', [ProfileController::class, 'index']);
 });

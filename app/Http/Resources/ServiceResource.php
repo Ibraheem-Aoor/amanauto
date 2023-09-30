@@ -16,8 +16,9 @@ class ServiceResource extends JsonResource
     {
         $locale = app()->getLocale();
         return [
-            'name'  =>  $this->translate($locale)->name,
-            'img'    =>  url(getImageUrl($this->mobile_img)),
+            'id' => $this->getEncryptedId(),
+            'name' => $this->translate($locale)->name,
+            'img' => url(getImageUrl($this->mobile_img)),
         ];
     }
 }
