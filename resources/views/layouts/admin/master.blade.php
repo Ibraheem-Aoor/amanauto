@@ -164,6 +164,13 @@
     </script>
 
     <script src="{{ asset('dist/js/custom/master.js') }}"></script>
+    <script>
+        @if (Session::has('error'))
+            toastr.error("{{ Session::get('error') }}");
+        @elseif (Session::has('success'))
+            toastr.success("{{ Session::get('success') }}");
+        @endif
+    </script>
     @if (app()->getLocale() == 'ar')
         <script src="{{ asset('dist/js/datatable-ar.js') }}"></script>
     @else

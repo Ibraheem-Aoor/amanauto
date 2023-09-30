@@ -23,7 +23,7 @@ class OfferResource extends JsonResource
             'id' => $this->getEncryptedId(),
             'name' => $this->name,
             'ams' => $user->ams,
-            'vin' => 'WBAYG01256EDE597',
+            'vin' => $user->vin,
             'company' => $this->company->name,
             'end_date' => $this->end_date,
             'qr_code' =>  $qr_code,

@@ -63,7 +63,7 @@ class SubscriptionService
      */
     protected function getUserSubscriptionType()
     {
-        $last_subscribed_club = $this->user->getLastSubscribedClub();
+        $last_subscribed_club = $this->user->getCurrentSubscription();
         if ($last_subscribed_club == null) {
             return SubscriptionType::SUBSCRIBE->value;
         } elseif ($last_subscribed_club->price > $this->club->price) {

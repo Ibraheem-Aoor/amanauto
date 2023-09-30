@@ -56,6 +56,18 @@ function getImageUrl($image)
 }
 
 /**
+ * Download File From Storage.
+ */
+function downloadFile($path)
+{
+    $path = str_replace('storage/' , '' , $path);
+    $exists = Storage::disk('public')->exists($path);
+    if ($exists) {
+        return Storage::disk('public')->download($path);
+    }
+}
+
+/**
  * Generate Response
  * @param  bool $status
  * @param string $redirect

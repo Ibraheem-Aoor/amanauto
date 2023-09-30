@@ -73,6 +73,7 @@ Route::group(['middleware' => 'admin', 'as' => 'admin.'], function () {
 
     // subscribtion routes
     Route::resource('subscribtions', UserController::class);
+    Route::post('subscribtions-confirm', [UserController::class , 'confirmSubscribtion'])->name('subscribtions.confirm');
     Route::get('subscribtions-table-data', [UserController::class, 'getTableData'])->name('subscribtions.table_data');
 
     // settings
@@ -80,4 +81,7 @@ Route::group(['middleware' => 'admin', 'as' => 'admin.'], function () {
         Route::get('index', [SettingController::class, 'index'])->name('index');
         Route::post('update', [SettingController::class, 'update'])->name('update');
     });
+
+    // downlod file from storage.
+    Route::get('download-file'  , [DashboardController::class , 'downloadFile'])->name('file.download');
 });

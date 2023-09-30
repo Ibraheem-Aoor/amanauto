@@ -34,6 +34,12 @@ class Payment extends Model
     {
         return $this->belongsTo(Club::class, 'product_id');
     }
+
+
+    public function subscriptions()
+    {
+        return $this->belongsTo(Subscription::class , 'subscription_id');
+    }
     ######## END  RELATION #########
 
 }

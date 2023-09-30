@@ -214,4 +214,8 @@ return [
     'subscription_status' => 'Subscribtion Status',
     'current_club' => 'Current Club',
     'general_settings' => 'Geenral Settings',
+    'club_being_subscribed' => 'Subscribed Club',
+    'subscribtion_total_amount' => 'Subscribtion Total Price',
+    'confirm_vin' => 'Confirm VIN',
+    'attached_file' => 'Attached File',
 ];

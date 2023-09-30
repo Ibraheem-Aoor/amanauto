@@ -113,6 +113,8 @@ return [
     'whatsapp_number' => 'Whatsapp Number',
     'terms_file' => 'Terms & Conditions File',
     'invoice_system_status' => 'Enable Invoice System',
-    'uploaded_file'     =>  'Uploaded File',
+    'uploaded_file' => 'Uploaded File',
+    'subscribtion_type' => 'Subscribtion Type',
+
 
 ];

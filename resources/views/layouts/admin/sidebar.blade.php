@@ -98,7 +98,7 @@
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a href="#" class="nav-link">
+                              <a  href="{{ route('admin.users.index' , ['view_subscriptions' => true]) }}"  class="nav-link {{ areActiveRoutes(['admin.users.index']) }}">
                                   <i class="far fa-circle nav-icon"></i>
                                   <p>{{ __('backend.users.all_subscribers') }}</p>
                               </a>

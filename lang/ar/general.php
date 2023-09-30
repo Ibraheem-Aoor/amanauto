@@ -91,7 +91,7 @@ return [
     'confirm_delete_offer_user' => 'هل انت متأكد من ازالة العرض للمستخدم : ',
     'no_offers_found' => ' لا يوجد عروض حاليا.. يرجى العودة في وقت لاحق',
     'amanauto_ams' => 'رقم العضوية',
-    'vin' => 'معرف المركبة',
+    'vin' => 'رقم هيكل السيارة',
     'offers_for_you' => 'عروض خصيصا لك',
     'end_date' => 'تاريخ الانتهاء',
     'profile' => 'الملف الشخصي',
@@ -112,4 +112,5 @@ return [
     'terms_file' => 'ملف الشروط والاحكام',
     'invoice_system_status' => 'نفعيل نظام التقسيط',
     'uploaded_file'     =>  'الملف المرفق',
+    'subscribtion_type'         =>  'نوع الاشتراك',
 ];

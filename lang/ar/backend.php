@@ -177,6 +177,10 @@ return [
     'subscription_status' => 'حالة الاشتراك',
     'current_club' => 'الباقة  الحالية',
     'general_settings' => 'الإعدادات العامة',
+    'club_being_subscribed' => 'الباقة التي تم الاشتراك بها',
+    'subscribtion_total_amount' => 'سعر الاشتراك',
+    'confirm_vin' => 'تأكيد رقم هيكل السيارة (VIN)',
+    'attached_file' => 'الملف المرفق',
 
 
 ];
