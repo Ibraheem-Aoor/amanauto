@@ -6,10 +6,13 @@ use App\Enums\SubscriptionStatus;
 use App\Enums\SubscriptionType;
 use App\Models\Club;
 use App\Models\User;
+use Laravel\Sanctum\PersonalAccessToken;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Cache;
 use Throwable;
 
 class SubscriptionService
@@ -20,7 +23,15 @@ class SubscriptionService
 
     public function __construct($club_id)
     {
-        $this->user = getAuthUser('web');
+        if(str_starts_with(request()->path(), 'api')){
+            $decrypted = Crypt::decryptString(urldecode(request()->auth_token));
+            $token = PersonalAccessToken::findToken($decrypted);
+            $this->user=$token->tokenable;
+        }
+        else{
+            $this->user =  getAuthUser('web');
+        }
+
         $this->club = Club::query()->findOrFail(decrypt($club_id));
     }
 
@@ -44,7 +55,9 @@ class SubscriptionService
      */
     protected function LogUserClubSubscription()
     {
-        $img_vehicle = session()->get('img_vehicle');
+        $user_id=$this->user->id;
+        $name="subscriptions/{$user_id}";
+        $img_vehicle=Cache::get('img_vehicle_' . $name);
         $user_subscription_type = $this->getUserSubscriptionType();
         return Subscription::query()->create([
             'user_id' => $this->user->id,

@@ -17,8 +17,8 @@ class OfferResource extends JsonResource
     {
         $user = getAuthUser('sanctum');
         $qrcode = QrCode::size(150)->generate(route('offers.pdf_download', ['id' => $this->getEncryptedId(), 'preview_type' => 'stream', 'guard' => 'sanctum']));
-        $code = (string) $qrcode;
-        $qr_code = substr($code, 38);
+        // $code = (string) $qrcode;
+        // $qr_code = substr($code, 38);
         return [
             'id' => $this->getEncryptedId(),
             'name' => $this->name,
@@ -26,7 +26,7 @@ class OfferResource extends JsonResource
             'vin' => $user->vin,
             'company' => $this->company->name,
             'end_date' => $this->end_date,
-            'qr_code' => json_encode(base64_encode($qr_code)),
+            'qr_code' => base64_encode($qrcode),
             'description' => $this->description,
             'color' => $user->card_color,
         ];

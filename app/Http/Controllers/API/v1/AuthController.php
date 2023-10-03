@@ -53,6 +53,7 @@ class AuthController extends Controller
                 if ($request->otp == $otp) {
                     $user_data = Cache::get('phone-user-' . $request->phone);
                     $data['user'] = $this->createUser($user_data ?? []);
+                    $data['user']['has_subscription'] = !is_null($data['user']->getCurrentSubscription());
                     $data['token'] = $data['user']->createToken($request->userAgent())?->plainTextToken;
                     $code = 201;
                     $status = true;
@@ -139,9 +140,10 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         try {
-            $data['user'] = User::query()->where('phone', $request->phone)->first();
+            $data['user'] = User::query()->where('phone', $request->phone)->with('club')->first();
             if ($data['user'] && Hash::check($request->password, $data['user']->password)) {
                 $data['user']['vin'] = $data['user']->vin;
+                $data['user']['has_subscription'] = !is_null($data['user']->getCurrentSubscription());
                 $data['user']['subscription_expire_date'] =   $data['user']->getCurrentSubscription()?->end_date;
                 $data['token'] = $data['user']->createToken($request->userAgent())?->plainTextToken;
                 $code = 201;

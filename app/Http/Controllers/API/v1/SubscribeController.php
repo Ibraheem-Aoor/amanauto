@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\API\v1\CheckIsValidCouponCodeRequest;
 
 use App\Models\Coupon;
+use Throwable;
 
 class SubscribeController extends Controller
 {
