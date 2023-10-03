@@ -3,8 +3,10 @@
 use App\Http\Controllers\API\v1\AuthController;
 use App\Http\Controllers\API\v1\ClubController;
 use App\Http\Controllers\API\v1\HomeController;
+use App\Http\Controllers\API\v1\PaymentController;
 use App\Http\Controllers\API\v1\OfferController;
 use App\Http\Controllers\API\v1\ProfileController;
+use App\Http\Controllers\API\v1\SubscribeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -43,6 +45,11 @@ Route::get('home', [HomeController::class, 'index']);
 Route::group(['prefix' => 'clubs'], function () {
     Route::get('index', [ClubController::class, 'index']);
     Route::get('show/{id}', [ClubController::class, 'show']);
+    Route::post('check-coupon-code', [SubscribeController::class, 'checkCouponCode'])->middleware('auth:sanctum');
+    Route::post('/{club_id}/payment/make',[PaymentController::class,'makePayment'])->middleware('auth:sanctum');
+    Route::get('/payment/cc/callback', [PaymentController::class, 'paymentCreditCardCallback'])->middleware('auth:sanctum');
+
+
 });
 // offer routes
 Route::group(['prefix' => 'offers', 'middleware' => 'auth:sanctum'], function () {

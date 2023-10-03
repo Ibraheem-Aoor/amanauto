@@ -151,8 +151,8 @@ if (!function_exists('makeHash')) {
 
 
 /**
- * Hash the given value
- * @param mixed $value
+ * get the auth user of a given guard
+ * @param mixed $guard
  * @return mixed
  */
 if (!function_exists('getAuthUser')) {
@@ -299,7 +299,7 @@ if (!function_exists('isValidCouponCode')) {
         $coupon = Coupon::where('code', $coupon_code)->first();
         $coupon_slot_avilable = CouponUsage::query()->where('coupon_id', $coupon->id)->count() < $coupon->times;
         $coupon_date_valid = $coupon->start_date <= Carbon::today()->toDateString() && $coupon->end_date > Carbon::today()->toDateString();
-        $code_not_used_by_user = !CouponUsage::query()->where('user_id', getAuthUser('web')->id)->where('coupon_id', $coupon->id)->exists();
+        $code_not_used_by_user = !CouponUsage::query()->where('user_id', auth()->user()?->id)->where('coupon_id', $coupon->id)->exists();
         $is_valid = $coupon != null && $code_not_used_by_user && $coupon_slot_avilable && $coupon_date_valid;
         return $is_valid;
     }
@@ -434,3 +434,15 @@ if (!function_exists('getSetting')) {
         return $setting == null ? $default : $setting->value;
     }
 }
+
+
+
+
+if (!function_exists('getAppEnv')) {
+    function getAppEnv()
+    {
+        return env('APP_ENV', 'local');
+    }
+}
+
+

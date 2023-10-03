@@ -93,7 +93,7 @@ class MoyasarPaymentService
             'callback_url' => route('subscribe.payment.credit_card_callback', ['club_id' => $this->club->getEncryptedId()]),
             'source' => [
                 'type' => 'creditcard',
-                'name' => getAuthUser()->name,
+                'name' => $request->user()->name,
                 'number' => $request->card_number,
                 'cvc' => $request->cvc,
                 'month' => $request->expiration_month,

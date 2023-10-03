@@ -105,13 +105,19 @@ class AuthController extends Controller
      */
     protected function sendOtpCode($request)
     {
-        $otp_code = generateRandomDigits(4);
+        $otp_code = generateRandomDigits(5);
         $otp_data = [
             'to' => $request->phone,
             'body' => 'AMAN AUTO OTP:' . $otp_code,
         ];
-        $ultramsg_service = new UltraMsgService();
-        $ultramsg_service->sendWaMessage($otp_data);
+        if(getAppEnv() != 'local')
+        {
+            $ultramsg_service = new UltraMsgService();
+            $ultramsg_service->sendWaMessage($otp_data);
+        }else{
+            $out = new \Symfony\Component\Console\Output\ConsoleOutput();
+            $out->writeln($otp_code);
+        }
         Cache::put($request->phone . '-otp', $otp_code, Carbon::now()->addMinutes(20));
     }
 
@@ -142,7 +148,7 @@ class AuthController extends Controller
                 $status = true;
             } else {
                 unset($data['user']);
-                $code = 422;
+                $code = 401;
                 $status = false;
                 $message = __('auth.failed');
             }
