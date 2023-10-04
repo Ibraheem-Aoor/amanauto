@@ -6,7 +6,7 @@ $(document).ready(function () {
         var btn = e.relatedTarget;
         var deleteUrl = btn.getAttribute('data-delete-url');
         var message = btn.getAttribute('data-message');
-        var name = btn.getAttribute('data-name');
+        var name = btn.getAttribute('data-name') ?? '';
         var modalForm = $(this).find('form[name="confirm-delete-form"]');
         modalForm.attr('action', deleteUrl);
         modalForm.attr('method', 'DELETE');

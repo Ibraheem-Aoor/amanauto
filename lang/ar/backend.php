@@ -19,7 +19,6 @@ return [
     'phone' => 'رقم الجوال',
     'subscribtion_date' => 'تاريخ الاشتراك',
     'subscribers' => 'المشتركين',
-    'pages' => 'الصفحات',
     'settings' => 'الإعدادات',
     'privacy' => 'سياسة الخصوصية',
     'select_all' => 'تحديد الكل',
@@ -182,5 +181,15 @@ return [
     'confirm_vin' => 'تأكيد رقم هيكل السيارة (VIN)',
     'attached_file' => 'الملف المرفق',
 
+    'content_ar' => 'المحتوى باللغة العربية',
+    'content_en' => 'المحتوى باللغة الإنجليزية',
+    'pages' => [
+        'pages' => 'الصفحات',
+        'about_us' => 'من نحن',
+    ],
+    'help_center' => 'مركز المساعدة',
+    'subjects' => 'المواضيع',
+    'subject_edit' => 'تعديل الموضوع',
+    'contact_reqeusts' => 'رسائل الدعم',
 
 ];

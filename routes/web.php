@@ -44,11 +44,13 @@ Route::group(['prefix' => 'club', 'as' => 'clubs.'], function () {
 });
 
 // terms file downlaod
-Route::get('terms-download' , [HomeController::class, 'downloadTermsFile'])->name('terms.dowmload');
+Route::get('terms-download', [HomeController::class, 'downloadTermsFile'])->name('terms.dowmload');
 
 
+Route::get('about-us', [HomeController::class, 'aboutUs'])->name('about_us');
 // auth user routes
 Route::group(['middleware' => 'auth'], function () {
+
     // subscribe
     Route::group(['prefix' => 'subscribe', 'as' => 'subscribe.'], function () {
         Route::get('{club}/club', [SubscribeController::class, 'index'])->name('index');
@@ -67,5 +69,10 @@ Route::group(['middleware' => 'auth'], function () {
     // profile
     Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
         Route::get('', [ProfileController::class, 'index'])->name('index');
+        Route::get('shoiw', [ProfileController::class, 'show'])->name('show');
     });
+
+    Route::get('help-center' , [HomeController::class, 'showCotnactUs'])->name('contact.index');
+    Route::post('help-center/submit' , [HomeController::class, 'submit'])->name('contact.submit');
+    Route::get('faqs' , [HomeController::class , 'showFaqs'])->name('faqs.index');
 });

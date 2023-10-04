@@ -13,8 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('club_id')->nullable()->constrained('clubs')->references('id')->nullOnDelete();
+        Schema::create('pages', function (Blueprint $table) {
+            $table->id();
+            $table->string('type');
+            $table->string('slug')->nullable();
+            $table->foreignId('added_by')->nullable()->constrained('admins')->references('id')->nullOnDelete();
+            $table->timestamps();
         });
     }
 
@@ -25,8 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['club_id']);
-        });
+        Schema::dropIfExists('pages');
     }
 };

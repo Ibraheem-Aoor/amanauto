@@ -153,6 +153,7 @@ return [
     'phone' => 'The :attribute field must be a valid number.',
 
 
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
@@ -197,6 +198,9 @@ return [
         'mobile_img' => 'Mobile App Image',
         'img_vehicle' => 'Vehicle Registration Image',
         'user_id' => 'user',
+        'content_ar' => 'Content In Arabic',
+        'content_en' => 'Content In English',
+        'subject_id'       =>  'Subject',
 
     ],
 

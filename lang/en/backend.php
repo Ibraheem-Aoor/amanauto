@@ -17,7 +17,6 @@ return [
     'phone' => 'Phone Number',
     'subscribtion_date' => 'Subscribtion Date',
     'subscribers' => 'subscribers',
-    'pages' => 'Pages',
     'settings' => 'settings',
     'privacy' => 'Privacy Policy',
     'select_all' => 'Select all',
@@ -218,4 +217,15 @@ return [
     'subscribtion_total_amount' => 'Subscribtion Total Price',
     'confirm_vin' => 'Confirm VIN',
     'attached_file' => 'Attached File',
+    'content_ar' => 'Content In Arabic',
+    'content_en' => 'Content In English',
+    'pages' => [
+        'pages' => 'Pages',
+        'about_us' => 'About Us',
+    ],
+    'help_center' => 'Help Center',
+    'subjects' => 'Subjects',
+    'subject_edit' => 'Edit Subject',
+    'contact_reqeusts' => 'Support Tickets',
+
 ];

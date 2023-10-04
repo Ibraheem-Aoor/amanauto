@@ -98,7 +98,8 @@
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a  href="{{ route('admin.users.index' , ['view_subscriptions' => true]) }}"  class="nav-link {{ areActiveRoutes(['admin.users.index']) }}">
+                              <a href="{{ route('admin.users.index', ['view_subscriptions' => true]) }}"
+                                  class="nav-link {{ areActiveRoutes(['admin.users.index']) }}">
                                   <i class="far fa-circle nav-icon"></i>
                                   <p>{{ __('backend.users.all_subscribers') }}</p>
                               </a>
@@ -130,6 +131,60 @@
                               {{ __('backend.faqs') }}
                           </p>
                       </a>
+                  </li>
+                  {{-- Pages --}}
+                  <li
+                      class="nav-item menu-is-opening {{ areActiveRoutes(['admin.pages.about_us.index'], 'menu-open') }}">
+                      <a href="#" class="nav-link {{ areActiveRoutes(['admin.pages.about_us.index']) }}">
+                          <i class="nav-icon fas fa-files"></i>
+                          <p>
+                              {{ __('backend.pages.pages') }}
+                              <i class="right fas fa-angle-left"></i>
+                          </p>
+                      </a>
+                      <ul class="nav nav-treeview" style="display: block;">
+                          <li class="nav-item">
+                              <a href="{{ route('admin.pages.about_us.index') }}"
+                                  class="nav-link {{ areActiveRoutes(['admin.pages.about_us.index']) }}">
+                                  <i class="far fa-circle nav-icon"></i>
+                                  <p>{{ __('backend.pages.about_us') }}</p>
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="{{ route('admin.users.index', ['view_subscriptions' => true]) }}"
+                                  class="nav-link {{ areActiveRoutes(['admin.users.index']) }}">
+                                  <i class="far fa-circle nav-icon"></i>
+                                  <p>{{ __('backend.users.all_subscribers') }}</p>
+                              </a>
+                          </li>
+                      </ul>
+                  </li>
+                  {{-- Help Center --}}
+                  <li
+                      class="nav-item menu-is-opening {{ areActiveRoutes(['admin.help_center.subjects.index' , 'admin.help_center.contacts.index'], 'menu-open') }}">
+                      <a href="#" class="nav-link {{ areActiveRoutes(['admin.help_center.subjects.index' , 'admin.help_center.contacts.index']) }}">
+                          <i class="nav-icon fas fa-help"></i>
+                          <p>
+                              {{ __('backend.help_center') }}
+                              <i class="right fas fa-angle-left"></i>
+                          </p>
+                      </a>
+                      <ul class="nav nav-treeview" style="display: block;">
+                          <li class="nav-item">
+                              <a href="{{ route('admin.help_center.subjects.index') }}"
+                                  class="nav-link {{ areActiveRoutes(['admin.help_center.subjects.index']) }}">
+                                  <i class="far fa-circle nav-icon"></i>
+                                  <p>{{ __('backend.subjects') }}</p>
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="{{ route('admin.help_center.contacts.index') }}"
+                                  class="nav-link {{ areActiveRoutes(['admin.help_center.contacts.index']) }}">
+                                  <i class="far fa-circle nav-icon"></i>
+                                  <p>{{ __('backend.contact_reqeusts') }}</p>
+                              </a>
+                          </li>
+                      </ul>
                   </li>
                   <li class="nav-item">
                       <a href="{{ route('admin.settings.index') }}" class="nav-link">

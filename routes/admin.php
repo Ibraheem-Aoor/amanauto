@@ -3,11 +3,14 @@
 use App\Http\Controllers\Admin\ClubController;
 use App\Http\Controllers\Admin\CommonCrudController;
 use App\Http\Controllers\Admin\CommonQuestionController;
+use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OfferCompanyController;
 use App\Http\Controllers\Admin\OfferController;
+use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\Admin\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -29,7 +32,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::redirect('/', 'admin/dashboard');
-// ADmin Auth roues
+// Admin Auth roues
 Route::group(['as' => 'admin.'], function () {
     Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
     Route::post('login', [LoginController::class, 'login'])->name('login');
@@ -73,8 +76,23 @@ Route::group(['middleware' => 'admin', 'as' => 'admin.'], function () {
 
     // subscribtion routes
     Route::resource('subscribtions', UserController::class);
-    Route::post('subscribtions-confirm', [UserController::class , 'confirmSubscribtion'])->name('subscribtions.confirm');
+    Route::post('subscribtions-confirm', [UserController::class, 'confirmSubscribtion'])->name('subscribtions.confirm');
     Route::get('subscribtions-table-data', [UserController::class, 'getTableData'])->name('subscribtions.table_data');
+
+    // pages
+    Route::group(['prefix' => 'pages', 'as' => 'pages.'], function () {
+        Route::get('about', [PageController::class, 'showAboutPageIndex'])->name('about_us.index');
+        Route::post('about/update', [PageController::class, 'updateAboutUsPage'])->name('about_us.update');
+    });
+
+   // help-center
+    Route::group(['prefix' => 'help-center', 'as' => 'help_center.'], function () {
+        Route::resource('subjects', SubjectController::class);
+        Route::resource('contacts', ContactController::class);
+        Route::get('subjects-table-data', [SubjectController::class , 'getTableData'])->name('subjects.table_data');
+        Route::get('contacts-table-data', [ContactController::class , 'getTableData'])->name('contacts.table_data');
+    });
+
 
     // settings
     Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
@@ -83,5 +101,5 @@ Route::group(['middleware' => 'admin', 'as' => 'admin.'], function () {
     });
 
     // downlod file from storage.
-    Route::get('download-file'  , [DashboardController::class , 'downloadFile'])->name('file.download');
+    Route::get('download-file', [DashboardController::class, 'downloadFile'])->name('file.download');
 });

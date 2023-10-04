@@ -115,6 +115,12 @@ return [
     'invoice_system_status' => 'Enable Invoice System',
     'uploaded_file' => 'Uploaded File',
     'subscribtion_type' => 'Subscribtion Type',
-
-
+    'have_a_problem' => 'Do you have a problem or question?',
+    'contact_us_now' => 'Tell us how we can help you',
+    'subject' => 'Subject',
+    'description' => 'Description',
+    'user' => 'User',
+    'send' => 'Send',
+    'faqs' => "FAQ's",
+    'join_date' => 'Join Date',
 ];

@@ -16,4 +16,11 @@ class ProfileController extends Controller
         $data['services'] = $data['club']?->services ?? [];
         return view('user.profile.index', $data);
     }
+
+    public function show()
+    {
+        $data['user'] = getAuthUser('web');
+        $data['club'] = $data['user']->club;
+        return view('user.profile.show', $data);
+    }
 }
