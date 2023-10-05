@@ -31,11 +31,8 @@
                             </div>
                         @endauth
                         <div class="box-change-Languages">
-                            @php
-                                $locale = app()->getLocale() == 'ar' ? 'en' : 'ar';
-                            @endphp
-                            <a href="{{ route('change_language', ['locale' => $locale]) }}">
-                                {{ $locale == 'ar' ? 'العربية' : 'English' }}</a>
+                            <a href="{{ route('change_language', ['locale' => $locale == 'ar' ? 'en' : 'ar']) }}">
+                                {{ $locale == 'en' ? 'العربية' : 'English' }}</a>
                         </div>
                         @guest
                             <div class="actionBut">

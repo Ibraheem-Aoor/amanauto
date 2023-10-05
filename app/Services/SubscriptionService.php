@@ -57,7 +57,7 @@ class SubscriptionService
     {
         $user_id=$this->user->id;
         $name="subscriptions/{$user_id}";
-        $img_vehicle=Cache::get('img_vehicle_' . $name);
+        $img_vehicle= session()->get('img_vehicle'); #Cache::get('img_vehicle_' . $name);
         $user_subscription_type = $this->getUserSubscriptionType();
         return Subscription::query()->create([
             'user_id' => $this->user->id,

@@ -26,6 +26,10 @@
 </head>
 
 <body>
+    {{-- global local var for all user views --}}
+    @php
+        $locale = app()->getLocale();
+    @endphp
     <!-- ------ Start HomePage -->
     <div class="content-loading">
         <div class="lodingLogo">

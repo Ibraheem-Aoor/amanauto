@@ -70,9 +70,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
         Route::get('', [ProfileController::class, 'index'])->name('index');
         Route::get('shoiw', [ProfileController::class, 'show'])->name('show');
+        Route::get('docs/offers', [ProfileController::class, 'offersDocs'])->name('docs.offers');
+        Route::get('docs/subscriptions', [ProfileController::class, 'subscriptionDocs'])->name('docs.subscriptions');
+        Route::get('security/subscriptions', [ProfileController::class, 'showPasswordIndex'])->name('password.index');
+        Route::post('security/password/update', [ProfileController::class, 'changePassword'])->name('password.update');
     });
+    // donwload user file
+    Route::get('download-file', [HomeController::class,  'downloadFile'])->name('file.download');
 
-    Route::get('help-center' , [HomeController::class, 'showCotnactUs'])->name('contact.index');
-    Route::post('help-center/submit' , [HomeController::class, 'submit'])->name('contact.submit');
-    Route::get('faqs' , [HomeController::class , 'showFaqs'])->name('faqs.index');
+    Route::get('help-center', [HomeController::class, 'showCotnactUs'])->name('contact.index');
+    Route::post('help-center/submit', [HomeController::class, 'submit'])->name('contact.submit');
+    Route::get('faqs', [HomeController::class, 'showFaqs'])->name('faqs.index');
 });

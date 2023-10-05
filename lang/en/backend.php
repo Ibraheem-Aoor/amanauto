@@ -24,6 +24,8 @@ return [
     'name_ar' => 'name in arabic',
     'name_en' => 'name in english',
     'password' => 'password',
+    'password_new' => 'New password',
+    'password_confirmation' => 'Password Confirmation',
     'select' => 'select',
     'services' => 'Services',
     'create_new_service' => 'Create New Service',

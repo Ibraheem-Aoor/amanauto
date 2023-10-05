@@ -10,7 +10,12 @@
             <span>{{ __('general.inbox') }}</span>
             <i class="bx bx-chevron-right back-page"></i>
         </a> --}}
-        <a href="" class="flex-items-prfoile">
+        <a href="{{ route('profile.docs.offers') }}" class="flex-items-prfoile">
+            <i class="bx bx-file bg-icon"></i>
+            <span>{{ __('general.offers') }}</span>
+            <i class="bx bx-chevron-right back-page"></i>
+        </a>
+        <a href="{{ route('profile.docs.subscriptions') }}" class="flex-items-prfoile">
             <i class="bx bx-file bg-icon"></i>
             <span>{{ __('general.documents') }}</span>
             <i class="bx bx-chevron-right back-page"></i>
@@ -29,7 +34,7 @@
             <span>{{ __('general.settings') }}</span>
             <i class="bx bx-chevron-right back-page"></i>
         </a>
-        <a href="" class="flex-items-prfoile">
+        <a href="{{ route('profile.password.index') }}" class="flex-items-prfoile">
             <i class="bx bxs-cog bg-icon"></i>
             <span>{{ __('general.security') }}</span>
             <i class="bx bx-chevron-right back-page"></i>
@@ -53,6 +58,13 @@
             <i class="bx bx-info-circle bg-icon"></i>
             <span>{{ __('general.info') }}</span>
             <i class="bx bx-chevron-right back-page"></i>
+        </a>
+        @php
+            $locale = app()->getLocale();
+        @endphp
+        <a href="{{ route('change_language', ['locale' => $locale == 'ar' ? 'en' : 'ar']) }}" class="flex-items-prfoile">
+            <i class="bx bx-flag bg-icon"></i>
+            <span>{{ $locale == 'en' ? 'العربية' : 'English' }}</span>
         </a>
     </div>
 </div>

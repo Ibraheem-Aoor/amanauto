@@ -26,6 +26,8 @@ return [
     'name_ar' => 'اسم عربي',
     'name_en' => 'اسم انجليزي',
     'password' => 'كلمة المرور',
+    'password_new' => 'كلمة المرور الجديدة',
+    'password_confirmation' => 'تأكيد كلمة المرور',
     'select' => 'إختر',
     'services' => 'الخدمات',
     'create_new_service' => 'إضافة خدمة جديدة',

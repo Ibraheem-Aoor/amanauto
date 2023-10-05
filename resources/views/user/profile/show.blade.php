@@ -12,7 +12,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    @include('user.profile.sidebar')
+                   @include('user.profile.sidebar')
                     <div class="col-sm-12 col-md-7 col-lg-8 customeRowProfiles">
                         {{-- <div class="row">
                             <div class="col-md-6 text-center mt-5">

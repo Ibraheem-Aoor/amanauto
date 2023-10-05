@@ -94,7 +94,7 @@ return [
     'amanauto_ams' => 'AMS',
     'vin' => 'VIN',
     'offers_for_you' => 'Offers For You',
-    'end_date' => 'ُEnd date',
+    'end_date' => 'End date',
     'profile' => 'Profile',
 
 
@@ -123,4 +123,7 @@ return [
     'send' => 'Send',
     'faqs' => "FAQ's",
     'join_date' => 'Join Date',
+    'download' => 'Download',
+    'view' => 'View',
+    'change_password' => 'Change Password',
 ];

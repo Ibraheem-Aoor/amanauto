@@ -78,9 +78,9 @@ class HomeController extends Controller
     public function submit(ContactRequest $request)
     {
         try {
-            $request['user_id'] =   getAuthUser('web')?->id;
+            $request['user_id'] = getAuthUser('web')?->id;
             Contact::query()->create($request->toArray());
-            $response = generateResponse(status: true , redirect:route('home'));
+            $response = generateResponse(status: true, redirect: route('home'));
         } catch (Throwable $e) {
             dd($e);
             $response = generateResponse(status: false);
@@ -91,6 +91,21 @@ class HomeController extends Controller
     public function showFaqs()
     {
         $data['faqs'] = CommonQuestion::query()->status(CommonQuestionStatus::ACTIVE->value)->get();
-        return view('user.help_center.faqs' , $data);
+        return view('user.help_center.faqs', $data);
+    }
+
+    /**
+     * Download File From Storage.
+     */
+    public function downloadFile(Request $request)
+    {
+        try {
+            return downloadFile($request->path);
+        } catch (Throwable $e) {
+            info('User File Downlaod Error:');
+            info($e);
+            session()->flash('error', __('general.response_messages.error'));
+            return back();
+        }
     }
 }

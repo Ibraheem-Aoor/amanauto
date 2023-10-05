@@ -51,7 +51,7 @@ class OfferController extends Controller
     {
         $data['user'] = getAuthUser($request->query('guard', 'web'));
         $data['offer'] = Offer::query()->findOrFail(decrypt($id));
-        if ($data['user']->offers->has($data['offer']->id)) {
+        if ($data['user']->offers()->where('offer_id' , $data['offer']->id)->exists()) {
             $data['lang'] = app()->getLocale();
             $qrcode = QrCode::size(150)->generate(route('offers.pdf_download', ['id' => $id, 'preview_type' => 'stream']));
             $code = (string) $qrcode;

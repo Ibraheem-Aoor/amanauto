@@ -44,7 +44,7 @@ class PaymentController extends Controller
             session()->put('img_vehicle', $img_vehicle);
             return $this->moyasar_payment_service->pay($request);
         } catch (Throwable $e) {
-            // dd($e);
+            dd($e);
             info('MAKE PAYMENT  ERROR:');
             info($e);
             $response = generateResponse(status: false, message: __('general.payment_failed'));
@@ -75,7 +75,7 @@ class PaymentController extends Controller
             }
             session()->flash('success', __('general.payment_success'));
         } catch (Throwable $e) {
-            // dd($e);
+            dd($e);
             DB::rollBack();
             info('PAYMENT WITH CC CALLBACK ERROR:');
             info($e);

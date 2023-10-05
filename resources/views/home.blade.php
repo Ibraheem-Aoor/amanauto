@@ -154,14 +154,6 @@
 @endsection
 
 @push('js')
-    <script>
-        @if (Session::has('error'))
-            toastr.error("{{ Session::get('error') }}");
-        @elseif (Session::has('success'))
-            console.log('SS');
-            toastr.success("{{ Session::get('success') }}");
-        @endif
-    </script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();

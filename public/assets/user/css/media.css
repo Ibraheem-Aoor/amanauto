@@ -19,7 +19,9 @@
       }
       .image-cover{
         margin: 20px 0px;
+            height: 350px !important;
       }
+     
       .client h4{
         font-size: 20px;
       }
@@ -158,17 +160,25 @@
         display: none;
       }
       .customeClientCard{
-        width: 48% !important;
+        width: 32% !important;
+        
+      
       }
-      .customeBoxService{
-        width: 48% !important;
+      .client-card{
+        height: 100px;
       }
-      .customeBoxService .card-service h5{
-        font-size: 16px;
+     .customeBoxService{
+        width: 32% !important;
+      }
+      .customeBoxService .card-service{
+        height: 120px;
+      }
+            .customeBoxService .card-service h5{
+        font-size: 13px;
       } 
       .customeBoxService .card-service img{
-        width: 60px;
-        height: 60px;
+        width: 40px;
+        height: 40px;
       }
       .customeWithClubs{
         width: 48% !important;
@@ -212,10 +222,21 @@
       .menu-cads{
         display: block;
       }
-      .link-page-profile{
+      /* .link-page-profile{
         display: none;
+      } */
+      .flex-title-top-cover img{
+        width: 24px;
+        height: 24px;
       }
-} 
+      .info-download-image img{
+        height: 45px;
+        object-fit: contain;
+      }
+      .bg-cover-page{
+        height: 200px;
+      }
+      } 
 @media(min-width:576px) and (max-width:767.98px){
     .content-auto{
         width: 90%;

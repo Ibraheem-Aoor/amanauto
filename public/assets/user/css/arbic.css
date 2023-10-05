@@ -26,7 +26,7 @@
     right: 75% !important;
     width: 150px;
     height: 150px;
-   
+   transform: rotate(360deg);
 }
 .flex-items-prfoile .back-page{
     transform: rotate(180deg);
