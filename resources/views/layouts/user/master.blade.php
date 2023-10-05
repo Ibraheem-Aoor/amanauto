@@ -63,7 +63,7 @@
 
     <script src="{{ asset('assets/user/js/jquery-3.5.1.min.js') }}"></script>
     <script src="{{ asset('assets/user/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/user/js/main.js') }}?v=0.01"></script>
+    {{-- <script src="{{ asset('assets/user/js/main.js') }}?v=0.01"></script> --}}
     <script src="{{ asset('assets/user/js/master.js') }}"></script>
     <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
     <script>

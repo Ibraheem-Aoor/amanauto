@@ -2,6 +2,14 @@
 @section('page', __('general.home'))
 @push('css')
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/user/css/slick-theme.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/user/css/slick.css') }}">
+    <style>
+        .sevice
+        {
+            margin-top: 5% !important;
+        }
+    </style>
 @endpush
 @section('content')
     <!-- --- Start Main -->
@@ -18,7 +26,7 @@
                                             {{ __('general.welcome_back') . ' ' . getAuthUser('web')->name }}
                                         @endauth
                                         @guest
-                                        {{ __('general.welcome_to_site') }}
+                                            {{ __('general.welcome_to_site') }}
                                         @endguest
                                     </span>
                                 </h6>
@@ -51,12 +59,10 @@
             <section class="client" data-aos="fade-right" data-aos-duration="3000">
                 <div class="container">
                     <h4>{{ __('general.home_page.entities_headline') }}</h4>
-                    <div class="row mt-5">
+                    <div class="row-client">
                         @foreach ($entities as $entity)
-                            <div class="col-sm-12 col-md-6 col-lg-3 customeClientCard">
-                                <div class="client-card">
-                                    <img src="{{ getImageUrl($entity->web_img) }}" alt="" />
-                                </div>
+                            <div class="client-card">
+                                <img src="{{ getImageUrl($entity->web_img) }}" alt="" />
                             </div>
                         @endforeach
 
@@ -93,20 +99,20 @@
             <div class="container">
                 <div class="All-Card-Service">
                     <h4>{{ __('general.subscribtions_steps.subscribtions_steps') }}</h4>
-                    <div class="row justify-content-between">
-                        <div class="col-sm-12 col-md-6 col-lg-4">
+                    <div class="row">
+                        <div class="col-sm-4">
                             <div class="card-sub">
                                 <img src="{{ asset('assets/user/img/add-user.svg') }}" alt="" />
                                 <h5>{{ __('general.subscribtions_steps.register') }}</h5>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-6 col-lg-4">
+                        <div class="col-sm-4">
                             <div class="card-sub">
                                 <img src="{{ asset('assets/user/img/id-card.svg') }}" alt="" />
                                 <h5>{{ __('general.subscribtions_steps.subscription') }}</h5>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-6 col-lg-4">
+                        <div class="col-sm-4">
                             <div class="card-sub customeTestRight text-right">
                                 <img src="{{ asset('assets/user/img/call.svg') }}" alt="" />
                                 <h5>{{ __('general.subscribtions_steps.service_call') }}</h5>
@@ -155,7 +161,23 @@
 
 @push('js')
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="{{ asset('assets/user/js/slick.min.js') }}"></script>
     <script>
+        var isRtlEnabled = "{{ app()->getLocale() == 'ar' }}";
+    </script>
+    <script src="{{ asset('assets/user/js/silder-en.js') }}"></script>
+    <script src="{{ asset('assets/user/js/main.js') }}?v=0.01"></script>
+
+
+    <script>
+        $('.row-client').on('init', function(event, slick) {
+            console.log('#productsCarousel init');
+
+            AOS.init({
+                easing: 'ease-out-back',
+                duration: 1000
+            });
+        });
         AOS.init();
     </script>
 @endpush
