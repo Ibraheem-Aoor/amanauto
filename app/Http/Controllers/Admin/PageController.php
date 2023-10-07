@@ -71,4 +71,68 @@ class PageController extends Controller
     }
 
 
+
+    public function showPage(Request $request)
+    {
+        $page = $request->query('page');
+        $data['page_settings'] = $this->getPageSettings($page);
+        $data['page'] = $page;
+        return view('admin.pages.' . $page, $data);
+    }
+
+
+    protected function getPageSettings($page)
+    {
+        switch ($page) {
+            case 'home':
+                $data['slogan_1'] = getSetting('home_page_slogan_1');
+                $data['short_intro'] = getSetting('home_page_short_intro');
+                $data['slogan_2'] = getSetting('home_page_slogan_2');
+                $data['entities_title'] = getSetting('home_page_entities_title');
+                $data['services_title'] = getSetting('home_page_services_title');
+                $data['subscription_steps_title'] = getSetting('home_page_subscription_steps_title');
+                $data['faqs_title'] = getSetting('home_page_faqs_title');
+                break;
+            case 'offers':
+                $data['offers_page_intro_image']       =   getSetting('offers_page_intro_image');
+                $data['offers_page_no_offers_text']       =   getSetting('offers_page_no_offers_text');
+                break;
+        }
+        return $data;
+    }
+
+    /**
+     * Update Static Text & images for a page(General).
+     */
+    public function updatePage(Request $request)
+    {
+        try {
+            $settings = $request->toArray();
+            $lang = app()->getLocale();
+            foreach ($settings as $key => $setting) {
+                if ($setting) {
+
+                    BusinessSetting::query()->updateOrCreate(
+                        [
+                            'key' => $key,
+                            'lang' => $lang,
+                        ],
+                        [
+                            'key' => $key,
+                            'lang' => $lang,
+                            'value' => ($setting instanceof UploadedFile) ? saveImage("settings/{$key}", $setting) : $setting,
+                        ]
+                    );
+                }
+            }
+            Artisan::call('cache:clear');
+            $response = generateResponse(status: true, reload: true);
+        } catch (Throwable $e) {
+            dd($e);
+            $response = generateResponse(status: false);
+        }
+        return response()->json($response);
+    }
+
+
 }

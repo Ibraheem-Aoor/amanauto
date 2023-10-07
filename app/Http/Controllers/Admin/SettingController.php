@@ -61,7 +61,7 @@ class SettingController extends Controller
             foreach ($settings as $key => $setting) {
                 BusinessSetting::query()->updateOrCreate(
                     [
-                        'key' => $key,
+                        'key' => $key,  
                     ],
                     [
                         'key' => $key,

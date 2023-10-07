@@ -13,8 +13,8 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-12">
-                            <input type="text" name="subscribtion_id_to_confirm">
-                            <input type="text" name="current_vin">
+                            <input type="hidden" name="subscribtion_id_to_confirm">
+                            <input type="hidden" name="current_vin">
                             <h5>{{ __('backend.club_being_subscribed') }}</h5>
                             <input readonly value="" name="current_club" class="form-control">
                         </div>

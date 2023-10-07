@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
@@ -6,32 +6,39 @@
     font-family: 'Tajawal', sans-serif !important;
 
 }
-.actionBut .butBgAuto{
+
+.actionBut .butBgAuto {
     width: 120px !important;
 }
-.butNoBg{
+
+.butNoBg {
     width: 120px !important;
 }
-.flex-title-top-cover h6 i{
+
+.flex-title-top-cover h6 i {
     transform: rotate(180deg);
 }
-.accordion-button::after{
-   position: absolute;
-   left: 20px !important;
+
+.accordion-button::after {
+    position: absolute;
+    left: 20px !important;
 
 }
-.shapeCard{
+
+.shapeCard {
     position: absolute;
-    bottom:0px;
-    right: 75% !important;
+    bottom: 0px;
+    left: 0% !important;
     width: 150px;
     height: 150px;
-   transform: rotate(360deg);
+    transform: rotateY(180deg) !important;
 }
-.flex-items-prfoile .back-page{
+
+.flex-items-prfoile .back-page {
     transform: rotate(180deg);
 }
-.customeLineAfter::after{
+
+.customeLineAfter::after {
     content: "";
     position: absolute;
     right: 150px !important;
@@ -40,24 +47,64 @@
     height: 2px;
     border-radius: 25px;
     background: #707070;
-  }
-  .all-input-payment label{
-   text-align: right !important;
+}
+
+.all-input-payment label {
+    text-align: right !important;
     width: 100% !important;
     margin: 4px 0px;
-  }
-  .forget-password{
+}
+
+.forget-password {
     direction: rtl;
     text-align: right !important;
-  }
-  #phone{
+}
+
+#phone {
     text-align: left !important;
     display: block !important;
-  }
-  .iti__country-list{
+}
+
+.iti__country-list {
     left: 0px !important;
     right: -430px !important;
     top: 60px !important;
     position: absolute !important;
     width: 470px !important;
-  }
+}
+
+.shapeCard {
+    transform: rotateY(180deg) !important;
+}
+/*
+@media (min-width:320px) and (max-width:375px) {
+    .shapeCard {
+        width: 130px !important;
+        height: 130px !important;
+        right: 52% !important;
+
+    }
+}
+
+@media (min-width:425px) and (max-width:767px) {
+    .shapeCard {
+        width: 130px !important;
+        height: 130px !important;
+        right: 67% !important;
+    }
+}
+
+@media (min-width:768px) and (max-width:1024px) {
+    .shapeCard {
+        width: 130px !important;
+        height: 130px !important;
+        right: 75% !important;
+    }
+}
+@media (min-width:768px) and (max-width:1024px) {
+    .shapeCard {
+        width: 130px !important;
+        height: 130px !important;
+        right: 75% !important;
+    }
+} */

@@ -1562,7 +1562,7 @@ body, html {
     background: #fff;
     box-shadow: 1px 1px 3px #d7d8dc, -1px -1px 3px #d7d8dc;
     padding: 25px;
-    border-radius: 5px;
+    border-radius: 12px;
     margin: 15px 0px;
 }
 
@@ -1794,7 +1794,7 @@ body, html {
     /* Adjust the button's border radius */
 }
 
-.content-loading img{
+.content-loading img {
     animation: breathing 2s ease-out infinite normal;
     -webkit-font-smoothing: antialiased;
     text-align: center;
@@ -1848,3 +1848,5 @@ body, html {
         transform: scale(0.9);
     }
 }
+
+

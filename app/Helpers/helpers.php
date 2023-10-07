@@ -60,7 +60,7 @@ function getImageUrl($image)
  */
 function downloadFile($path)
 {
-    $path = str_replace('storage/' , '' , $path);
+    $path = str_replace('storage/', '', $path);
     $exists = Storage::disk('public')->exists($path);
     if ($exists) {
         return Storage::disk('public')->download($path);
@@ -426,11 +426,11 @@ if (!function_exists('getSetting')) {
         });
 
         if ($lang == false) {
-            $setting = $settings->where('key', $key)->first();
-        } else {
-            $setting = $settings->where('key', $key)->where('lang', $lang)->first();
-            $setting = !$setting ? $settings->where('key', $key)->first() : $setting;
+            // $setting = $settings->where('key', $key)->first();
+            $lang = app()->getLocale();
         }
+        $setting = $settings->where('key', $key)->where('lang', $lang)->first();
+        $setting = !$setting ? $settings->where('key', $key)->first() : $setting;
         return $setting == null ? $default : $setting->value;
     }
 }
@@ -444,5 +444,3 @@ if (!function_exists('getAppEnv')) {
         return env('APP_ENV', 'local');
     }
 }
-
-

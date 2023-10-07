@@ -83,6 +83,8 @@ Route::group(['middleware' => 'admin', 'as' => 'admin.'], function () {
     Route::group(['prefix' => 'pages', 'as' => 'pages.'], function () {
         Route::get('about', [PageController::class, 'showAboutPageIndex'])->name('about_us.index');
         Route::post('about/update', [PageController::class, 'updateAboutUsPage'])->name('about_us.update');
+        Route::get('page/show/', [PageController::class, 'showPage'])->name('show');
+        Route::post('page/update/', [PageController::class, 'updatePage'])->name('update');
     });
 
    // help-center

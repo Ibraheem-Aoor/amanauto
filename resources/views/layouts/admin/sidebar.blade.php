@@ -150,6 +150,20 @@
                                   <p>{{ __('backend.pages.about_us') }}</p>
                               </a>
                           </li>
+                          <li>
+                              <a href="{{ route('admin.pages.show', ['page' => 'home']) }}"
+                                  class="nav-link {{ areActiveRoutes(['admin.pages.show']) }}">
+                                  <i class="far fa-circle nav-icon"></i>
+                                  <p>{{ __('backend.pages.home') }}</p>
+                              </a>
+                          </li>
+                          <li>
+                              <a href="{{ route('admin.pages.show', ['page' => 'offers']) }}"
+                                  class="nav-link {{ areActiveRoutes(['admin.pages.show']) }}">
+                                  <i class="far fa-circle nav-icon"></i>
+                                  <p>{{ __('backend.pages.offers') }}</p>
+                              </a>
+                          </li>
                           <li class="nav-item">
                               <a href="{{ route('admin.users.index', ['view_subscriptions' => true]) }}"
                                   class="nav-link {{ areActiveRoutes(['admin.users.index']) }}">
@@ -161,8 +175,9 @@
                   </li>
                   {{-- Help Center --}}
                   <li
-                      class="nav-item menu-is-opening {{ areActiveRoutes(['admin.help_center.subjects.index' , 'admin.help_center.contacts.index'], 'menu-open') }}">
-                      <a href="#" class="nav-link {{ areActiveRoutes(['admin.help_center.subjects.index' , 'admin.help_center.contacts.index']) }}">
+                      class="nav-item menu-is-opening {{ areActiveRoutes(['admin.help_center.subjects.index', 'admin.help_center.contacts.index'], 'menu-open') }}">
+                      <a href="#"
+                          class="nav-link {{ areActiveRoutes(['admin.help_center.subjects.index', 'admin.help_center.contacts.index']) }}">
                           <i class="nav-icon fas fa-help"></i>
                           <p>
                               {{ __('backend.help_center') }}

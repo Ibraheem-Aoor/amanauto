@@ -124,4 +124,8 @@ return [
     'download' => 'تحميل',
     'view' => 'عرض',
     'change_password' => 'تغيير كلمة المرور',
+    'card_holder_name' => 'اسم حامل البطاقة',
+    'payment_failed_connection' => 'خطأ في اتصال الانترنت, يرجى المحاولة لاحقا',
+    'logout' => 'تسجيل الخروج',
+
 ];

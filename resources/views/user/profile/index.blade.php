@@ -12,7 +12,7 @@
                     </div>
                 </div>
                 <div class="row">
-                   @include('user.profile.sidebar')
+                    @include('user.profile.sidebar')
                     <div class="col-sm-12 col-md-7 col-lg-8 customeRowProfiles">
                         @isset($club)
                             <div class="bg-bule-card-price" style="background: {{ $club->color }} !important;">

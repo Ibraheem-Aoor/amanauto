@@ -5,13 +5,15 @@
     <link rel="stylesheet" href="{{ asset('assets/user/css/slick-theme.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/user/css/slick.css') }}">
     <style>
-        .sevice
-        {
+        .sevice {
             margin-top: 5% !important;
         }
     </style>
 @endpush
 @section('content')
+    @php
+        $locale = app()->getLocale();
+    @endphp
     <!-- --- Start Main -->
     <main id="Main">
         <!-- -- Sec_Cover -->
@@ -32,11 +34,11 @@
                                 </h6>
                                 <img src="{{ asset('assets/user/img/waving-hand_1f44b.png') }}" alt="" />
                             </div>
-                            <h4>{{ __('general.home_page.first_headline') }}</h4>
+                            <h4>{{ getSetting('home_page_slogan_1') }}</h4>
                             <p>
-                                {{ __('general.home_page.first_headline_text') }}
+                                {{ getSetting('home_page_short_intro') }}
                             </p>
-                            <h6>{{ __('general.home_page.second_headline') }}</h6>
+                            <h6>{{ getSetting('home_page_slogan_2') }}</h6>
                             <div class="info-download-image">
                                 <img src="{{ asset('assets/user/img/Download-On-The-App-Store-PNG-Photos.png') }}"
                                     alt="" />
@@ -47,7 +49,8 @@
                     </div>
                     <div class="col-sm-12 col-md-6 col-lg-6">
                         <div class="image-cover">
-                            <img src="{{ asset('assets/user/img/Image 1.png') }}" class="w-100" alt="" />
+                            <img src="{{ getImageUrl(getSetting('home_page_intro_image')) }}" class="w-100"
+                                alt="" />
                         </div>
                     </div>
                 </div>
@@ -58,7 +61,7 @@
             <!-- -- Start Client -->
             <section class="client" data-aos="fade-right" data-aos-duration="3000">
                 <div class="container">
-                    <h4>{{ __('general.home_page.entities_headline') }}</h4>
+                    <h4>{{getSetting('home_page_entities_title')}}</h4>
                     <div class="row-client">
                         @foreach ($entities as $entity)
                             <div class="client-card">
@@ -76,7 +79,7 @@
             <section class="sevice" data-aos="fade-down" data-aos-duration="3000">
                 <div class="container">
                     <div class="All-Card-Service">
-                        <h4>{{ __('general.home_page.services_headline') }}</h4>
+                        <h4>{{ getSetting('home_page_services_title') }}</h4>
                         <div class="row">
                             @foreach ($services as $service)
                                 <div class="col-sm-12 col-md-12 col-lg-4 customeBoxService">
@@ -128,7 +131,7 @@
             <section class="sec-questions" data-aos="zoom-out" data-aos-duration="3000">
                 <div class="container">
                     <div class="All-Questions">
-                        <h4>{{ __('backend.cq.common_questions') }}</h4>
+                        <h4>{{ getSetting('home_page_faqs_title') }}</h4>
                         <div class="accordion mt-5" id="accordionExample">
                             @foreach ($common_questions as $common_question)
                                 <div class="accordion-item">

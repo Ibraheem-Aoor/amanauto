@@ -74,6 +74,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('docs/subscriptions', [ProfileController::class, 'subscriptionDocs'])->name('docs.subscriptions');
         Route::get('security/subscriptions', [ProfileController::class, 'showPasswordIndex'])->name('password.index');
         Route::post('security/password/update', [ProfileController::class, 'changePassword'])->name('password.update');
+        Route::get('notifications', [ProfileController::class, 'getNotifications'])->name('notifications.index');
     });
     // donwload user file
     Route::get('download-file', [HomeController::class,  'downloadFile'])->name('file.download');

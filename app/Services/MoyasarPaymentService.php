@@ -96,7 +96,7 @@ class MoyasarPaymentService
             'callback_url' => str_starts_with($request->path(), 'api') ? route('api.payment.credit_card_callback', ['club_id' => $this->club->getEncryptedId(), 'auth_token' => Crypt::encryptString(str_replace('Bearer ', '', $request->header('Authorization')))]) : route('subscribe.payment.credit_card_callback', ['club_id' => $this->club->getEncryptedId()]),
             'source' => [
                 'type' => 'creditcard',
-                'name' => $request->user()->name,
+                'name' => $request->card_holder_name,
                 'number' => $request->card_number,
                 'cvc' => $request->cvc,
                 'month' => $request->expiration_month,

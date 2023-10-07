@@ -126,4 +126,7 @@ return [
     'download' => 'Download',
     'view' => 'View',
     'change_password' => 'Change Password',
+    'card_holder_name' => 'Card Holder Name',
+    'payment_failed_connection' => 'Internet Connection Error, Try Again Later',
+    'logout' => 'logout',
 ];

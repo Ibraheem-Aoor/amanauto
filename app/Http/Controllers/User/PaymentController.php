@@ -6,11 +6,13 @@ use App\Enums\ClubStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\PaymentRequest;
 use App\Http\Requests\User\PaymentWithCreditCardRequest;
+use App\Jobs\SendSubscriptionNotificationJob;
 use App\Models\Club;
 use App\Models\Subscription;
 use App\Services\MoyasarPaymentService;
 use App\Services\SubscriptionService;
 use Exception;
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -43,8 +45,11 @@ class PaymentController extends Controller
             $img_vehicle = saveImage("subscriptions/{$user_id}", $request->file('img_vehicle'));
             session()->put('img_vehicle', $img_vehicle);
             return $this->moyasar_payment_service->pay($request);
+        } catch (ConnectionException $e) {
+            info('MAKE PAYMENT CONNECTION  ERROR:');
+            info($e);
+            $response = generateResponse(status: false, message: __('general.payment_failed_connection'));
         } catch (Throwable $e) {
-            dd($e);
             info('MAKE PAYMENT  ERROR:');
             info($e);
             $response = generateResponse(status: false, message: __('general.payment_failed'));
@@ -67,6 +72,7 @@ class PaymentController extends Controller
                 $subscription = (new SubscriptionService($payment->metadata['club_id']))->confirmUserSubscription();
                 $this->moyasar_payment_service->logPayment($payment, $subscription->id, 'creditcard');
                 DB::commit();
+                dispatch(new SendSubscriptionNotificationJob($subscription, getAuthUser('web')));
             } elseif ($payment?->status == 'failed') {
                 $this->moyasar_payment_service->logPayment($payment, null, 'creditcard');
                 info('FAILED PAYMENT AT paymentCreditCardCallback');

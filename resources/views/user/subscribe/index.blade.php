@@ -106,6 +106,10 @@
                                 </article>
                             </div>
                             <div class="payment-method mt-3">
+                                <div class="card-al-input mb-3">
+                                    <input type="text" placeholder="{{ __('general.card_holder_name') }}"
+                                        class="text en-only" name="card_holder_name" />
+                                </div>
                                 <div class="card-al-input">
                                     <input type="text" placeholder="{{ __('general.card_number') }}"
                                         class="input-number" name="card_number" />
@@ -116,74 +120,74 @@
 
                             </div>
                             <!-- ----------------- -->
-
-                            <div class="flex-image-payment mt-4">
-                                <input type="radio" name="payment_method" value="partial" />
-                                <article class="content-payment">
-                                    <span>3 interest free payment of <b>89,6 SAR</b> <a href="">Learn more</a>
-                                    </span>
-                                </article>
-                            </div>
-                            <div class="flex-chart">
-                                <div class="box-chart customeLineAfter">
-                                    <div class="box-image-chart">
-                                        <img src="{{ asset('assets/user/img/Group 4995.svg') }}" alt="">
-                                        <div class="pos-numper">
-                                            <span>1</span>
+                            @if (getSetting('invoice_system_activated') == 'on')
+                                <div class="flex-image-payment mt-4">
+                                    <input type="radio" name="payment_method" value="partial" />
+                                    <article class="content-payment">
+                                        <span>3 interest free payment of <b>89,6 SAR</b> <a href="">Learn more</a>
+                                        </span>
+                                    </article>
+                                </div>
+                                <div class="flex-chart">
+                                    <div class="box-chart customeLineAfter">
+                                        <div class="box-image-chart">
+                                            <img src="{{ asset('assets/user/img/Group 4995.svg') }}" alt="">
+                                            <div class="pos-numper">
+                                                <span>1</span>
+                                            </div>
+                                        </div>
+                                        <div class="content-chart">
+                                            <h4>
+                                                <b>
+                                                    89,6 SAR
+                                                </b>
+                                            </h4>
+                                            <h6>
+                                                Today
+                                            </h6>
                                         </div>
                                     </div>
-                                    <div class="content-chart">
-                                        <h4>
-                                            <b>
-                                                89,6 SAR
-                                            </b>
-                                        </h4>
-                                        <h6>
-                                            Today
-                                        </h6>
-                                    </div>
-                                </div>
-                                <div class="box-chart customeLineAfter">
-                                    <div class="box-image-chart ">
-                                        <img src="{{ asset('assets/user/img/Group 4995.svg') }}" alt="">
-                                        <div class="pos-numper">
-                                            <span>2</span>
+                                    <div class="box-chart customeLineAfter">
+                                        <div class="box-image-chart ">
+                                            <img src="{{ asset('assets/user/img/Group 4995.svg') }}" alt="">
+                                            <div class="pos-numper">
+                                                <span>2</span>
+                                            </div>
+                                        </div>
+                                        <div class="content-chart">
+                                            <h4>
+                                                <b>
+                                                    89,6 SAR
+                                                </b>
+                                            </h4>
+                                            <h6>
+                                                In 1 month
+                                            </h6>
                                         </div>
                                     </div>
-                                    <div class="content-chart">
-                                        <h4>
-                                            <b>
-                                                89,6 SAR
-                                            </b>
-                                        </h4>
-                                        <h6>
-                                            In 1 month
-                                        </h6>
-                                    </div>
-                                </div>
-                                <div class="box-chart">
-                                    <div class="box-image-chart">
-                                        <img src="{{ asset('assets/user/img/Group 4995.svg') }}" alt="">
-                                        <div class="pos-numper">
-                                            <span>3</span>
+                                    <div class="box-chart">
+                                        <div class="box-image-chart">
+                                            <img src="{{ asset('assets/user/img/Group 4995.svg') }}" alt="">
+                                            <div class="pos-numper">
+                                                <span>3</span>
+                                            </div>
+                                        </div>
+                                        <div class="content-chart">
+                                            <h4>
+                                                <b>
+                                                    89,6 SAR
+                                                </b>
+                                            </h4>
+                                            <h6>
+                                                In 2 months
+                                            </h6>
                                         </div>
                                     </div>
-                                    <div class="content-chart">
-                                        <h4>
-                                            <b>
-                                                89,6 SAR
-                                            </b>
-                                        </h4>
-                                        <h6>
-                                            In 2 months
-                                        </h6>
-                                    </div>
                                 </div>
-                            </div>
+                            @endif
                             <div class="but-payment">
                                 <button type="submit">{{ __('general.comlete_payment') }}</button>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -211,7 +215,7 @@
                 const reader = new FileReader();
                 reader.onload = function() {
                     const result = reader.result;
-                        fileNameHeaderThree.src = result;
+                    fileNameHeaderThree.src = result;
                 };
                 // cancelBtn.addEventListener("click", function(){
                 // img.src = "";

@@ -16,7 +16,7 @@
                             <div class="col-sm-12">
                                 <h5>{{ __('general.vin') }}</h5>
                                 <input name="vin" class="form-control">
-                                <input type="text" name="subscribtion_id">
+                                <input type="hidden" name="subscribtion_id">
                             </div>
                         </div>
                     </div>

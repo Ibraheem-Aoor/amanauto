@@ -40,6 +40,7 @@ class PaymentWithCreditCardRequest extends FormRequest
         return [
             'payment_method' => 'required|'.Rule::in(['credit_card' , 'partial']),
             'img_vehicle' => 'required|image|mimes:jpeg,jpg,png,webp',
+            'card_holder_name' => ['required'],
             'card_number' => ['required', new CardNumber],
             'expiration_year' => ['required', new CardExpirationYear($this->get('expiration_month'))],
             'expiration_month' => ['required', new CardExpirationMonth($this->get('expiration_year'))],

@@ -224,10 +224,25 @@ return [
     'pages' => [
         'pages' => 'Pages',
         'about_us' => 'About Us',
+        'home' => 'Home',
+        'offers' => 'Offers',
     ],
     'help_center' => 'Help Center',
     'subjects' => 'Subjects',
     'subject_edit' => 'Edit Subject',
     'contact_reqeusts' => 'Support Tickets',
 
+    'home_page' => [
+        'slogan_1' => 'Slogan 1',
+        'slogan_2' => 'Slogan 2',
+        'short_intro' => 'Short Intro',
+        'entities_title' => 'Entities Section Title',
+        'services_title' => 'Services Section Title',
+        'faqs_title' => 'Common Questions Section Title',
+        'intro_image' => 'Intro Image',
+    ],
+    'offers_page' => [
+        'intro_image' => 'Page Intro Image',
+        'no_offers_text' => 'Text To Display When No Offers Avialable',
+    ],
 ];

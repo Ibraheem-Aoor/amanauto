@@ -31,6 +31,9 @@
                             </div>
                         @endauth
                         <div class="box-change-Languages">
+                            @php
+                                $locale = app()->getLocale();
+                            @endphp
                             <a href="{{ route('change_language', ['locale' => $locale == 'ar' ? 'en' : 'ar']) }}">
                                 {{ $locale == 'en' ? 'العربية' : 'English' }}</a>
                         </div>

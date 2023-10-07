@@ -17,6 +17,8 @@ class ProfileController extends Controller
         $data['offers'] = $data['user']->offers()->status(OfferStatus::ACTIVE->value)->get();
         $data['club'] = $data['user']->club;
         $data['services'] = $data['club']?->services ?? [];
+        $data['unread_notifications'] = $data['user']->unReadNotifications;
+        $data['user_notifications_count'] = $data['unread_notifications']->count();
         return view('user.profile.index', $data);
     }
 
@@ -55,10 +57,20 @@ class ProfileController extends Controller
             $user->update([
                 'password' => $request->password,
             ]);
-            $response = generateResponse(status: true , redirect:route('profile.index'));
+            $response = generateResponse(status: true, redirect: route('profile.index'));
         } catch (Throwable $e) {
             $response = generateResponse(status: false);
         }
         return response()->json($response);
+    }
+
+
+    public function getNotifications()
+    {
+        $data['user'] = getAuthUser('web');
+        $data['notifications'] = $data['user']->notifications()->paginate(1);
+        $data['unread_notifications_count'] = $data['user']->unReadNotifications()->count();
+        dd($data['notifications']->first()->data);
+        return view('user.profile.notifications', $data);
     }
 }

@@ -39,7 +39,7 @@
             <span>{{ __('general.security') }}</span>
             <i class="bx bx-chevron-right back-page"></i>
         </a>
-        <a href="" class="flex-items-prfoile">
+        <a href="{{ route('profile.notifications.index') }}" class="flex-items-prfoile">
             <i class="bx bx-bell bg-icon"></i>
             <span>{{ __('general.notifications') }}</span>
             <i class="bx bx-chevron-right back-page"></i>
@@ -62,9 +62,18 @@
         @php
             $locale = app()->getLocale();
         @endphp
-        <a href="{{ route('change_language', ['locale' => $locale == 'ar' ? 'en' : 'ar']) }}" class="flex-items-prfoile">
+        <a href="{{ route('change_language', ['locale' => $locale == 'ar' ? 'en' : 'ar']) }}"
+            class="flex-items-prfoile">
             <i class="bx bx-flag bg-icon"></i>
             <span>{{ $locale == 'en' ? 'العربية' : 'English' }}</span>
+        </a>
+        <a href="#" class="flex-items-prfoile mt-5" onclick="$('#logout-form').submit();">
+            <i class="bx bx-info-circle bg-icon text-white bg-danger"></i>
+            <span>{{ __('general.logout') }}</span>
+            <i class="bx bx-chevron-right back-page"></i>
+            <form action="{{ route('logout') }}" method="POST" id="logout-form">
+                @csrf
+            </form>
         </a>
     </div>
 </div>
