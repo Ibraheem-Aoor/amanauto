@@ -1753,7 +1753,42 @@ body, html {
 }
 
 
-.text-primary
-{
+.text-primary {
     color: #1DC1DD !important;
 }
+
+/* .accordion-header
+{
+    border-radius: 12px !important;
+}
+
+.accordion-collapse
+{
+    border-radius: 12px !important;
+}
+
+.accordion-item
+{
+    border-radius: 12px !important;
+}
+.accordion-item:focus
+{
+    border-radius: 12px !important;
+} */
+
+
+    /* Customize the accordion border */
+    .accordion-item {
+        border-radius: 12px !important; /* Adjust the border radius to control the corner roundness */
+    }
+
+    /* Customize the active accordion item's border color */
+    .accordion-item.active {
+        border-radius: 12px !important;
+    }
+
+    /* Customize the accordion button styles */
+    .accordion-button {
+        border-radius: 12px !important; /* Adjust the button's border radius */
+    }
+
