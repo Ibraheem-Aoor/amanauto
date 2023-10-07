@@ -1777,18 +1777,74 @@ body, html {
 } */
 
 
-    /* Customize the accordion border */
-    .accordion-item {
-        border-radius: 12px !important; /* Adjust the border radius to control the corner roundness */
+/* Customize the accordion border */
+.accordion-item {
+    border-radius: 12px !important;
+    /* Adjust the border radius to control the corner roundness */
+}
+
+/* Customize the active accordion item's border color */
+.accordion-item.active {
+    border-radius: 12px !important;
+}
+
+/* Customize the accordion button styles */
+.accordion-button {
+    border-radius: 12px !important;
+    /* Adjust the button's border radius */
+}
+
+.content-loading img{
+    animation: breathing 2s ease-out infinite normal;
+    -webkit-font-smoothing: antialiased;
+    text-align: center;
+}
+
+
+@-webkit-keyframes breathing {
+    0% {
+        -webkit-transform: scale(0.9);
+        transform: scale(0.9);
     }
 
-    /* Customize the active accordion item's border color */
-    .accordion-item.active {
-        border-radius: 12px !important;
+    25% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
     }
 
-    /* Customize the accordion button styles */
-    .accordion-button {
-        border-radius: 12px !important; /* Adjust the button's border radius */
+    60% {
+        -webkit-transform: scale(0.9);
+        transform: scale(0.9);
     }
 
+    100% {
+        -webkit-transform: scale(0.9);
+        transform: scale(0.9);
+    }
+}
+
+@keyframes breathing {
+    0% {
+        -webkit-transform: scale(0.9);
+        -ms-transform: scale(0.9);
+        transform: scale(0.9);
+    }
+
+    25% {
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+
+    60% {
+        -webkit-transform: scale(0.9);
+        -ms-transform: scale(0.9);
+        transform: scale(0.9);
+    }
+
+    100% {
+        -webkit-transform: scale(0.9);
+        -ms-transform: scale(0.9);
+        transform: scale(0.9);
+    }
+}

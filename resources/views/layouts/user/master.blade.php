@@ -14,7 +14,7 @@
         rel="stylesheet" />
 
     <link rel="stylesheet" href="{{ asset('assets/user/css/bootstrap.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/user/css/style.css') }}?v=0.02" />
+    <link rel="stylesheet" href="{{ asset('assets/user/css/style.css') }}?v=0.03" />
     @if (app()->getLocale() == 'ar')
         <link rel="stylesheet" href="{{ asset('assets/user/css/arbic.css') }}" />
     @endif
@@ -31,30 +31,10 @@
         $locale = app()->getLocale();
     @endphp
     <!-- ------ Start HomePage -->
-    <div class="content-loading">
-        <div class="lodingLogo">
-            <span style="--i: 1"></span>
-            <span style="--i: 2"></span>
-            <span style="--i: 3"></span>
-            <span style="--i: 4"></span>
-            <span style="--i: 5"></span>
-            <span style="--i: 6"></span>
-            <span style="--i: 7"></span>
-        </div>
-        <svg>
-            <filter id="gooey">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="10" />
-                <feColorMatrix
-                    values="
-              1 0 0 0 0
-              0 1 0 0 0
-              0 0 1 0 0
-              0 0 0 20 -10
-            " />
-            </filter>
-        </svg>
-    </div>
 
+    <div class="content-loading">
+        <img src="{{ asset('assets/user/img/Group 4927.svg') }}" alt="">
+    </div>
     <div id="HomePage">
         {{-- header --}}
         @include('layouts.user.header')
