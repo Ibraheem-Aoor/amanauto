@@ -41,6 +41,7 @@ class PageController extends Controller
     {
         $data['translated_model_name'] = __('backend.pages.about_us');
         $data['page'] = Page::query()->whereType('about_us')->first();
+        $data['about_page_settings'] = true;
         return view('admin.pages.about_us', $data);
     }
 
@@ -77,6 +78,7 @@ class PageController extends Controller
         $page = $request->query('page');
         $data['page_settings'] = $this->getPageSettings($page);
         $data['page'] = $page;
+        $data[$page.'_page_settings'] = true;
         return view('admin.pages.' . $page, $data);
     }
 
@@ -94,8 +96,8 @@ class PageController extends Controller
                 $data['faqs_title'] = getSetting('home_page_faqs_title');
                 break;
             case 'offers':
-                $data['offers_page_intro_image']       =   getSetting('offers_page_intro_image');
-                $data['offers_page_no_offers_text']       =   getSetting('offers_page_no_offers_text');
+                $data['offers_page_intro_image'] = getSetting('offers_page_intro_image');
+                $data['offers_page_no_offers_text'] = getSetting('offers_page_no_offers_text');
                 break;
         }
         return $data;

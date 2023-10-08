@@ -27,7 +27,7 @@
                                     <div class="row">
                                         <div class="form-group col-sm-12">
                                             <label class="form-label">{{ __('backend.content_en') }}</label>
-                                            <textarea name="content_en" class="summernote">{!! $page->translate('en')->content !!}</textarea>
+                                            <textarea name="content_en" class="summernote">{!! $page?->translate('en')->content !!}</textarea>
                                             </div>
                                         </div>
                                         <div class="row">

@@ -64,7 +64,7 @@
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview" style="display: block;">
+                    <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('admin.offer-company.index') }}"
                                 class="nav-link {{ areActiveRoutes(['admin.offer-company.index']) }}">
@@ -83,26 +83,25 @@
                 </li>
                 {{-- subscribers --}}
                 <li
-                    class="nav-item menu-is-opening {{ areActiveRoutes(['admin.users.index', 'admin.subscribtions.index'], 'menu-open') }}">
-                    <a href="#"
-                        class="nav-link {{ areActiveRoutes(['admin.users.index', 'admin.subscribtions.index']) }}">
+                    class="nav-item menu-is-opening @if (isset($users_page) || isset($users_subscriptions_page)) active menu-open  @endif">
+                    <a href="#" class="nav-link @if (isset($users_page) || isset($users_subscriptions_page)) active @endif">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             {{ __('backend.users.user_and_subscribtions') }}
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview" style="display: block;">
+                    <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('admin.users.index') }}"
-                                class="nav-link {{ areActiveRoutes(['admin.users.index']) }}">
+                                class="nav-link @isset($users_page) active @endisset">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>{{ __('backend.users.all_users') }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('admin.users.index', ['view_subscriptions' => true]) }}"
-                                class="nav-link {{ areActiveRoutes(['admin.users.index']) }}">
+                                class="nav-link  @isset($users_subscriptions_page) active @endisset">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>{{ __('backend.users.all_subscribers') }}</p>
                             </a>
@@ -138,14 +137,17 @@
                 {{-- Pages --}}
                 <li
                     class="nav-item menu-is-opening {{ areActiveRoutes(['admin.pages.about_us.index'], 'menu-open') }}">
-                    <a href="#" class="nav-link {{ areActiveRoutes(['admin.pages.about_us.index']) }}">
-                        <i class="nav-icon fas fa-files"></i>
+                    <a href="#"
+                        class="nav-link {{ areActiveRoutes(['admin.pages.about_us.index']) }} @isset($home_page_settings)
+                        active
+                    @endisset @isset($offers_page_settings) active @endisset">
+                        <i class="nav-icon far fa-file-alt"></i>
                         <p>
                             {{ __('backend.pages.pages') }}
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview" style="display: block;">
+                    <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('admin.pages.about_us.index') }}"
                                 class="nav-link {{ areActiveRoutes(['admin.pages.about_us.index']) }}">
@@ -153,16 +155,16 @@
                                 <p>{{ __('backend.pages.about_us') }}</p>
                             </a>
                         </li>
-                        <li>
+                        <li class="nav-item">
                             <a href="{{ route('admin.pages.show', ['page' => 'home']) }}"
-                                class="nav-link {{ areActiveRoutes(['admin.pages.show']) }}">
+                                class="nav-link @isset($home_page_settings) active @endisset ">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>{{ __('backend.pages.home') }}</p>
                             </a>
                         </li>
-                        <li>
+                        <li class="nav-item">
                             <a href="{{ route('admin.pages.show', ['page' => 'offers']) }}"
-                                class="nav-link {{ areActiveRoutes(['admin.pages.show']) }}">
+                                class="nav-link @isset($offers_page_settings) active @endisset }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>{{ __('backend.pages.offers') }}</p>
                             </a>
@@ -180,7 +182,7 @@
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview" style="display: block;">
+                    <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('admin.help_center.subjects.index') }}"
                                 class="nav-link {{ areActiveRoutes(['admin.help_center.subjects.index']) }}">
@@ -198,7 +200,8 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.settings.index') }}" class="nav-link">
+                    <a href="{{ route('admin.settings.index') }}"
+                        class="nav-link {{ areActiveRoutes(['admin.settings.index']) }}">
                         <i class="nav-icon fas fa-cogs"></i>
                         <p>
                             {{ __('backend.general_settings') }}

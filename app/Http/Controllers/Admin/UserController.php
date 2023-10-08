@@ -51,15 +51,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::query()->whereHas('subscriptions')->with([
-            'subscriptions' => function ($subs) {
-                $subs->whereHas('payments')->with('payments');
-            }
-        ])->first();
-        // dd($user);
         $data['model'] = $this->model_name;
         $data['translated_model_name'] = $this->translated_model_name;
         $data['discount_types'] = VatType::getNames();
+        request()->query('view_subscriptions', null) ? ($data['users_subscriptions_page'] = true) : ($data['users_page'] = true);
         return view('admin.users.index', $data);
     }
 

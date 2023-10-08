@@ -42,10 +42,10 @@ class UserTransformer extends TransformerAbstract
         return "<div class='d-flex'><button class='btn-xs btn-success' data-toggle='modal'
             data-target='#create-edit-modal' data-club-name='" . $subscribtion?->club?->name . "' data-subscrobtion-date='" . $subscribtion?->created_at->format('Y-m-d H:i:s') .
             "' data-paid-amount='" . $subscribtion?->getPayment()?->amount . " " . getSystemCurrency() . "'
-            " . "' data-file-download='" . route('admin.file.download', ['path' => getImageUrl($subscribtion->img_vehicle)]) . "'
-            " . "' data-subscribtion-id='" . $subscribtion->id . "'
-            " . "' data-vin='" . $subscribtion->vin . "'
-            data-file-view='" . getImageUrl($subscribtion->img_vehicle) . "" . "' data-is-create='0'><i class='fa fa-edit'></i></button>";
+            " . "' data-file-download='" . route('admin.file.download', ['path' => getImageUrl($subscribtion?->img_vehicle ?? '')]) . "'
+            " . "' data-subscribtion-id='" . $subscribtion?->id . "'
+            " . "' data-vin='" . $subscribtion?->vin . "'
+            data-file-view='" . getImageUrl($subscribtion?->img_vehicle ?? '') . "" . "' data-is-create='0'><i class='fa fa-edit'></i></button>";
     }
 
 

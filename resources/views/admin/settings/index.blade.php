@@ -45,6 +45,11 @@
                                             <label class="custom-control-label" for="invoice_system_activated"></label>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-12">
+                                            <button class="btn btn-success" type="submit">{{ __('backend.save') }}</button>
+                                        </div>
+                                    </div>
                             </div>
                             </form>
                         </div>
