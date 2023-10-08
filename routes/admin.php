@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OfferCompanyController;
 use App\Http\Controllers\Admin\OfferController;
 use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Admin\UserController;
@@ -87,12 +88,12 @@ Route::group(['middleware' => 'admin', 'as' => 'admin.'], function () {
         Route::post('page/update/', [PageController::class, 'updatePage'])->name('update');
     });
 
-   // help-center
+    // help-center
     Route::group(['prefix' => 'help-center', 'as' => 'help_center.'], function () {
         Route::resource('subjects', SubjectController::class);
         Route::resource('contacts', ContactController::class);
-        Route::get('subjects-table-data', [SubjectController::class , 'getTableData'])->name('subjects.table_data');
-        Route::get('contacts-table-data', [ContactController::class , 'getTableData'])->name('contacts.table_data');
+        Route::get('subjects-table-data', [SubjectController::class, 'getTableData'])->name('subjects.table_data');
+        Route::get('contacts-table-data', [ContactController::class, 'getTableData'])->name('contacts.table_data');
     });
 
 
@@ -101,6 +102,12 @@ Route::group(['middleware' => 'admin', 'as' => 'admin.'], function () {
         Route::get('index', [SettingController::class, 'index'])->name('index');
         Route::post('update', [SettingController::class, 'update'])->name('update');
     });
+    // admin profile
+    Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
+        Route::get('index', [ProfileController::class, 'index'])->name('index');
+        Route::post('update', [ProfileController::class, 'update'])->name('update');
+    });
+
 
     // downlod file from storage.
     Route::get('download-file', [DashboardController::class, 'downloadFile'])->name('file.download');

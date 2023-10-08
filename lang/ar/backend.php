@@ -197,5 +197,5 @@ return [
     'subjects' => 'المواضيع',
     'subject_edit' => 'تعديل الموضوع',
     'contact_reqeusts' => 'رسائل الدعم',
-
+    'profile' => 'الملف الشخصي',
 ];

@@ -245,4 +245,5 @@ return [
         'intro_image' => 'Page Intro Image',
         'no_offers_text' => 'Text To Display When No Offers Avialable',
     ],
+    'profile' => 'Profile',
 ];
