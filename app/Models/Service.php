@@ -22,7 +22,7 @@ class Service extends Model implements TranslatableContract
     ];
 
     protected $with = ['translations'];
-    public $translatedAttributes = ['name'];
+    public $translatedAttributes = ['name' , 'description'];
 
 
     ######### START RELATIONS ##########

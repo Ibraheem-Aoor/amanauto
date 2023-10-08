@@ -15,6 +15,7 @@ return new class extends Migration {
         Schema::create('service_translations', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->text('description')->nullable();
             $table->string('locale')->index();
             $table->unique(['service_id', 'locale']);
             $table->foreignId('service_id')->references('id')->on('services')->onDelete('cascade');

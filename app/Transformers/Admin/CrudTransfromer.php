@@ -41,7 +41,8 @@ class CrudTransfromer extends TransformerAbstract
     public function getActionButtons($model)
     {
         return "<div class='d-flex'><button class='btn-xs btn-success' data-toggle='modal'
-            data-target='#create-edit-modal' data-name-ar='" . $model->translate('ar')->name . "'
+            data-target='#create-edit-modal' data-name-ar='" . $model->translate('ar')->name . "' data-description-ar='" . $model->translate('ar')->description . "'
+                data-description-en='" . $model->translate('en')->description . "'
             data-name-en='" . $model->translate('en')->name . "' data-web-img='" . getImageUrl($model->web_img) . "' data-mobile-img='" . getImageUrl($model->mobile_img) . "'
             data-form-action='" . route('admin.crud.update', $model->id) . "?model=" . $this->model_class . "' data-is-create='0'><i class='fa fa-edit'></i></button> &nbsp;
                 <button class='btn-xs btn-danger' data-toggle='modal' data-target='#delete-modal'

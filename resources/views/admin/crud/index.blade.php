@@ -160,7 +160,7 @@
     <script src="{{ asset('plugins/datatables/jquery.dataTables.js') }}"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-    <script  src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
 
     <script>
         var table_data_url = "{{ route('admin.crud.table_data', ['model' => $model]) }}";
@@ -224,9 +224,10 @@
                 $('#create-edit-modal form').attr('action', form_action);
                 $('#create-edit-modal form input[name="_method"]').val(form_method);
                 if (is_create === 1) {
+                    $('button[type="reset"]').click();
+                    $('#create-edit-modal textarea[name="description_ar"]').text(null);
+                    $('#create-edit-modal textarea[name="description_en"]').text(null);
                     $('#create-edit-modal .modal-title').text("{{ __('backend.create_new_service') }}");
-                    $('#create-edit-modal input[name="name_ar"]').val(null);
-                    $('#create-edit-modal input[name="name_en"]').val(null);
                     $('.image-input-wrapper-web').css('background-image',
                         'url("{{ asset('dist/img/product-placeholder.webp') }}")');
                     $('.image-input-wrapper-mobile').css('background-image',
@@ -237,6 +238,10 @@
                         this).data('name-ar'));
                     $('#create-edit-modal input[name="name_ar"]').val($(this).data('name-ar'));
                     $('#create-edit-modal input[name="name_en"]').val($(this).data('name-en'));
+                    $('#create-edit-modal textarea[name="description_ar"]').text($(this).data(
+                        'description-ar') ?? null);
+                    $('#create-edit-modal textarea[name="description_en"]').text($(this).data(
+                        'description-en') ?? null);
                     $('.image-input-wrapper-web').css('background-image', 'url("' + $(this).data(
                             'web-img') +
                         '")');

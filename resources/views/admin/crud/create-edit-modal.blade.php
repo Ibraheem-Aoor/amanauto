@@ -64,6 +64,15 @@
                                     </div>
                                 </div>
                             </div>
+                            {{-- Description For Service Only --}}
+                            <div class="col-sm-12">
+                                <h5>{{ __('backend.description_ar') }}</h5>
+                                <textarea name="description_ar" class="form-control"></textarea>
+                            </div>
+                            <div class="col-sm-12">
+                                <h5>{{ __('backend.description_en') }}</h5>
+                                <textarea name="description_en" class="form-control"></textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -71,6 +80,8 @@
                     <button type="button" class="btn btn-default"
                         data-dismiss="modal">{{ __('backend.cancel') }}</button>
                     <button type="submit" class="btn btn-primary">{{ __('backend.save') }}</button>
+                    <button type="reset" hidden></button>
+
                 </div>
             </form>
         </div>

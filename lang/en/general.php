@@ -22,7 +22,6 @@ return [
         'second_headline' => 'For less than one riyal a day Subscribe Now!',
         'entities_headline' => 'Entities we happy to serve its employees',
         'services_headline' => 'Various services secure your way',
-
     ],
 
 

@@ -20,5 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CommonQuestionSeeder::class);
         $this->call(ClubSeeder::class);
         $this->call(ClientSeeder::class);
+        $this->call(HomePageContentSeeder::class);
+        $this->call(OfferPageContentSeeder::class);
     }
 }

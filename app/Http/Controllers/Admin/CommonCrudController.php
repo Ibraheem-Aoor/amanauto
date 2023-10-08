@@ -66,13 +66,15 @@ class CommonCrudController extends Controller
                 [
                     'ar' => [
                         'name' => $request->name_ar,
+                        'description' => $request->description_ar,
                     ],
                     'en' => [
                         'name' => $request->name_en,
+                        'description' => $request->description_en,
                     ],
                     'web_img' => $web_img,
                     'mobile_img' => $mobile_img,
-                    'added_by'  => getAuthUser('admin')->id,
+                    'added_by' => getAuthUser('admin')->id,
                 ]
             );
             DB::commit();
@@ -105,10 +107,13 @@ class CommonCrudController extends Controller
             $target->update(
                 [
                     'ar' => [
+                        'description' => $request->description_ar,
                         'name' => $request->name_ar,
                     ],
                     'en' => [
                         'name' => $request->name_en,
+                        'description' => $request->description_en,
+
                     ],
                     'web_img' => $images['web_img'],
                     'mobile_img' => $images['mobile_img'],
