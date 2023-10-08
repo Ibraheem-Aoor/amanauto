@@ -28,10 +28,9 @@
 .shapeCard {
     position: absolute;
     bottom: 0px;
-    left: 0% !important;
+    right: 75% !important;
     width: 150px;
     height: 150px;
-    transform: rotateY(180deg) !important;
 }
 
 .flex-items-prfoile .back-page {
@@ -73,9 +72,6 @@
     width: 470px !important;
 }
 
-.shapeCard {
-    transform: rotateY(180deg) !important;
-}
 /*
 @media (min-width:320px) and (max-width:375px) {
     .shapeCard {

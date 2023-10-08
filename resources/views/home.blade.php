@@ -61,7 +61,7 @@
             <!-- -- Start Client -->
             <section class="client" data-aos="fade-right" data-aos-duration="3000">
                 <div class="container">
-                    <h4>{{getSetting('home_page_entities_title')}}</h4>
+                    <h4>{{ getSetting('home_page_entities_title') }}</h4>
                     <div class="row-client">
                         @foreach ($entities as $entity)
                             <div class="client-card">
@@ -83,7 +83,9 @@
                         <div class="row">
                             @foreach ($services as $service)
                                 <div class="col-sm-12 col-md-12 col-lg-4 customeBoxService">
-                                    <div class="card-service">
+                                    <div class="card-service" data-name="{{ $service->name }}"
+                                        data-img="{{ getImageUrl($service->web_img) }}"
+                                        data-description="{{ $service->description }}" data-img="{{ $service->web_img }}">
                                         <img src="{{ getImageUrl($service->web_img) }}" alt="{{ $service->name }}"
                                             loading="lazy" />
                                         <h5>{{ $service->name }}</h5>
@@ -157,6 +159,36 @@
             </section>
             <!-- --- End Sec_Questions -->
         @endif
+        <!-- --- Start Pop Up Service -->
+        <section class="pop-ser">
+            <div class="container">
+                <!-- Button trigger modal -->
+                <!-- Modal -->
+                <div class="modal fade" id="service-details-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                <span data-bs-dismiss="modal" aria-label="Close">&times;</span>
+
+                            </div>
+                            <div class="modal-body">
+                                <img src="" />
+                                <p>
+
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="but-save-foot m-auto" onclick='window.location.href="{{ route("clubs.index") }}"'
+                                    class="col-sm-12">{{ __('general.subscribe_now') }}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ---- End Pop Up Servucice -->
         @include('partials.whatsaap_section')
     </main>
     <!-- --- End Main -->
@@ -182,5 +214,13 @@
             });
         });
         AOS.init();
+
+        $(document).on('click', '.card-service', function(e) {
+            console.log('SS');
+            $('#service-details-modal .modal-title').text($(this).data('name'));
+            $('#service-details-modal .modal-body img').prop('src' , $(this).data('img'));
+            $('#service-details-modal .modal-body p').text($(this).data('description'));
+            $('#service-details-modal').modal('show');
+        });
     </script>
 @endpush

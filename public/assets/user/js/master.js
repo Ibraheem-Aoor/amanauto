@@ -2,7 +2,7 @@ var preloader = $(".content-loading");
 $(document).ready(function () {
     setTimeout(function () {
         preloader.fadeToggle();
-    }, 3000);
+    }, 1500);
     // preloader.hide();
     $('#delete-modal').on('show.bs.modal', function (e) {
         var btn = e.relatedTarget;
