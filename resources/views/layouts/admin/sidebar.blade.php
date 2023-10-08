@@ -37,7 +37,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('admin.crud.index', ['model' => 'Service']) }}"
-                        class="nav-link {{ areActiveRoutes(['admin.crud.index']) }}">
+                        class="nav-link @isset($services_page) active @endisset">
                         <i class="nav-icon fas fa-cubes"></i>
                         <p>
                             {{ __('backend.services') }}
@@ -82,8 +82,7 @@
                     </ul>
                 </li>
                 {{-- subscribers --}}
-                <li
-                    class="nav-item menu-is-opening @if (isset($users_page) || isset($users_subscriptions_page)) active menu-open  @endif">
+                <li class="nav-item menu-is-opening @if (isset($users_page) || isset($users_subscriptions_page)) active menu-open @endif">
                     <a href="#" class="nav-link @if (isset($users_page) || isset($users_subscriptions_page)) active @endif">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
@@ -118,7 +117,10 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.crud.index', ['model' => 'Client']) }}" class="nav-link">
+                    <a href="{{ route('admin.crud.index', ['model' => 'Client']) }}"
+                        class="nav-link @isset($entities_page) active
+
+                    @endisset">
                         <i class="nav-icon fas fa-user"></i>
                         <p>
                             {{ __('backend.client') }}

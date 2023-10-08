@@ -46,6 +46,7 @@ class CommonCrudController extends Controller
     {
         $data['model'] = $this->model_name;
         $data['translated_model_name'] = $this->translated_model_name;
+        $this->model_name == 'Service' ? $data['services_page'] = true : $data['entities_page'] = true;
         return view('admin.crud.index', $data);
     }
 
