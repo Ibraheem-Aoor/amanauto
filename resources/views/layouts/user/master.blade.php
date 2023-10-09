@@ -14,7 +14,7 @@
         rel="stylesheet" />
 
     <link rel="stylesheet" href="{{ asset('assets/user/css/bootstrap.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/user/css/style.css') }}?v=0.03" />
+    <link rel="stylesheet" href="{{ asset('assets/user/css/style.css') }}?v=0.04" />
     @if (app()->getLocale() == 'ar')
         <link rel="stylesheet" href="{{ asset('assets/user/css/arbic.css') }}?v=0.01" />
     @endif

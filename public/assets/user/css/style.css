@@ -1752,46 +1752,38 @@ body, html {
     font-weight: 600;
 }
 
+/* Customized By Ibraheem */
 
 .text-primary {
     color: #1DC1DD !important;
 }
 
-/* .accordion-header
-{
-    border-radius: 12px !important;
-}
-
-.accordion-collapse
-{
-    border-radius: 12px !important;
-}
-
-.accordion-item
-{
-    border-radius: 12px !important;
-}
-.accordion-item:focus
-{
-    border-radius: 12px !important;
-} */
-
 
 /* Customize the accordion border */
 .accordion-item {
     border-radius: 12px !important;
+    border-color: #1DC1DD !important;
     /* Adjust the border radius to control the corner roundness */
 }
 
 /* Customize the active accordion item's border color */
 .accordion-item.active {
     border-radius: 12px !important;
+    border-color: #1DC1DD !important;
 }
 
 /* Customize the accordion button styles */
 .accordion-button {
     border-radius: 12px !important;
+    border-color: #1DC1DD !important;
     /* Adjust the button's border radius */
+}
+
+.accordion-button:focus {
+    z-index: 3;
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem #1DC1DD;
 }
 
 .content-loading img {
@@ -1850,3 +1842,9 @@ body, html {
 }
 
 
+
+
+.accordion-button:not(.collapsed)::after {
+    background-image: url('../img/arrow-down.svg');
+    transform: rotate(-180deg);
+}

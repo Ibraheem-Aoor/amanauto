@@ -55,7 +55,7 @@
                     </h4>
                     <div class="row">
                         @foreach ($club->services as $service)
-                            <div class="col-sm-12 col-md-12 col-lg-4">
+                            <div class="col-sm-12 col-md-12 col-lg-4 customeBoxService">
                                 <div class="card-service">
                                     <img src="{{ getImageUrl($service->web_img) }}" alt="">
                                     <h5>

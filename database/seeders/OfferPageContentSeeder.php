@@ -26,7 +26,7 @@ class OfferPageContentSeeder extends Seeder
         return [
             [
                 'key' => 'offers_page_intro_image',
-                'value' => ('settings/offers_page_intro_image/Image 1.png'),
+                'value' => ('settings/offers_page_intro_image/covers.png'),
                 'lang' => null,
             ],
             [
