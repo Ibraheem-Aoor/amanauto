@@ -158,6 +158,7 @@ class AuthController extends Controller
             $code = 500;
             $status = false;
             $message = __('general.response_messages.error');
+            $data=$e;
         }
         return generateApiResoponse($status, $code, $data ?? [], $message ?? '');
     }
