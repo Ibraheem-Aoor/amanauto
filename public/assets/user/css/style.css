@@ -515,6 +515,10 @@ body, html {
     height: 150px;
 }
 
+[lang="ar"] .shapeCard {
+    transform: scaleX(-1);
+    right: 72% !important;
+}
 .bg-bule-card-price h3 {
     color: #fff;
     font-size: 30px;
