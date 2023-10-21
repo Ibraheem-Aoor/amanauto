@@ -26,16 +26,23 @@
                                 {{ __('general.notifications') }}
                             </h4>
                             @foreach ($notifications as $notification)
+
+
+                                @php
+                                    $currentLocale = app()->getLocale();
+                                    $notification_translation=\App\Models\NotificationTranslation::where('notification_id',$notification->id)->where('locale',$currentLocale)->first();
+                                @endphp
+
                                 <div class="card-noto">
                                     <img src="assest/img/author-image1.jpg" alt="">
                                     <h4>
-                                        {{ $notification->data['title'] }}
+                                        {{ $notification_translation->data['title'] }}
                                     </h4>
                                     <h6>
                                         {{ $notification->date }}
                                     </h6>
                                     <p>
-                                        {{ $notification->date['body'] }}
+                                        {{ $notification_translation->data['body'] }}
                                     </p>
                                 </div>
                             @endforeach
