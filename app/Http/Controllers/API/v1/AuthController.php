@@ -34,6 +34,7 @@ class AuthController extends Controller
             $message = __('general.response_messages.otp_sent_success');
             $response = generateApiResoponse(true, 201, $data, $message);
         } catch (Throwable $e) {
+            dd($e);
             $data = [];
             $message = $e->getMessage();
             $code = 500;
@@ -155,9 +156,11 @@ class AuthController extends Controller
                 $message = __('auth.failed');
             }
         } catch (Throwable $e) {
+            dd($e);
             $code = 500;
             $status = false;
             $message = __('general.response_messages.error');
+            $data=$e;
         }
         return generateApiResoponse($status, $code, $data ?? [], $message ?? '');
     }

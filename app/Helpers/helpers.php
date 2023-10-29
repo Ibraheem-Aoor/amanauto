@@ -46,7 +46,10 @@ function deleteImage($oldImage)
 
 
 function getImageUrl($image)
-{
+{   
+    if(is_null($image)){
+        return asset('dist/img/product-placeholder.webp');
+    }
     $exists = Storage::disk('public')->exists($image);
     if ($exists) {
         return Storage::url($image);

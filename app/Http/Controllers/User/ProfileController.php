@@ -70,7 +70,7 @@ class ProfileController extends Controller
         $data['user'] = getAuthUser('web');
         $data['notifications'] = $data['user']->notifications()->paginate(1);
         $data['unread_notifications_count'] = $data['user']->unReadNotifications()->count();
-        dd($data['notifications']->first()->data);
+        // dd($data['notifications']->first()->data);
         return view('user.profile.notifications', $data);
     }
 }

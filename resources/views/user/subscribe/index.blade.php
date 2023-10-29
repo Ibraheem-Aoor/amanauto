@@ -8,6 +8,10 @@
             padding: 10px 4px;
             color: red;
         }
+
+        .error {
+            color: red !important;
+        }
     </style>
 @endpush
 @section('content')
@@ -111,11 +115,12 @@
                                         class="text en-only" name="card_holder_name" />
                                 </div>
                                 <div class="card-al-input">
-                                    <input type="text" placeholder="{{ __('general.card_number') }}"
-                                        class="input-number" name="card_number" />
-                                    <input type="text" placeholder="{{ __('general.month/year') }}" class="input-mm"
+                                    <input type="text" placeholder="{{ __('general.card_number') }}" pattern="^\d{16}$"
+                                        class="input-number" id="cardNumber" name="card_number" />
+                                    <input type="text" placeholder="{{ __('general.month/year') }}"
+                                        pattern="^(0[1-9]|1[0-2])\/\d{2}$" class="input-mm" id="expiryDate"
                                         name="card_date" />
-                                    <input type="text" placeholder="CVC" class="CVC" name="cvc" />
+                                    <input type="text" id="cvc" placeholder="CVC" class="CVC" name="cvc" pattern="^\d{3,4}$" />
                                 </div>
 
                             </div>
@@ -186,7 +191,7 @@
                                 </div>
                             @endif
                             <div class="but-payment">
-                                <button type="submit">{{ __('general.comlete_payment') }}</button>
+                                <button type="submit" id="payButton">{{ __('general.comlete_payment') }}</button>
                             </div>
                         </div>
                     </div>
@@ -297,5 +302,88 @@
                 $('#applyBtn').hide();
             }
         }
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#cardNumber').on('input', function() {
+                var pattern = /^\d{16}$/;
+                var value = $(this).val();
+                if (value.length === 16) {
+                    $('#expiryDate').focus();
+                }
+                if (!pattern.test(value)) {
+                    $(this).addClass('error');
+                } else {
+                    $(this).removeClass('error');
+                }
+            });
+
+            $('#expiryDate').on('input', function(e) {
+                var pattern = /^(0[1-9]|1[0-2])\/\d{1,2}$/;
+                var value = $(this).val();
+                if (!pattern.test(value)) {
+                    $(this).addClass('error');
+                } else {
+                    $(this).removeClass('error');
+                }
+
+                if (value.length === 2 && value.charAt(2) !== '/') {
+                    $(this).val(value + '/2');
+                }
+                if (value.length === 5) {
+                    $('#cvc').focus();
+                }
+
+                if (value.length === 1 && parseInt(value) > 1) {
+                    $(this).val('0' + value + '/');
+                }
+                if (value.length === 2 && value.charAt(2) !== '/') {
+                    $(this).val(value + '/');
+                }
+            });
+
+            $('#expiryDate').on('keydown', function(e) {
+                if (e.key === 'Backspace' && $(this).val().length === 3) {
+                    e.preventDefault();
+                    $(this).val('');
+
+                }
+            });
+
+            $('#cvc').on('keyup', function(e) {
+                var pattern = /^\d{3,4}$/;
+                var value = $(this).val();
+                if (!pattern.test(value)) {
+                    $(this).addClass('error');
+                } else {
+                    $(this).removeClass('error');
+                    if (value.length === 0) {
+                        $('#expiryDate').focus();
+                    }
+                }
+
+                var maxLength = 4;
+                if (value.length === maxLength) {
+                    $("#payButton").focus();
+                }
+            });
+
+
+            $('#cvc').on('keydown', function(e) {
+                if (e.key === 'Backspace' && $(this).val().length === 0) {
+                    $('#expiryDate').focus();
+                }
+            });
+
+            $('#expiryDate').on('keydown', function(e) {
+                if (e.key === 'Backspace' && $(this).val().length === 0) {
+                    $('#cardNumber').focus();
+                }
+            });
+
+
+
+
+        });
     </script>
 @endpush
